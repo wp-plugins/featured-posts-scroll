@@ -1,0 +1,109 @@
+/* featuredposts.css */
+
+/**** Main Wrapper and Background ****/
+#featured-posts-wrapper * {
+margin: 0; padding: 0; border: 0;
+}
+
+#featured-posts-wrapper.fps-single {
+width: 550px;
+margin: 10px auto;
+}
+
+#featured-posts-background.fps-single {
+width: 500px;
+height: 245px;
+margin: 12px;
+}
+
+/**** Featured Posts List and Items ****/
+ul#featured-posts.fps-single {
+position: relative;
+z-index: 2;
+width: 480px;
+height: 225px;
+margin-top: 10px;
+background: #fff;
+list-style: none;
+float: left;
+overflow: hidden;
+}
+
+ul#featured-posts.fps-single li {
+background: #333;
+width: 480px;
+height: 225px;
+overflow: hidden;
+}
+
+/**** Featured Posts Text ****/
+ul#featured-posts.fps-single li .fps-text {
+width: 480px;
+height: 53px;
+margin-top: 172px;
+float: left;
+padding: 3px 5px;
+}
+
+p.fps-title, p.fps-excerpt {
+}
+
+p.fps-title {
+font-size: 12pt;
+font-weight: bold;
+}
+
+p.fps-excerpt {
+font-size: 10pt;
+line-height: 10pt;
+}
+
+p#featured-posts-header {
+font-size: 18pt;
+font-weight: bold;
+text-shadow: 2px 2px 2px #000;
+z-index: 3;
+margin-left: 29px;
+margin-bottom: -24pt;
+margin-top: -9pt;
+float: left;
+position: relative;
+}
+
+
+/**** Left and Right Arrows ****/
+#scrollFeaturedPostsLeft, #scrollFeaturedPostsRight {
+position: relative;
+z-index: 1;
+margin: 100px 0px 100px;
+height: 50px;
+overflow: hidden;
+float: left;
+cursor: pointer;
+}
+
+#scrollFeaturedPostsLeft {
+background-position: 0pt 0pt;
+width: 22px;
+}
+
+#scrollFeaturedPostsRight {
+background-position: -24px 0pt;
+width: 23px;
+}
+
+#scrollFeaturedPostsLeft:hover {
+background-position: 0pt -38pt;
+}
+
+#scrollFeaturedPostsRight:hover {
+background-position: -24px -38pt;
+}
+
+#scrollFeaturedPostsLeft:active {
+background-position: 0pt 0pt;
+}
+
+#scrollFeaturedPostsRight:active {
+background-position: -24px 0pt;
+}
