@@ -34,6 +34,7 @@ background: #333;
 width: 480px;
 height: 225px;
 overflow: hidden;
+cursor: pointer;
 }
 
 /**** Featured Posts Text ****/
@@ -43,6 +44,12 @@ height: 53px;
 margin-top: 172px;
 float: left;
 padding: 3px 5px;
+}
+
+a:link.featured-posts-image,
+a:visited.featured-posts-image,
+a:hover.featured-posts-image {
+text-decoration: none;
 }
 
 p.fps-title, p.fps-excerpt {

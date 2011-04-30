@@ -301,12 +301,14 @@ function fps_show($atts)
     $wrapper_classes .= "fps-single";
     $ul_classes .= "fps-single";
     $bg_classes .= "fps-single";
+    $li_classes = "";
 
     // Check if rounded corners are enabled
     if ($post_roundedconers == '1')
     {
         $ul_classes .= " fps-rounded";
         $bg_classes .= " fps-rounded";
+        $li_classes .= " fps-rounded";
     }
 
     // Check if drop shadows are enabled
@@ -345,6 +347,8 @@ function fps_show($atts)
         
         // Define classes for title/excerpt background
         $output .= '.fps-text {background: '.$post_textbg_color.';}';
+        $output .= 'a:link.featured-posts-image,a:visited.featured-posts-image,a:hover.featured-posts-image {'.
+                   'color: '.$post_title_color.';}';
 
         // Define the arrow image being used
         $output .= '#scrollFeaturedPostsLeft, #scrollFeaturedPostsRight {background: transparent url('.WP_PLUGIN_URL.
@@ -417,14 +421,13 @@ function fps_show($atts)
             $post_excerpt = $post_details[$i]['post_excerpt'];
             $post_img = $post_details[$i]['post_img_src'][0];
 
-            $output .= '<a href="'.$post_permalink.'" class="featured-posts-image">';
                 if ($post_img != '')
                 {
-                    $output .= '<li style="background:url('.$post_img.')">';
+                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'" style="background:url('.$post_img.')">';
                 }
                 else
                 {
-                    $output .= '<li>';
+                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'">';
                 }
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
@@ -437,7 +440,6 @@ function fps_show($atts)
                         }
                     $output .= '</div>';
                 $output .= '</li>';
-            $output .= '</a>';
         }
         $output .= '</ul>';
         $output .= '<div id="scrollFeaturedPostsRight"></div>';
