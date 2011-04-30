@@ -50,7 +50,6 @@ a:link.featured-posts-image,
 a:visited.featured-posts-image,
 a:hover.featured-posts-image {
 text-decoration: none;
-display: block;
 }
 
 p.fps-title, p.fps-excerpt {

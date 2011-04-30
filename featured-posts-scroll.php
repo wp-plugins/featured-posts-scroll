@@ -301,12 +301,14 @@ function fps_show($atts)
     $wrapper_classes .= "fps-single";
     $ul_classes .= "fps-single";
     $bg_classes .= "fps-single";
+    $li_classes = "";
 
     // Check if rounded corners are enabled
     if ($post_roundedconers == '1')
     {
         $ul_classes .= " fps-rounded";
         $bg_classes .= " fps-rounded";
+        $li_classes .= " fps-rounded";
     }
 
     // Check if drop shadows are enabled
@@ -421,11 +423,11 @@ function fps_show($atts)
 
                 if ($post_img != '')
                 {
-                    $output .= '<li onclick="document.location.href=\''.$post_permalink.'\'" style="background:url('.$post_img.')">';
+                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'" style="background:url('.$post_img.')">';
                 }
                 else
                 {
-                    $output .= '<li onclick="document.location.href=\''.$post_permalink.'\'">';
+                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'">';
                 }
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
