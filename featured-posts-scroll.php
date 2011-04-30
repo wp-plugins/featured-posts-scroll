@@ -419,14 +419,13 @@ function fps_show($atts)
             $post_excerpt = $post_details[$i]['post_excerpt'];
             $post_img = $post_details[$i]['post_img_src'][0];
 
-            $output .= '<a href="'.$post_permalink.'" class="featured-posts-image">';
                 if ($post_img != '')
                 {
-                    $output .= '<li style="background:url('.$post_img.')">';
+                    $output .= '<li onclick="document.location.href=\''.$post_permalink.'\'" style="background:url('.$post_img.')">';
                 }
                 else
                 {
-                    $output .= '<li>';
+                    $output .= '<li onclick="document.location.href=\''.$post_permalink.'\'">';
                 }
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
@@ -439,7 +438,6 @@ function fps_show($atts)
                         }
                     $output .= '</div>';
                 $output .= '</li>';
-            $output .= '</a>';
         }
         $output .= '</ul>';
         $output .= '<div id="scrollFeaturedPostsRight"></div>';
