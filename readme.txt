@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
 Requires at least: 2.9.1
 Tested up to: 3.1
-Stable tag: 1.2
+Stable tag: 1.3
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -66,7 +66,7 @@ If you would like to display the featured posts scroll inside of a post:
 
 == Changelog ==
 
-= 1.2 =
+= 1.3 =
 * Corrected issue with title/excerpt underlining in Chrome.
 * Corrected issue where scrolling didn't work in Firefox versions prior to 4.0.
 * Accounted for bug in non-webkit browsers where nested elements clip rounded borders.
@@ -76,7 +76,7 @@ If you would like to display the featured posts scroll inside of a post:
 
 == Upgrade Notice ==
 
-= 1.1 =
+= 1.3 =
 * Corrected issue with title/excerpt underlining in Chrome.
 * Corrected issue where scrolling didn't work in Firefox versions prior to 4.0.
 * Accounted for bug in non-webkit browsers where nested elements clip rounded borders.
