@@ -345,6 +345,8 @@ function fps_show($atts)
         
         // Define classes for title/excerpt background
         $output .= '.fps-text {background: '.$post_textbg_color.';}';
+        $output .= 'a:link.featured-posts-image,a:visited.featured-posts-image,a:hover.featured-posts-image {'.
+                   'color: '.$post_title_color.';}';
 
         // Define the arrow image being used
         $output .= '#scrollFeaturedPostsLeft, #scrollFeaturedPostsRight {background: transparent url('.WP_PLUGIN_URL.
