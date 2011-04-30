@@ -94,7 +94,7 @@ function scrollFeaturedPosts(dir)
     animationLocked = true;
 
     // get the currently displayed element(s)
-    var currentItem = $j('#featured-posts-wrapper ul li:visible').parent();
+    var currentItem = $j('#featured-posts-wrapper ul li:visible');
     var nextItem;
 
     if (type == 'single')
@@ -169,7 +169,7 @@ function scrollFeaturedPosts(dir)
     }
 
     
-    animate(nextItem.children(), currentItem.children(), dir);
+    animate(nextItem, currentItem, dir);
 }
 
 function animate(toShow, toHide, dir)
