@@ -66,7 +66,7 @@ If you would like to display the featured posts scroll inside of a post:
 
 == Changelog ==
 
-= 1.1 =
+= 1.2 =
 * Corrected issue with title/excerpt underlining in Chrome.
 * Corrected issue where scrolling didn't work in Firefox versions prior to 4.0.
 * Accounted for bug in non-webkit browsers where nested elements clip rounded borders.
