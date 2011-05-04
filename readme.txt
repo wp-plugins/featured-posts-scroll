@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
 Requires at least: 2.9.1
 Tested up to: 3.1
-Stable tag: 1.5
+Stable tag: 1.4
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
