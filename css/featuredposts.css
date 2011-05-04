@@ -54,6 +54,8 @@ text-decoration: none;
 }
 
 p.fps-title, p.fps-excerpt {
+margin: 0px;
+padding: 0px;
 }
 
 p.fps-title {
