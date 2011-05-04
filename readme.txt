@@ -22,7 +22,7 @@ The appearance is highly customizable via the admin options menu (colors, drop s
 
 If there are any additional features or bug fixes you would like to see in future versions, feel free to contact me.
 
-If you find this plugin useful please remember to rate it and comment.   
+If you find this plugin useful please remember to rate it and comment.      
 
 == Installation ==
 
