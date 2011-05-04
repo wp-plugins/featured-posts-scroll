@@ -2,7 +2,7 @@
 
 var type = 'none'; // Type of slider present (v1.0 only supports 'single')
 var animationLocked = false; // Lock object for animations
-var autoscrollInterval;
+var autoscrollInterval = new Array();
 var $j = jQuery.noConflict(); // Prevent jQuery conflicts
 
 /** Initialize jQuery based animations */
@@ -30,8 +30,13 @@ function init()
         type = 'single'
 
         // hide all but first entry in featured posts list
-        $j('.fps-text').slice(1).fadeOut();
-        $j('#featured-posts-wrapper ul li').slice(1).css('display','none');        
+        $j('.featured-posts-wrapper').each(function() {
+           $j(this).find('.fps-text').slice(1).fadeOut();
+           $j(this).find('ul li').slice(1).css('display','none');
+        });
+
+        //$j('.featured-posts-wrapper').find('.fps-text').slice(1).fadeOut();
+        //$j('.featured-posts-wrapper').find('ul li').slice(1).css('display','none');        
     }
     else if ($j('.fps-triple').length != 0 && $j('ul.fps-triple li').length > 3)
     {
@@ -39,7 +44,7 @@ function init()
 
         // hide all but first three entries in featured posts list
         $j('.fps-text').slice(3).fadeOut();
-        $j('#featured-posts-wrapper ul li').slice(3).css('display','none');        
+        $j('.featured-posts-wrapper ul li').slice(3).css('display','none');        
     }
 
     // initialize the scroll buttons and autoscroll
@@ -54,47 +59,58 @@ function initScrollButtons()
 {
     if (type != 'none')
     {
-        $j('#scrollFeaturedPostsRight').click(function() {
-            if (animationLocked == false)
-            {
-                scrollFeaturedPosts('right');
-            }
-            clearInterval(autoscrollInterval);
+        $j('.scrollFeaturedPostsRight').each(function(index) {
+            $j(this).click(function() {
+                if (animationLocked == false)
+                {
+                    scrollFeaturedPosts(this, 'right');
+                }
+                clearInterval(autoscrollInterval[index]);
+            });
         });
 
-        $j('#scrollFeaturedPostsLeft').click(function() {
-            if (animationLocked == false)
-            {
-                scrollFeaturedPosts('left');
-            }
-            clearInterval(autoscrollInterval);
+        $j('.scrollFeaturedPostsLeft').each(function(index) {
+            $j(this).click(function() {
+                if (animationLocked == false)
+                {
+                    scrollFeaturedPosts(this, 'left');
+                }
+                clearInterval(autoscrollInterval[index]);
+            });
         });
     }
     else
     {
-        $j('#scrollFeaturedPostsRight').remove(); 
-        $j('#scrollFeaturedPostsLeft').remove();
-        $j('#featured-posts-wrapper ul').css('margin-left', '22px');
+        $j('.scrollFeaturedPostsRight').remove(); 
+        $j('.scrollFeaturedPostsLeft').remove();
+        $j('.featured-posts-wrapper ul').css('margin-left', '22px');
     }
 }
 
 function initAutoscroll()
 {
-
-    if (type != 'none' && $j('#featured-posts-wrapper').hasClass('fps-autoscroll'))
+    if (type != 'none')
     {
-        autoscrollInterval = setInterval(
-            "scrollFeaturedPosts('right')", 7000);
+        $j('.featured-posts-wrapper').each(function(index) {
+            if ($j(this).hasClass('fps-autoscroll'))
+            {
+                var callback = 
+                    "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                    index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right')";
+                autoscrollInterval[index] = setInterval(
+                    callback, 7000);
+            }
+        });
     }
 }
 
-function scrollFeaturedPosts(dir)
+function scrollFeaturedPosts(button, dir)
 {
     // lock animations
     animationLocked = true;
 
     // get the currently displayed element(s)
-    var currentItem = $j('#featured-posts-wrapper ul li:visible');
+    var currentItem = $j(button).siblings('ul').children('li:visible'); //$j('.featured-posts-wrapper ul li:visible')
     var nextItem;
 
     if (type == 'single')
@@ -127,16 +143,16 @@ function scrollFeaturedPosts(dir)
             }
             else if (nextItem.length < 3)
             {
-                currentItem.siblings().first().appendTo($j('#featured-posts-wrapper ul'));
+                currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
 
                 if (nextItem.length < 2)
                 {
-                    currentItem.siblings().first().appendTo($j('#featured-posts-wrapper ul'));
+                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
                 }
 
                 if (nextItem.length < 1)
                 {
-                    currentItem.siblings().first().appendTo($j('#featured-posts-wrapper ul'));
+                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
                 }
 
                 nextItem = currentItem.last().nextAll();
@@ -151,16 +167,16 @@ function scrollFeaturedPosts(dir)
             }
             else if (nextItem.length < 3)
             {
-                currentItem.siblings().last().prependTo($j('#featured-posts-wrapper ul'));
+                currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
 
                 if (nextItem.length < 2)
                 {
-                    currentItem.siblings().last().prependTo($j('#featured-posts-wrapper ul'));
+                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
                 }
 
                 if (nextItem.length < 1)
                 {
-                    currentItem.siblings().last().prependTo($j('#featured-posts-wrapper ul'));
+                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
                 }
 
                 nextItem = currentItem.last().prevAll();
@@ -175,7 +191,7 @@ function scrollFeaturedPosts(dir)
 function animate(toShow, toHide, dir)
 {
     // fade out text on currently displayed item
-    $j('#featured-posts-wrapper ul li:visible .fps-text').fadeOut(100, function() {
+    $j(toHide).find('.fps-text').fadeOut(100, function() {
         // Make new item visible.
         toShow.css('display','');
 
@@ -198,7 +214,7 @@ function animate(toShow, toHide, dir)
             toHide.css('width','');
             toShow.css('float','');
             toHide.css('float','');
-            $j('#featured-posts-wrapper ul li:visible .fps-text').fadeIn(200, function() {
+            $j(toShow).find('.fps-text').fadeIn(200, function() {
                 animationLocked = false;
             });
         });

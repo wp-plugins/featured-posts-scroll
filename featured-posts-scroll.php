@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.3
+Version: 1.4
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -298,9 +298,9 @@ function fps_show($atts)
     $post_textbg_color = 'rgba('.hex2RGB($post_textbg_color, true).','.$post_textbg_alpha.')';
 
     // Version 1.0 only supports single item layout
-    $wrapper_classes .= "fps-single";
-    $ul_classes .= "fps-single";
-    $bg_classes .= "fps-single";
+    $wrapper_classes .= "featured-posts-wrapper fps-single";
+    $ul_classes .= "featured-posts fps-single";
+    $bg_classes .= "featured-posts-background fps-single";
     $li_classes = "";
 
     // Check if rounded corners are enabled
@@ -351,23 +351,23 @@ function fps_show($atts)
                    'color: '.$post_title_color.';}';
 
         // Define the arrow image being used
-        $output .= '#scrollFeaturedPostsLeft, #scrollFeaturedPostsRight {background: transparent url('.WP_PLUGIN_URL.
+        $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {background: transparent url('.WP_PLUGIN_URL.
                    '/featured-posts-scroll/images/arrows-'.$post_arrow_color.'.png) no-repeat;}';
-        $output .= '#scrollFeaturedPostsRight {background-position: -24px 0pt;};';
+        $output .= '.scrollFeaturedPostsRight {background-position: -24px 0pt;};';
         $output .= '</style>';
 
         // div#featured-posts-wrapper
-        $output .= '<div id="featured-posts-wrapper" class="'.$wrapper_classes.'">';
+        $output .= '<div class="'.$wrapper_classes.'">';
         
         // Display heading if option selected
         if ($post_display_heading == '1')
         {
-            $output .= '<p id="featured-posts-header" style="color:'.$post_heading_color.'">'.$post_heading_text.'</p>';
+            $output .= '<p class="featured-posts-header" style="color:'.$post_heading_color.'">'.$post_heading_text.'</p>';
         }
 
         // Add left arrow and open unordered list
-        $output .= '<div id="scrollFeaturedPostsLeft"></div>';
-        $output .= '<ul id="featured-posts" class="'.$ul_classes.'">';
+        $output .= '<div class="scrollFeaturedPostsLeft"></div>';
+        $output .= '<ul class="'.$ul_classes.'">';
 
         // Generate arguments for query
         $post_details = NULL;
@@ -442,8 +442,8 @@ function fps_show($atts)
                 $output .= '</li>';
         }
         $output .= '</ul>';
-        $output .= '<div id="scrollFeaturedPostsRight"></div>';
-        $output .= '<div id="featured-posts-background" class="'.$bg_classes.'" style="background:'.$post_bg_color.'"></div>';
+        $output .= '<div class="scrollFeaturedPostsRight"></div>';
+        $output .= '<div class="'.$bg_classes.'" style="background:'.$post_bg_color.'"></div>';
         $output .= '</div>'; // div#featured-posts-wrapper
     }
     else
