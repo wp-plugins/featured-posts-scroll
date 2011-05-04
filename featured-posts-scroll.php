@@ -353,7 +353,7 @@ function fps_show($atts)
         // Define the arrow image being used
         $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {background: transparent url('.WP_PLUGIN_URL.
                    '/featured-posts-scroll/images/arrows-'.$post_arrow_color.'.png) no-repeat;}';
-        $output .= '.scrollFeaturedPostsRight {background-position: -24px 0pt;};';
+        $output .= '.scrollFeaturedPostsRight {background-position: -24px 0pt;}';
         $output .= '</style>';
 
         // div#featured-posts-wrapper
