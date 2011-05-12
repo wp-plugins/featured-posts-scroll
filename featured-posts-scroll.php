@@ -295,7 +295,15 @@ function fps_show($atts)
     $post_bg_color = "#".$post_bg_color;
     $post_innershadow_color = "#".$post_innershadow_color;
     $post_outershadow_color = "#".$post_outershadow_color;
-    $post_textbg_color = 'rgba('.hex2RGB($post_textbg_color, true).','.$post_textbg_alpha.')';
+
+    if ($post_textbg_alpha < 1.0)
+    {
+        $post_textbg_color = 'rgba('.hex2RGB($post_textbg_color, true).','.$post_textbg_alpha.')';
+    }
+    else
+    {
+        $post_textbg_color = "#".$post_textbg_color;
+    }
 
     // Version 1.0 only supports single item layout
     $wrapper_classes .= "featured-posts-wrapper fps-single";
