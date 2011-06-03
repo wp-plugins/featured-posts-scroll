@@ -190,6 +190,8 @@ function scrollFeaturedPosts(button, dir)
 
 function animate(toShow, toHide, dir)
 {
+    var shownWidth = toHide.width();
+
     // fade out text on currently displayed item
     $j(toHide).find('.fps-text').fadeOut(100, function() {
         // Make new item visible.
@@ -219,7 +221,7 @@ function animate(toShow, toHide, dir)
             });
         });
 
-        toShow.animate({width:'480px'},1000);
+        toShow.animate({width: shownWidth},1000);
     });
 }
 

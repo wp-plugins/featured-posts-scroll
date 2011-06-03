@@ -17,8 +17,8 @@ margin: 10px auto;
 position: absolute;
 left: 0;
 z-index: 1;
-width: 500px;
 height: 245px;
+width: 500px;
 margin: 0px 12px 12px;
 clear: none;
 }
@@ -27,8 +27,8 @@ clear: none;
 ul.featured-posts.fps-single {
 position: relative;
 z-index: 3;
-width: 480px;
 height: 225px;
+width: 480px;
 margin: 10px 0px 0px;
 padding: 0px;
 background: #fff;
@@ -39,8 +39,8 @@ overflow: hidden;
 
 ul.featured-posts.fps-single li {
 background: #333;
-width: 480px;
 height: 225px;
+width: 480px;
 overflow: hidden;
 cursor: pointer;
 }

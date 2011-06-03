@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.7
+Version: 1.8
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -167,6 +167,18 @@ function fps_activate()
         $post_dropshadow_blur = '5';
         update_option('fps_dropshadow_blur', $post_dropshadow_blur);
     }
+
+    $post_height = get_option('fps_height');
+    if ( empty($post_height) ) {
+        $post_height = '245';
+        update_option('fps_height', $post_height);
+    }
+
+    $post_width = get_option('fps_width');
+    if ( empty($post_width) ) {
+        $post_width = '550';
+        update_option('fps_width', $post_width);
+    }
 }
 
 /* Deactivate plugin by deleting all option data */
@@ -202,6 +214,9 @@ function fps_deactivate()
     delete_option('fps_dropshadow_x');
     delete_option('fps_dropshadow_y');
     delete_option('fps_dropshadow_blur');
+
+    delete_option('fps_height');
+    delete_option('fps_width');
 }
 
 /* Setup menu page creation */
@@ -249,8 +264,10 @@ function fps_add_script()
 function fps_define_image_sizes()
 {
     //add_theme_support( 'post-thumbnails' ); // Add support for posts
-    add_image_size( 'fps-post', 480, 225, true ); // large size, hard crop mode
-    add_image_size( 'fps-post-square', 240, 225, true ); // small size, hard crop mode
+    $post_height = get_option('fps_height');
+    $post_width = get_option('fps_width');
+
+    add_image_size( 'fps-post', ($post_width-70), ($post_height-20), true ); // large size, hard crop mode
 }
 
 /* Generate the plugin display */
@@ -287,6 +304,9 @@ function fps_show($atts)
     $post_dropshadow_blur = get_option('fps_dropshadow_blur');
 
     $post_autoscroll = get_option('fps_autoscroll');
+
+    $post_height = get_option('fps_height');
+    $post_width = get_option('fps_width');
 
     // Format all color hex value strings
     $post_title_color = "#".$post_title_color;
@@ -340,6 +360,14 @@ function fps_show($atts)
         
         // Define styles that are based on admin options
         $output .= '<style type="text/css">';
+
+        // Define element sizing
+        $output .= '.featured-posts-wrapper.fps-single {height: '.$post_height.'px; width: '.$post_width.'px;}';
+        $output .= '.featured-posts-background.fps-single {height: '.$post_height.'px; width: '.($post_width-50).'px;}';
+        $output .= 'ul.featured-posts.fps-single {height: '.($post_height-20).'px; width: '.($post_width-70).'px;}';
+        $output .= 'ul.featured-posts.fps-single li {height: '.($post_height-20).'px; width: '.($post_width-70).'px;}';
+        $output .= 'ul.featured-posts.fps-single li .fps-text {width: '.($post_width-70).'px;}';
+        $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {margin: '.(($post_height-45)/2).'px 0px '.(($post_height-45)/2).'px;}';
 
         // Define rounded corner class
         $output .= '.fps-rounded {-moz-border-radius: '.$post_corner_radius.'; border-radius: '.$post_corner_radius.';}';

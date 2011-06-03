@@ -41,6 +41,40 @@
             $error[] = "ERROR: Text BG Alpha - Please enter a valid number in range (0.0-1.0).";
         }
 
+        $post_height = $_POST['fps_height'];
+        if ( is_numeric($post_height) )
+        {
+            if ($post_height >= 50 && $post_height <= 2000)
+            {
+                update_option('fps_height', $post_height);
+            }
+            else
+            {
+                $error[] = "ERROR: Scroll Height - Please enter a valid number in range (50-2000).";
+            }
+        }
+        else
+        {
+            $error[] = "ERROR: Scroll Height - Please enter a valid number in range (50-2000).";
+        }
+
+        $post_width = $_POST['fps_width'];
+        if ( is_numeric($post_width) )
+        {
+            if ($post_width >= 70 && $post_width <= 2000)
+            {
+                update_option('fps_width', $post_width);
+            }
+            else
+            {
+                $error[] = "ERROR: Scroll Width - Please enter a valid number in range (70-2000).";
+            }
+        }
+        else
+        {
+            $error[] = "ERROR: Scroll Width - Please enter a valid number in range (70-2000).";
+        }
+
         $post_innershadow_color = $_POST['fps_innershadow_color'];
         update_option('fps_innershadow_color', $post_innershadow_color);
 
@@ -121,6 +155,9 @@
         $post_dropshadow_x = get_option('fps_dropshadow_x');
         $post_dropshadow_y = get_option('fps_dropshadow_y');
         $post_dropshadow_blur = get_option('fps_dropshadow_blur');
+
+        $post_height = get_option('fps_height');
+        $post_width = get_option('fps_width');
     }
 ?>
 
@@ -162,6 +199,20 @@
         <?php _e("<strong>Autoscroll:</strong>"); ?>
         <?php if($post_autoscroll == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
         <input type="checkbox" name="fps_autoscroll" value="true" <?php echo $checked; ?>><?php _e(" Autoscroll Posts (7 second interval)"); ?>
+    </p>
+    <p> ----------------------------------------------------- </p>
+    <p>
+        <?php _e("<strong>Scroll Size:</strong>"); ?>
+        <?php _e("Height"); ?>
+        <input type="text" name="fps_height" maxlength="5" size="5" value="<?php echo $post_height; ?>" />
+        <?php _e(" | Width"); ?>
+        <input type="text" name="fps_width" maxlength="5" size="5" value="<?php echo $post_width; ?>" />
+    </p>
+    <p>
+        <?php _e("Height and Width are in pixels."); ?>
+    </p>
+    <p>
+        <?php _e("Recommended thumbnail image sizes are height=(ScrollHeight-20) width=(ScrollWidth-70)"); ?>
     </p>
     <p> ----------------------------------------------------- </p>
     <p>    
