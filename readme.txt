@@ -63,7 +63,7 @@ If you would like to display the featured posts scroll inside of a post:
 Images are based on the "Featured Image" selected on the Edit Post screen. If the option is not displayed, click Screen Options in the top right of the Edit Post screen and check the "Featured Image" checkbox.
 
 = I changed the size of the post scroll, but my images didn't change size. What do I need to do? =
-Any new thumbnail should be created in the correct new size. However, the old thumbnails will need to be regenerated. This can be done for all images on your site with the excellent "Regenerate Thumbnails" plugin (http://wordpress.org/extend/plugins/regenerate-thumbnails/).
+Any new image added to your site should have a thumbnail created in the correct new size. However, the old thumbnails will need to be regenerated. This can be done for all images on your site with the excellent "Regenerate Thumbnails" plugin (http://wordpress.org/extend/plugins/regenerate-thumbnails/).
 
 == Screenshots ==
 
