@@ -172,7 +172,7 @@ ul.fps-slideNumberList {
 position: relative;
 z-index: 2;
 background: transparent;
-margin: 10px 0px 0px 11px;
+margin: -5px 0px 0px 22px;
 padding: 0px;
 list-style: none;
 float: left;

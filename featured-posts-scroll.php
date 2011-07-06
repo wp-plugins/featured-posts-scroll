@@ -682,7 +682,7 @@ function fps_show($atts)
         {
             $output .= '.featured-posts-wrapper.fps-single {width: '.($post_width - 25).'px;}';
             $output .= 'ul.featured-posts.fps-single {margin-left: 10px;}';
-            $output .= '.fps-slideNumberList {margin-top: 10px; margin-left: 10px;}';
+            $output .= 'ul.fps-slideNumberList {margin-top: 10px; margin-left: 10px;}';
             $output .= '.featured-posts-background.fps-single {margin: 0px 0px 12px;}';
         }
 
