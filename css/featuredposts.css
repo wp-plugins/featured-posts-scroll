@@ -84,6 +84,7 @@ z-index: 5;
 margin-left: 29px;
 margin-bottom: -24pt;
 margin-top: -9pt;
+padding: 0px;
 float: left;
 position: relative;
 }
@@ -167,20 +168,21 @@ background-position: -24px 0px;
 }
 
 /**** Slide Numbers ****/
-.fps-slideNumberList {
+ul.fps-slideNumberList {
 position: relative;
 z-index: 2;
 background: transparent;
-margin: -5px 0px 0px 22px;
+margin: 10px 0px 0px 11px;
 padding: 0px;
 list-style: none;
 float: left;
+line-height: 14pt;
+font-size: 10pt;
 }
 
-.fps-slideNumberList li {
+ul.fps-slideNumberList li {
 float: left;
 cursor: pointer;
-font-size: 10pt;
 padding: 1px 5px 1px 5px;
 margin: 0px 2px;
 }
