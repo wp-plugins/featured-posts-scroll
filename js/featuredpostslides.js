@@ -174,86 +174,95 @@ function scrollToPost(slideButton)
 
 function scrollFeaturedPosts(button, dir)
 {
-    // lock animations
-    animationLocked = true;
-
-    // get the currently displayed element(s)
-    var currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
-    var nextItem;
-
-    if (type == 'single')
-    {        
-        if (dir == 'right')
-        {
-            nextItem = currentItem.next();
-            if (nextItem.length == 0)
-            {
-                nextItem = currentItem.siblings().first();
-            }
-        }
-        else if (dir == 'left')
-        {
-            nextItem = currentItem.prev();
-            if (nextItem.length == 0)
-            {
-                nextItem = currentItem.siblings().last();
-            }
-        }
-    }
-    else
+    if (animationLocked != true)
     {
-        if (dir == 'right')
+        // lock animations
+        animationLocked = true;
+
+        // get the currently displayed element(s)
+        var currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
+
+        if ($j(currentItem).length == 0)
         {
-            nextItem = currentItem.last().nextAll();
-            if (nextItem.length > 3)
+            currentItem = $j(button).siblings('ul.featured-posts').children('li:first');
+        }
+
+        var nextItem;
+
+        if (type == 'single')
+        {        
+            if (dir == 'right')
             {
-                nextItem = nextItem.slice(0,3);
+                nextItem = currentItem.next();
+                if (nextItem.length == 0)
+                {
+                    nextItem = currentItem.siblings().first();
+                }
             }
-            else if (nextItem.length < 3)
+            else if (dir == 'left')
             {
-                currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
-
-                if (nextItem.length < 2)
+                nextItem = currentItem.prev();
+                if (nextItem.length == 0)
                 {
-                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                    nextItem = currentItem.siblings().last();
                 }
-
-                if (nextItem.length < 1)
-                {
-                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
-                }
-
+            }
+        }
+        else
+        {
+            if (dir == 'right')
+            {
                 nextItem = currentItem.last().nextAll();
-            }
-        }
-        else if (dir == 'left')
-        {
-            nextItem = currentItem.last().prevAll();
-            if (nextItem.length > 3)
-            {
-                nextItem = nextItem.slice(-3);
-            }
-            else if (nextItem.length < 3)
-            {
-                currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-
-                if (nextItem.length < 2)
+                if (nextItem.length > 3)
                 {
-                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+                    nextItem = nextItem.slice(0,3);
                 }
-
-                if (nextItem.length < 1)
+                else if (nextItem.length < 3)
                 {
-                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-                }
+                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
 
+                    if (nextItem.length < 2)
+                    {
+                        currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    if (nextItem.length < 1)
+                    {
+                        currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    nextItem = currentItem.last().nextAll();
+                }
+            }
+            else if (dir == 'left')
+            {
                 nextItem = currentItem.last().prevAll();
+                if (nextItem.length > 3)
+                {
+                    nextItem = nextItem.slice(-3);
+                }
+                else if (nextItem.length < 3)
+                {
+                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+
+                    if (nextItem.length < 2)
+                    {
+                        currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    if (nextItem.length < 1)
+                    {
+                        currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    nextItem = currentItem.last().prevAll();
+                }
             }
         }
-    }
 
-    setSelectedSlide(nextItem);
-    animate(nextItem, currentItem, dir);
+        setSelectedSlide(nextItem);
+        animate(nextItem, currentItem, dir);
+    }
 }
 
 function setSelectedSlide(toShow)
