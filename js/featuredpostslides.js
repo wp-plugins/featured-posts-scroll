@@ -32,7 +32,7 @@ function init()
         // hide all but first entry in featured posts list
         $j('.featured-posts-wrapper').each(function() {
            $j(this).find('.fps-text').slice(1).fadeOut();
-           $j(this).find('ul li').slice(1).css('display','none');
+           $j(this).find('ul.featured-posts li').slice(1).css('display','none');
         });
 
         //$j('.featured-posts-wrapper').find('.fps-text').slice(1).fadeOut();
@@ -49,6 +49,7 @@ function init()
 
     // initialize the scroll buttons and autoscroll
     initScrollButtons();
+    initSlideNumbers();
     initAutoscroll();
 
     animationLocked = false;
@@ -78,12 +79,48 @@ function initScrollButtons()
                 clearInterval(autoscrollInterval[index]);
             });
         });
+
+        $j('.scrollFeaturedPostsRight-below').each(function(index) {
+            $j(this).click(function() {
+                if (animationLocked == false)
+                {
+                    scrollFeaturedPosts(this, 'right');
+                }
+                clearInterval(autoscrollInterval[index]);
+            });
+        });
+
+        $j('.scrollFeaturedPostsLeft-below').each(function(index) {
+            $j(this).click(function() {
+                if (animationLocked == false)
+                {
+                    scrollFeaturedPosts(this, 'left');
+                }
+                clearInterval(autoscrollInterval[index]);
+            });
+        });
     }
     else
     {
         $j('.scrollFeaturedPostsRight').remove(); 
         $j('.scrollFeaturedPostsLeft').remove();
         $j('.featured-posts-wrapper ul').css('margin-left', '22px');
+    }
+}
+
+function initSlideNumbers()
+{
+    if (type != 'none')
+    {
+        $j('ul.fps-slideNumberList').each(function(index) {
+            $j(this).children('li').click(function() {
+                if (animationLocked == false)
+                {
+                    scrollToPost(this);
+                }
+                clearInterval(autoscrollInterval[index]);
+            });
+        });
     }
 }
 
@@ -94,98 +131,149 @@ function initAutoscroll()
         $j('.featured-posts-wrapper').each(function(index) {
             if ($j(this).hasClass('fps-autoscroll'))
             {
-                var callback = 
-                    "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
-                    index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right')";
-                autoscrollInterval[index] = setInterval(
-                    callback, 7000);
+                if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
+                {
+                    var callback = 
+                        "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right')";
+                    autoscrollInterval[index] = setInterval(
+                        callback, 7000);
+                }
+                else
+                {
+                    var callback = 
+                        "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right')";
+                    autoscrollInterval[index] = setInterval(
+                        callback, 7000);
+                }
             }
         });
     }
 }
 
+function scrollToPost(slideButton)
+{
+    if (!($j(slideButton).hasClass('fps-selectedSlide')))
+    {
+        // lock animations
+        animationLocked = true;
+
+        // get the currently displayed element(s)
+        var currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li:visible');
+
+        // get the next item to display
+        var nextItemIndex = parseInt($j(slideButton).text());
+        
+        var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li').eq(nextItemIndex-1);
+
+        setSelectedSlide(nextItem);
+        animate(nextItem, currentItem, 'right')
+    }
+}
+
 function scrollFeaturedPosts(button, dir)
 {
-    // lock animations
-    animationLocked = true;
-
-    // get the currently displayed element(s)
-    var currentItem = $j(button).siblings('ul').children('li:visible'); //$j('.featured-posts-wrapper ul li:visible')
-    var nextItem;
-
-    if (type == 'single')
-    {        
-        if (dir == 'right')
-        {
-            nextItem = currentItem.next();
-            if (nextItem.length == 0)
-            {
-                nextItem = currentItem.siblings().first();
-            }
-        }
-        else if (dir == 'left')
-        {
-            nextItem = currentItem.prev();
-            if (nextItem.length == 0)
-            {
-                nextItem = currentItem.siblings().last();
-            }
-        }
-    }
-    else
+    if (animationLocked != true)
     {
-        if (dir == 'right')
+        // lock animations
+        animationLocked = true;
+
+        // get the currently displayed element(s)
+        var currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
+
+        if ($j(currentItem).length == 0)
         {
-            nextItem = currentItem.last().nextAll();
-            if (nextItem.length > 3)
+            currentItem = $j(button).siblings('ul.featured-posts').children('li:first');
+        }
+
+        var nextItem;
+
+        if (type == 'single')
+        {        
+            if (dir == 'right')
             {
-                nextItem = nextItem.slice(0,3);
+                nextItem = currentItem.next();
+                if (nextItem.length == 0)
+                {
+                    nextItem = currentItem.siblings().first();
+                }
             }
-            else if (nextItem.length < 3)
+            else if (dir == 'left')
             {
-                currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
-
-                if (nextItem.length < 2)
+                nextItem = currentItem.prev();
+                if (nextItem.length == 0)
                 {
-                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                    nextItem = currentItem.siblings().last();
                 }
-
-                if (nextItem.length < 1)
-                {
-                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
-                }
-
+            }
+        }
+        else
+        {
+            if (dir == 'right')
+            {
                 nextItem = currentItem.last().nextAll();
-            }
-        }
-        else if (dir == 'left')
-        {
-            nextItem = currentItem.last().prevAll();
-            if (nextItem.length > 3)
-            {
-                nextItem = nextItem.slice(-3);
-            }
-            else if (nextItem.length < 3)
-            {
-                currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-
-                if (nextItem.length < 2)
+                if (nextItem.length > 3)
                 {
-                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+                    nextItem = nextItem.slice(0,3);
                 }
-
-                if (nextItem.length < 1)
+                else if (nextItem.length < 3)
                 {
-                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-                }
+                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
 
+                    if (nextItem.length < 2)
+                    {
+                        currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    if (nextItem.length < 1)
+                    {
+                        currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    nextItem = currentItem.last().nextAll();
+                }
+            }
+            else if (dir == 'left')
+            {
                 nextItem = currentItem.last().prevAll();
+                if (nextItem.length > 3)
+                {
+                    nextItem = nextItem.slice(-3);
+                }
+                else if (nextItem.length < 3)
+                {
+                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+
+                    if (nextItem.length < 2)
+                    {
+                        currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    if (nextItem.length < 1)
+                    {
+                        currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
+                    }
+
+                    nextItem = currentItem.last().prevAll();
+                }
             }
         }
-    }
 
-    
-    animate(nextItem, currentItem, dir);
+        setSelectedSlide(nextItem);
+        animate(nextItem, currentItem, dir);
+    }
+}
+
+function setSelectedSlide(toShow)
+{
+    // Remove class from current slide
+    $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
+
+    // Get the index of the next item to be displayed
+    var nextSlideIndex = $j(toShow).index();
+
+    $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
 }
 
 function animate(toShow, toHide, dir)

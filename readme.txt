@@ -5,8 +5,8 @@ Author URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
 Requires at least: 2.9.1
-Tested up to: 3.1
-Stable tag: 1.8
+Tested up to: 3.2
+Stable tag: 1.9
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -63,14 +63,27 @@ If you would like to display the featured posts scroll inside of a post:
 Images are based on the "Featured Image" selected on the Edit Post screen. If the option is not displayed, click Screen Options in the top right of the Edit Post screen and check the "Featured Image" checkbox.
 
 = I changed the size of the post scroll, but my images didn't change size. What do I need to do? =
-Any new thumbnail should be created in the correct new size. However, the old thumbnails will need to be regenerated. This can be done for all images on your site with the excellent "Regenerate Thumbnails" plugin (http://wordpress.org/extend/plugins/regenerate-thumbnails/).
+Any new image added to your site should have a thumbnail created in the correct new size. However, the old thumbnails will need to be regenerated. This can be done for all images on your site with the excellent ["Regenerate Thumbnails" plugin](http://wordpress.org/extend/plugins/regenerate-thumbnails/).
+
+= What guidelines should I use when creating custom arrow images? =
+The easiest way to figure this out is just to look at the images included with the plugin (wp-content/plugins/featured-posts-scroll/images), and format your images in the same basic manner. For the default arrow position (sides of the image), the arrow image should be 46x100. For the alternate arrow position at the bottom of the scroll, the arrow image should be 48x48. 
+
+In either case, the image should be split into four evenly sized quadrants. The top row is left/right arrows as they normally appear and the bottom row are the arrows as they appear when hovered over. The left column should be arrows pointing left, and the right column should be arrows pointing right.
 
 == Screenshots ==
 
 1. Admin Screen
 2. Appearance Customization
+3. New Features: Slide Numbers, Alternate Arrow Position, Custom Sizing
 
 == Changelog ==
+
+= 1.9 =
+* Added alternate arrow location under main image.
+* Added options for displaying slide numbers under main image.
+* Added option to allow user to use their own custom arrow image.
+* Corrected an issue with right margin introduced by custom height/width code.
+* Other minor bug fixes.
 
 = 1.8 =
 * User specified height/width.
@@ -95,23 +108,9 @@ Any new thumbnail should be created in the correct new size. However, the old th
 
 == Upgrade Notice ==
 
-= 1.8 =
-* User specified height/width.
-
-= 1.7 =
-* Addressed issues caused by IE7 float bugs.
-* When text background alpha is set to "1.0", specify color in standard hex format rather than newer rgba format which is not compatible with older browswers.
-
-= 1.6 =
-* Minor CSS corrections.
-
-= 1.4 =
-* Added capability to have multiple instances of the Featured Posts Scroll.
-
-= 1.3 =
-* Corrected issue with title/excerpt underlining in Chrome.
-* Corrected issue where scrolling didn't work in Firefox versions prior to 4.0.
-* Accounted for bug in non-webkit browsers where nested elements clip rounded borders.
-
-= 1.0 =
-* Initial release.
+= 1.9 =
+* Added alternate arrow location under main image.
+* Added options for displaying slide numbers under main image.
+* Added option to allow user to use their own custom arrow image.
+* Corrected an issue with right margin introduced by custom height/width code.
+* Other minor bug fixes.

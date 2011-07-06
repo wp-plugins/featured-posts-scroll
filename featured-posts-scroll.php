@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.8
+Version: 1.9
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -122,7 +122,7 @@ function fps_activate()
 
     $post_display_heading = get_option('fps_display_heading');
     if ( empty($post_display_heading) ) {
-        $post_display_heading = '1';
+        $post_display_heading = '0';
         update_option('fps_display_heading', $post_display_heading);
     }
 
@@ -179,6 +179,163 @@ function fps_activate()
         $post_width = '550';
         update_option('fps_width', $post_width);
     }
+
+    $post_display_slidenumbers = get_option('fps_display_slidenumbers');
+    if ( empty($post_display_slidenumbers) ) {
+        $post_display_slidenumbers = '1';
+        update_option('fps_display_slidenumbers', $post_display_slidenumbers);
+    }
+
+    $post_arrow_position = get_option('fps_arrow_position');
+    if ( empty($post_arrow_position) ) {
+        $post_arrow_position = 'below';
+        update_option('fps_arrow_position', $post_arrow_position);
+    }
+
+    $post_arrow_custom_url = get_option('fps_arrow_custom_url');
+    if ( empty($post_arrow_custom_url) ) {
+        $post_arrow_custom_url = '';
+        update_option('fps_arrow_custom_url', $post_arrow_custom_url);
+    }
+
+    $post_selectedslide_textcolor = get_option('fps_selectedslide_textcolor');
+    if ( empty($post_selectedslide_textcolor) ) {
+        $post_selectedslide_textcolor = 'ffffff';
+        update_option('fps_selectedslide_textcolor', $post_selectedslide_textcolor);
+    }
+
+    $post_unselectedslide_textcolor = get_option('fps_unselectedslide_textcolor');
+    if ( empty($post_unselectedslide_textcolor) ) {
+        $post_unselectedslide_textcolor = 'ffffff';
+        update_option('fps_unselectedslide_textcolor', $post_unselectedslide_textcolor);
+    }
+
+    $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
+    if ( empty($post_selectedslide_bgcolor) ) {
+        $post_selectedslide_bgcolor = '303030';
+        update_option('fps_selectedslide_bgcolor', $post_selectedslide_bgcolor);
+    }
+
+    $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
+    if ( empty($post_unselectedslide_bgcolor) ) {
+        $post_unselectedslide_bgcolor = '545454';
+        update_option('fps_unselectedslide_bgcolor', $post_unselectedslide_bgcolor);
+    }
+
+    $post_selectedslide_bold = get_option('fps_selectedslide_bold');
+    if ( empty($post_selectedslide_bold) ) {
+        $post_selectedslide_bold = '1';
+        update_option('fps_selectedslide_bold', $post_selectedslide_bold);
+    }
+
+    $post_selectedslide_italics = get_option('fps_selectedslide_italics');
+    if ( empty($post_selectedslide_italics) ) {
+        $post_selectedslide_italics = '0';
+        update_option('fps_selectedslide_italics', $post_selectedslide_italics);
+    }
+
+    $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
+    if ( empty($post_unselectedslide_bold) ) {
+        $post_unselectedslide_bold = '1';
+        update_option('fps_unselectedslide_bold', $post_unselectedslide_bold);
+    }
+
+    $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
+    if ( empty($post_unselectedslide_italics) ) {
+        $post_unselectedslide_italics = '0';
+        update_option('fps_unselectedslide_italics', $post_unselectedslide_italics);
+    }
+
+    $post_slide_bgradius = get_option('fps_slide_bgradius');
+    if ( empty($post_slide_bgradius) ) {
+        $post_slide_bgradius = '2.0';
+        update_option('fps_slide_bgradius', $post_slide_bgradius);
+    }
+
+    $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
+    if ( empty($post_selectedslide_dropshadow_x) ) {
+        $post_selectedslide_dropshadow_x = '0';
+        update_option('fps_selectedslide_dropshadow_x', $post_selectedslide_dropshadow_x);
+    }
+
+    $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
+    if ( empty($post_selectedslide_dropshadow_y) ) {
+        $post_selectedslide_dropshadow_y = '2';
+        update_option('fps_selectedslide_dropshadow_y', $post_selectedslide_dropshadow_y);
+    }
+
+    $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
+    if ( empty($post_selectedslide_dropshadow_blur) ) {
+        $post_selectedslide_dropshadow_blur = '2';
+        update_option('fps_selectedslide_dropshadow_blur', $post_selectedslide_dropshadow_blur);
+    }
+
+    $post_selectedslide_inset = get_option('fps_selectedslide_inset');
+    if ( empty($post_selectedslide_inset) ) {
+        $post_selectedslide_inset = '1';
+        update_option('fps_selectedslide_inset', $post_selectedslide_inset);
+    }
+
+    $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
+    if ( empty($post_unselectedslide_dropshadow_x) ) {
+        $post_unselectedslide_dropshadow_x = '0';
+        update_option('fps_unselectedslide_dropshadow_x', $post_unselectedslide_dropshadow_x);
+    }
+
+    $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
+    if ( empty($post_unselectedslide_dropshadow_y) ) {
+        $post_unselectedslide_dropshadow_y = '0';
+        update_option('fps_unselectedslide_dropshadow_y', $post_unselectedslide_dropshadow_y);
+    }
+
+    $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
+    if ( empty($post_unselectedslide_dropshadow_blur) ) {
+        $post_unselectedslide_dropshadow_blur = '0';
+        update_option('fps_unselectedslide_dropshadow_blur', $post_unselectedslide_dropshadow_blur);
+    }
+
+    $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
+    if ( empty($post_unselectedslide_inset) ) {
+        $post_unselectedslide_inset = '0';
+        update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
+    }
+
+    $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
+    if ( empty($post_selectedslide_dropshadow_color) ) {
+        $post_selectedslide_dropshadow_color = '000000';
+        update_option('fps_selectedslide_dropshadow_color', $post_selectedslide_dropshadow_color);
+    }
+
+    $post_unselectedslide_dropshadow_color = get_option('fps_unselectedslide_dropshadow_color');
+    if ( empty($post_unselectedslide_dropshadow_color) ) {
+        $post_unselectedslide_dropshadow_color = '000000';
+        update_option('fps_unselectedslide_dropshadow_color', $post_unselectedslide_dropshadow_color);
+    }
+
+    $post_slide_textshadow_x = get_option('fps_slide_textshadow_x');
+    if ( empty($post_slide_textshadow_x) ) {
+        $post_slide_textshadow_x = '0';
+        update_option('fps_slide_textshadow_x', $post_slide_textshadow_x);
+    }
+
+    $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
+    if ( empty($post_slide_textshadow_y) ) {
+        $post_slide_textshadow_y = '1';
+        update_option('fps_slide_textshadow_y', $post_slide_textshadow_y);
+    }
+
+    $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
+    if ( empty($post_slide_textshadow_blur) ) {
+        $post_slide_textshadow_blur = '0';
+        update_option('fps_slide_textshadow_blur', $post_slide_textshadow_blur);
+    }
+
+    $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
+    if ( empty($post_slide_textshadow_color) ) {
+        $post_slide_textshadow_color = '000000';
+        update_option('fps_slide_textshadow_color', $post_slide_textshadow_color);
+    }
+    
 }
 
 /* Deactivate plugin by deleting all option data */
@@ -217,6 +374,42 @@ function fps_deactivate()
 
     delete_option('fps_height');
     delete_option('fps_width');
+
+    delete_option('fps_arrow_position');
+    delete_option('fps_arrow_custom_url');
+
+    delete_option('fps_display_slidenumbers');
+
+    delete_option('fps_selectedslide_textcolor');
+    delete_option('fps_unselectedslide_textcolor');
+
+    delete_option('fps_selectedslide_bgcolor');
+    delete_option('fps_unselectedslide_bgcolor');
+
+    delete_option('fps_selectedslide_bold');
+    delete_option('fps_selectedslide_italics');
+
+    delete_option('fps_unselectedslide_bold');
+    delete_option('fps_unselectedslide_italics');
+
+    delete_option('fps_slide_bgradius');
+
+    delete_option('fps_selectedslide_dropshadow_x');
+    delete_option('fps_selectedslide_dropshadow_y');
+    delete_option('fps_selectedslide_dropshadow_blur');
+    delete_option('fps_selectedslide_inset');
+
+    delete_option('fps_unselectedslide_dropshadow_x');
+    delete_option('fps_unselectedslide_dropshadow_y');
+    delete_option('fps_unselectedslide_dropshadow_blur');
+    delete_option('fps_unselectedslide_inset');
+
+    delete_option('fps_selectedslide_dropshadow_color');
+    delete_option('fps_unselectedslide_dropshadow_color');
+    delete_option('fps_slide_textshadow_x');
+    delete_option('fps_slide_textshadow_y');
+    delete_option('fps_slide_textshadow_blur');
+    delete_option('fps_slide_textshadow_color');
 }
 
 /* Setup menu page creation */
@@ -267,7 +460,7 @@ function fps_define_image_sizes()
     $post_height = get_option('fps_height');
     $post_width = get_option('fps_width');
 
-    add_image_size( 'fps-post', ($post_width-70), ($post_height-20), true ); // large size, hard crop mode
+    add_image_size( 'fps-post', ($post_width-45), ($post_height-20), true ); // large size, hard crop mode
 }
 
 /* Generate the plugin display */
@@ -308,6 +501,43 @@ function fps_show($atts)
     $post_height = get_option('fps_height');
     $post_width = get_option('fps_width');
 
+    $post_display_slidenumbers = get_option('fps_display_slidenumbers');
+
+    $post_arrow_position = get_option('fps_arrow_position');
+    $post_arrow_custom_url = get_option('fps_arrow_custom_url');
+
+    $post_selectedslide_textcolor = get_option('fps_selectedslide_textcolor');
+    $post_unselectedslide_textcolor = get_option('fps_unselectedslide_textcolor');
+
+    $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
+    $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
+
+    $post_selectedslide_bold = get_option('fps_selectedslide_bold');
+    $post_selectedslide_italics = get_option('fps_selectedslide_italics');
+
+    $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
+    $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
+
+    $post_slide_bgradius = get_option('fps_slide_bgradius');
+
+    $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
+    $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
+    $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
+    $post_selectedslide_inset = get_option('fps_selectedslide_inset');
+
+    $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
+    $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
+    $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
+    $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
+
+    $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
+    $post_unselectedslide_dropshadow_color = get_option('fps_unselectedslide_dropshadow_color');
+    $post_slide_textshadow_x = get_option('fps_slide_textshadow_x');
+    $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
+    $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
+    $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
+
+
     // Format all color hex value strings
     $post_title_color = "#".$post_title_color;
     $post_excerpt_color = "#".$post_excerpt_color;
@@ -315,15 +545,17 @@ function fps_show($atts)
     $post_bg_color = "#".$post_bg_color;
     $post_innershadow_color = "#".$post_innershadow_color;
     $post_outershadow_color = "#".$post_outershadow_color;
+    $post_selectedslide_textcolor = "#".$post_selectedslide_textcolor;
+    $post_unselectedslide_textcolor = "#".$post_unselectedslide_textcolor;
+    $post_selectedslide_bgcolor = "#".$post_selectedslide_bgcolor;
+    $post_unselectedslide_bgcolor = "#".$post_unselectedslide_bgcolor;
 
-    if ($post_textbg_alpha < 1.0)
-    {
-        $post_textbg_color = 'rgba('.hex2RGB($post_textbg_color, true).','.$post_textbg_alpha.')';
-    }
-    else
-    {
-        $post_textbg_color = "#".$post_textbg_color;
-    }
+    $post_selectedslide_dropshadow_color = "#".$post_selectedslide_dropshadow_color;
+    $post_unselectedslide_dropshadow_color = "#".$post_unselectedslide_dropshadow_color;
+    $post_slide_textshadow_color = "#".$post_slide_textshadow_color;
+
+    $post_textbg_rgba = 'rgba('.hex2RGB($post_textbg_color, true).','.$post_textbg_alpha.')';
+    $post_textbg_hex = "#".$post_textbg_color;
 
     // Version 1.0 only supports single item layout
     $wrapper_classes .= "featured-posts-wrapper fps-single";
@@ -361,13 +593,98 @@ function fps_show($atts)
         // Define styles that are based on admin options
         $output .= '<style type="text/css">';
 
+        
+        $height_offset = 0;
+        if ($post_display_slidenumbers == '1')
+        {
+            $height_offset += 25;
+        }
+
         // Define element sizing
-        $output .= '.featured-posts-wrapper.fps-single {height: '.$post_height.'px; width: '.$post_width.'px;}';
-        $output .= '.featured-posts-background.fps-single {height: '.$post_height.'px; width: '.($post_width-50).'px;}';
-        $output .= 'ul.featured-posts.fps-single {height: '.($post_height-20).'px; width: '.($post_width-70).'px;}';
-        $output .= 'ul.featured-posts.fps-single li {height: '.($post_height-20).'px; width: '.($post_width-70).'px;}';
-        $output .= 'ul.featured-posts.fps-single li .fps-text {width: '.($post_width-70).'px;}';
+        $output .= '.featured-posts-wrapper.fps-single {height: '.($post_height + $height_offset).'px; width: '.$post_width.'px;}';
+        $output .= '.featured-posts-background.fps-single {height: '.($post_height + $height_offset).'px; width: '.($post_width-25).'px;}';
+        $output .= 'ul.featured-posts.fps-single {height: '.($post_height-20).'px; width: '.($post_width-45).'px;}';
+        $output .= 'ul.featured-posts.fps-single li {height: '.($post_height-20).'px; width: '.($post_width-45).'px;}';
+        $output .= 'ul.featured-posts.fps-single li .fps-text {width: '.($post_width-45).'px;}';
         $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {margin: '.(($post_height-45)/2).'px 0px '.(($post_height-45)/2).'px;}';
+
+        // Define slide number formatting
+        if ($post_display_slidenumbers == '1')
+        {
+            // Define font style/weight
+            $unselected_weight = 'normal';
+            $unselected_style = 'normal';
+            $selected_weight = 'normal';
+            $selected_style = 'normal';
+
+            if ($post_unselectedslide_bold == '1')
+            {
+                $unselected_weight = 'bold';
+            }
+            if ($post_selectedslide_bold == '1')
+            {
+                $selected_weight = 'bold';
+            }
+
+            if ($post_unselectedslide_italics == '1')
+            {
+                $unselected_style = 'italic';
+            }
+            if ($post_selectedslide_italics == '1')
+            {
+                $selected_style = 'italic';
+            }
+
+            // Define box shadow
+            $unselected_shadow = $post_unselectedslide_dropshadow_x.'px '.
+                                 $post_unselectedslide_dropshadow_y.'px '.
+                                 $post_unselectedslide_dropshadow_blur.'px '.
+                                 $post_unselectedslide_dropshadow_color.' ';
+            $selected_shadow = $post_selectedslide_dropshadow_x.'px '.
+                               $post_selectedslide_dropshadow_y.'px '.
+                               $post_selectedslide_dropshadow_blur.'px '.
+                               $post_selectedslide_dropshadow_color.' '; 
+
+            if ($post_unselectedslide_inset == '1')
+            {
+                $unselected_shadow .= 'inset';
+            }
+
+            if ($post_selectedslide_inset == '1')
+            {
+                $selected_shadow .= 'inset';
+            }
+
+            $output .= '.fps-slideNumberList li {color: '.$post_unselectedslide_textcolor.
+                        '; text-shadow: '.$post_slide_textshadow_x.'px '.$post_slide_textshadow_y.'px '.
+                                          $post_slide_textshadow_blur.'px '.$post_slide_textshadow_color.
+                        '; font-weight: '.$unselected_weight.
+                        '; font-style: '.$unselected_style.
+                        '; background: '.$post_unselectedslide_bgcolor.
+                        '; -moz-border-radius: '.$post_slide_bgradius.
+                        '; border-radius: '.$post_slide_bgradius.
+                        '; -moz-box-shadow: '.$unselected_shadow.
+                        '; -webkit-box-shadow: '.$unselected_shadow.
+                        '; box-shadow: '.$unselected_shadow.';}';
+            $output .= '.fps-slideNumberList li.fps-selectedSlide, .fps-slideNumberList li:hover {color: '.$post_selectedslide_textcolor.
+                        '; text-shadow: '.$post_slide_textshadow_x.'px '.$post_slide_textshadow_y.'px '.
+                                          $post_slide_textshadow_blur.'px '.$post_slide_textshadow_color.
+                        '; font-weight: '.$selected_weight.
+                        '; font-style: '.$selected_style.
+                        '; background: '.$post_selectedslide_bgcolor.
+                        '; -moz-box-shadow: '.$selected_shadow.
+                        '; -webkit-box-shadow: '.$selected_shadow.
+                        '; box-shadow: '.$selected_shadow.';}';
+        }
+
+        // Modify margin/height/width if arrows are below image
+        if ($post_arrow_position == 'below')
+        {
+            $output .= '.featured-posts-wrapper.fps-single {width: '.($post_width - 25).'px;}';
+            $output .= 'ul.featured-posts.fps-single {margin-left: 10px;}';
+            $output .= 'ul.fps-slideNumberList {margin-top: 10px; margin-left: 10px;}';
+            $output .= '.featured-posts-background.fps-single {margin: 0px 0px 12px;}';
+        }
 
         // Define rounded corner class
         $output .= '.fps-rounded {-moz-border-radius: '.$post_corner_radius.'; border-radius: '.$post_corner_radius.';}';
@@ -382,14 +699,34 @@ function fps_show($atts)
                    '; box-shadow: '.$shadow.' '.$post_outershadow_color.';}';
         
         // Define classes for title/excerpt background
-        $output .= '.fps-text {background: '.$post_textbg_color.';}';
+        $output .= '.fps-text {background: '.$post_textbg_hex.'; background: '.$post_textbg_rgba.';}';
         $output .= 'a:link.featured-posts-image,a:visited.featured-posts-image,a:hover.featured-posts-image {'.
                    'color: '.$post_title_color.';}';
 
         // Define the arrow image being used
-        $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {background: transparent url('.WP_PLUGIN_URL.
-                   '/featured-posts-scroll/images/arrows-'.$post_arrow_color.'.png) no-repeat;}';
-        $output .= '.scrollFeaturedPostsRight {background-position: -24px 0pt;}';
+        
+        if ($post_arrow_color == 'custom')
+        {
+            $arrow_url = $post_arrow_custom_url;
+        }
+        else if ($post_arrow_position == 'below')
+        {
+            $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/pos2-arrows-'.$post_arrow_color.'.png';
+        }
+        else
+        {
+            $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/arrows-'.$post_arrow_color.'.png';
+        }
+
+
+        if ($post_arrow_position == 'sides')
+        {
+            $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {background-image: url('.$arrow_url.');}';
+        }
+        else
+        {
+            $output .= '.scrollFeaturedPostsLeft-below, .scrollFeaturedPostsRight-below {background-image: url('.$arrow_url.');}';
+        }
         $output .= '</style>';
 
         // div#featured-posts-wrapper
@@ -402,7 +739,10 @@ function fps_show($atts)
         }
 
         // Add left arrow and open unordered list
-        $output .= '<div class="scrollFeaturedPostsLeft"></div>';
+        if ($post_arrow_position == 'sides')
+        {
+            $output .= '<div class="scrollFeaturedPostsLeft"></div>';
+        }
         $output .= '<ul class="'.$ul_classes.'">';
 
         // Generate arguments for query
@@ -478,7 +818,33 @@ function fps_show($atts)
                 $output .= '</li>';
         }
         $output .= '</ul>';
-        $output .= '<div class="scrollFeaturedPostsRight"></div>';
+        if ($post_arrow_position == 'sides')
+        {
+            $output .= '<div class="scrollFeaturedPostsRight"></div>';
+        }
+
+        if ($post_display_slidenumbers == '1')
+        {
+            // Populate fps-slideNumberList li classes based on admin options
+
+
+            $output .= '<ul class="fps-slideNumberList">';
+            $output .= '<li class="fps-selectedSlide" title="'.$post_details[0]['post_title'].'">1</li>';
+            for ( $i = 2; $i <= count($recent_posts) && $i <= $max_posts; $i++ )
+            {
+                $output .= '<li title="'.$post_details[($i-1)]['post_title'].'">'.$i.'</li>';
+            }
+
+            $output .= '</ul>';
+        }
+
+        if ($post_arrow_position == 'below')
+        {
+            $output .= '<div class="scrollFeaturedPostsRight-below"></div>';
+            $output .= '<div class="scrollFeaturedPostsLeft-below"></div>';            
+        }
+
+
         $output .= '<div class="'.$bg_classes.'" style="background:'.$post_bg_color.'"></div>';
         $output .= '</div>'; // div#featured-posts-wrapper
     }
