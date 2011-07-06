@@ -96,6 +96,81 @@
         $post_dropshadow_blur = $_POST['fps_dropshadow_blur'];
         update_option('fps_dropshadow_blur', $post_dropshadow_blur);
 
+        $post_arrow_position = $_POST['fps_arrow_position'];
+        update_option('fps_arrow_position', $post_arrow_position);
+
+        $post_arrow_custom_url = $_POST['fps_arrow_custom_url'];
+        update_option('fps_arrow_custom_url', $post_arrow_custom_url);
+
+        $post_selectedslide_textcolor = $_POST['fps_selectedslide_textcolor'];
+        update_option('fps_selectedslide_textcolor', $post_selectedslide_textcolor);
+
+        $post_unselectedslide_textcolor = $_POST['fps_unselectedslide_textcolor'];
+        update_option('fps_unselectedslide_textcolor', $post_unselectedslide_textcolor);
+
+        $post_selectedslide_bgcolor = $_POST['fps_selectedslide_bgcolor'];
+        update_option('fps_selectedslide_bgcolor', $post_selectedslide_bgcolor);
+
+        $post_unselectedslide_bgcolor = $_POST['fps_unselectedslide_bgcolor'];
+        update_option('fps_unselectedslide_bgcolor', $post_unselectedslide_bgcolor);
+
+        $post_selectedslide_bold = isset($_POST['fps_selectedslide_bold']) ? 1:0;
+        update_option('fps_selectedslide_bold', $post_selectedslide_bold);
+
+        $post_selectedslide_italics = isset($_POST['fps_selectedslide_italics']) ? 1:0;
+        update_option('fps_selectedslide_italics', $post_selectedslide_italics);
+
+        $post_unselectedslide_bold = isset($_POST['fps_unselectedslide_bold']) ? 1:0;
+        update_option('fps_unselectedslide_bold', $post_unselectedslide_bold);
+
+        $post_unselectedslide_italics = isset($_POST['fps_unselectedslide_italics']) ? 1:0;
+        update_option('fps_unselectedslide_italics', $post_unselectedslide_italics);
+
+        $post_slide_bgradius = $_POST['fps_slide_bgradius'];
+        update_option('fps_slide_bgradius', $post_slide_bgradius);
+
+        $post_selectedslide_dropshadow_x = $_POST['fps_selectedslide_dropshadow_x'];
+        update_option('fps_selectedslide_dropshadow_x', $post_selectedslide_dropshadow_x);
+
+        $post_selectedslide_dropshadow_y = $_POST['fps_selectedslide_dropshadow_y'];
+        update_option('fps_selectedslide_dropshadow_y', $post_selectedslide_dropshadow_y);
+
+        $post_selectedslide_dropshadow_blur = $_POST['fps_selectedslide_dropshadow_blur'];
+        update_option('fps_selectedslide_dropshadow_blur', $post_selectedslide_dropshadow_blur);
+
+        $post_selectedslide_inset = isset($_POST['fps_selectedslide_inset']) ? 1:0;
+        update_option('fps_selectedslide_inset', $post_selectedslide_inset);
+
+        $post_unselectedslide_dropshadow_x = $_POST['fps_unselectedslide_dropshadow_x'];
+        update_option('fps_unselectedslide_dropshadow_x', $post_unselectedslide_dropshadow_x);
+
+        $post_unselectedslide_dropshadow_y = $_POST['fps_unselectedslide_dropshadow_y'];
+        update_option('fps_unselectedslide_dropshadow_y', $post_unselectedslide_dropshadow_y);
+
+        $post_unselectedslide_dropshadow_blur = $_POST['fps_unselectedslide_dropshadow_blur'];
+        update_option('fps_unselectedslide_dropshadow_blur', $post_unselectedslide_dropshadow_blur);
+
+        $post_selectedslide_dropshadow_color = $_POST['fps_selectedslide_dropshadow_color'];
+        update_option('fps_selectedslide_dropshadow_color', $post_selectedslide_dropshadow_color);
+
+        $post_unselectedslide_dropshadow_color = $_POST['fps_unselectedslide_dropshadow_color'];
+        update_option('fps_unselectedslide_dropshadow_color', $post_unselectedslide_dropshadow_color);
+
+        $post_slide_textshadow_x = $_POST['fps_slide_textshadow_x'];
+        update_option('fps_slide_textshadow_x', $post_slide_textshadow_x);
+
+        $post_slide_textshadow_y = $_POST['fps_slide_textshadow_y'];
+        update_option('fps_slide_textshadow_y', $post_slide_textshadow_y);
+
+        $post_slide_textshadow_blur = $_POST['fps_slide_textshadow_blur'];
+        update_option('fps_slide_textshadow_blur', $post_slide_textshadow_blur);
+
+        $post_slide_textshadow_color = $_POST['fps_slide_textshadow_color'];
+        update_option('fps_slide_textshadow_color', $post_slide_textshadow_color);
+
+        $post_unselectedslide_inset = isset($_POST['fps_unselectedslide_inset']) ? 1:0;
+        update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
+
         $post_display_title = isset($_POST['fps_display_title']) ? 1:0;
         update_option('fps_display_title', $post_display_title);
 
@@ -113,6 +188,9 @@
 
         $post_autoscroll = isset($_POST['fps_autoscroll']) ? 1:0;
         update_option('fps_autoscroll', $post_autoscroll);
+
+        $post_display_slidenumbers = isset($_POST['fps_display_slidenumbers']) ? 1:0;
+        update_option('fps_display_slidenumbers', $post_display_slidenumbers);
         
         if( empty($error) ){ ?>
             <div class="updated"><p><strong><?php _e('Settings Saved.', 'wp-rp' ); ?></strong></p></div>
@@ -158,6 +236,42 @@
 
         $post_height = get_option('fps_height');
         $post_width = get_option('fps_width');
+
+        $post_display_slidenumbers = get_option('fps_display_slidenumbers');
+        $post_arrow_position = get_option('fps_arrow_position');
+        $post_arrow_custom_url = get_option('fps_arrow_custom_url');
+
+        $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
+        $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
+        $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
+        $post_selectedslide_inset = get_option('fps_selectedslide_inset');
+
+        $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
+        $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
+        $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
+        $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
+
+        $post_selectedslide_bold = get_option('fps_selectedslide_bold');
+        $post_selectedslide_italics = get_option('fps_selectedslide_italics');
+
+        $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
+        $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
+
+        $post_selectedslide_textcolor = get_option('fps_selectedslide_textcolor');
+        $post_unselectedslide_textcolor = get_option('fps_unselectedslide_textcolor');
+
+        $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
+        $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
+
+        $post_slide_bgradius = get_option('fps_slide_bgradius');
+
+        $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
+        $post_unselectedslide_dropshadow_color = get_option('fps_unselectedslide_dropshadow_color');
+        $post_slide_textshadow_x = get_option('fps_slide_textshadow_x');
+        $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
+        $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
+        $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
+        
     }
 ?>
 
@@ -212,7 +326,7 @@
         <?php _e("Height and Width are in pixels."); ?>
     </p>
     <p>
-        <?php _e("Recommended thumbnail image sizes are height=(ScrollHeight-20) width=(ScrollWidth-70)"); ?>
+        <?php _e("Recommended thumbnail image sizes are height=(ScrollHeight-20) width=(ScrollWidth-45)"); ?>
     </p>
     <p> ----------------------------------------------------- </p>
     <p>    
@@ -233,6 +347,16 @@
             <option value="dark-yellow" <?php if($post_arrow_color=="dark-yellow"){echo 'selected';} ?>>Dark Yellow</option>            
             <option value="light-blue" <?php if($post_arrow_color=="light-blue"){echo 'selected';} ?>>Light Blue</option>
             <option value="light-grey" <?php if($post_arrow_color=="light-grey"){echo 'selected';} ?>>Light Grey</option>            
+            <option value="custom" <?php if($post_arrow_color=="custom"){echo 'selected';} ?>>Custom URL</option>
+        </select>
+        <?php _e(" | Custom Arrow Image URL"); ?>
+        <input type="text" name="fps_arrow_custom_url" size="100" value="<?php echo $post_arrow_custom_url; ?>" />
+    </p>
+    <p>    
+        <?php _e("<strong>Arrow Position:</strong>"); ?> 
+        <select name="fps_arrow_position">
+            <option value="sides" <?php if($post_arrow_position=="sides"){echo 'selected';} ?>>Image Sides (default)</option>
+            <option value="below" <?php if($post_arrow_position=="below"){echo 'selected';} ?>>Below Image</option>
         </select>
     </p>
     <p>
@@ -260,7 +384,86 @@
         <?php _e(" | Text BG Alpha"); ?> 
         <input type="text" name="fps_textbg_alpha" value="<?php echo $post_textbg_alpha; ?>" size="4"><?php _e(" 0.0(not visible) to 1.0(solid)"); ?>
     </p>
-    <p> ----------------------------------------------------- </p>  
+    <p> ----------------------------------------------------- </p>
+    <p>
+        <?php _e("<strong>Slide Numbers:</strong>"); ?>
+        <?php if($post_display_slidenumbers == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_display_slidenumbers" value="true" <?php echo $checked; ?>><?php _e(" Show Slide Numbers"); ?>
+    </p>
+    <p>
+        <?php _e("<strong>Slide Number Text Colors:</strong>"); ?>
+        <?php _e("Selected Slide"); ?>
+        <input type="text" name="fps_selectedslide_textcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_textcolor; ?>" />
+        <?php _e(" | Unselected Slide"); ?>
+        <input type="text" name="fps_unselectedslide_textcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_textcolor; ?>" />
+    </p>
+    <p>
+        <?php _e("<strong>Slide Number BG Colors:</strong>"); ?>
+        <?php _e("Selected Slide BG"); ?>
+        <input type="text" name="fps_selectedslide_bgcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_bgcolor; ?>" />
+        <?php _e(" | Unselected Slide BG"); ?>
+        <input type="text" name="fps_unselectedslide_bgcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_bgcolor; ?>" />
+    </p>
+    <p>
+        <?php _e("<strong>Slide Number Dropshadow Colors:</strong>"); ?>
+        <?php _e("Selected Slide BG"); ?>
+        <input type="text" name="fps_selectedslide_dropshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_dropshadow_color; ?>" />
+        <?php _e(" | Unselected Slide BG"); ?>
+        <input type="text" name="fps_unselectedslide_dropshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_dropshadow_color; ?>" />
+        <?php _e(" | Slide Text"); ?>
+        <input type="text" name="fps_slide_textshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_slide_textshadow_color; ?>" />
+    </p>
+    <p>
+        <?php _e("<strong>Selected Slide Number Weight:</strong>"); ?>
+        <?php if($post_selectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_selectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold | "); ?>
+        <?php if($post_selectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_selectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
+    </p>
+    <p>
+        <?php _e("<strong>Unselected Slide Number Weight:</strong>"); ?>
+        <?php if($post_unselectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_unselectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold | "); ?>
+        <?php if($post_unselectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_unselectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
+    </p>
+    <p>    
+        <?php _e("<strong>Slide Number BG Corner Radius:</strong>"); ?>
+        <input type="text" name="fps_slide_bgradius" value="<?php echo $post_slide_bgradius; ?>" size="12">
+        <?php _e(" examples:'5px', '10%', '3px 8px', '5% 2%' "); ?>
+    </p>
+    <p>    
+        <?php _e("<strong>Slide Text Drop Shadow Settings:</strong>"); ?>
+        <?php _e("Horizontal Offset"); ?>
+        <input type="text" name="fps_slide_textshadow_x" value="<?php echo $post_slide_textshadow_x; ?>" size="4">
+        <?php _e(" | Vertical Offset"); ?>
+        <input type="text" name="fps_slide_textshadow_y" value="<?php echo $post_slide_textshadow_y; ?>" size="4">
+        <?php _e(" | Blur Distance"); ?>
+        <input type="text" name="fps_slide_textshadow_blur" value="<?php echo $post_slide_textshadow_blur; ?>" size="4">
+    </p>
+    <p>    
+        <?php _e("<strong>Selected Slide Drop Shadow Settings:</strong>"); ?>
+        <?php _e("Horizontal Offset"); ?>
+        <input type="text" name="fps_selectedslide_dropshadow_x" value="<?php echo $post_selectedslide_dropshadow_x; ?>" size="4">
+        <?php _e(" | Vertical Offset"); ?>
+        <input type="text" name="fps_selectedslide_dropshadow_y" value="<?php echo $post_selectedslide_dropshadow_y; ?>" size="4">
+        <?php _e(" | Blur Distance"); ?>
+        <input type="text" name="fps_selectedslide_dropshadow_blur" value="<?php echo $post_selectedslide_dropshadow_blur; ?>" size="4">
+        <?php if($post_selectedslide_inset == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_selectedslide_inset" value="true" <?php echo $checked; ?>><?php _e("Inset"); ?>
+    </p>
+    <p>    
+        <?php _e("<strong>Unselected Slide Drop Shadow Settings:</strong>"); ?>
+        <?php _e("Horizontal Offset"); ?>
+        <input type="text" name="fps_unselectedslide_dropshadow_x" value="<?php echo $post_unselectedslide_dropshadow_x; ?>" size="4">
+        <?php _e(" | Vertical Offset"); ?>
+        <input type="text" name="fps_unselectedslide_dropshadow_y" value="<?php echo $post_unselectedslide_dropshadow_y; ?>" size="4">
+        <?php _e(" | Blur Distance"); ?>
+        <input type="text" name="fps_unselectedslide_dropshadow_blur" value="<?php echo $post_unselectedslide_dropshadow_blur; ?>" size="4">
+        <?php if($post_unselectedslide_inset == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+        <input type="checkbox" name="fps_unselectedslide_inset" value="true" <?php echo $checked; ?>><?php _e("Inset"); ?>
+    </p>
+    <p> ----------------------------------------------------- </p>
     <p>    
         <?php _e("<strong>Rounded Corner Radius:</strong>"); ?>
         <input type="text" name="fps_corner_radius" value="<?php echo $post_corner_radius; ?>" size="12">
