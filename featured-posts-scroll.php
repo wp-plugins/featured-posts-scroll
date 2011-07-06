@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.8
+Version: 1.9
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -122,7 +122,7 @@ function fps_activate()
 
     $post_display_heading = get_option('fps_display_heading');
     if ( empty($post_display_heading) ) {
-        $post_display_heading = '1';
+        $post_display_heading = '0';
         update_option('fps_display_heading', $post_display_heading);
     }
 
@@ -182,13 +182,13 @@ function fps_activate()
 
     $post_display_slidenumbers = get_option('fps_display_slidenumbers');
     if ( empty($post_display_slidenumbers) ) {
-        $post_display_slidenumbers = '0';
+        $post_display_slidenumbers = '1';
         update_option('fps_display_slidenumbers', $post_display_slidenumbers);
     }
 
     $post_arrow_position = get_option('fps_arrow_position');
     if ( empty($post_arrow_position) ) {
-        $post_arrow_position = 'sides';
+        $post_arrow_position = 'below';
         update_option('fps_arrow_position', $post_arrow_position);
     }
 
@@ -212,13 +212,13 @@ function fps_activate()
 
     $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
     if ( empty($post_selectedslide_bgcolor) ) {
-        $post_selectedslide_bgcolor = '222222';
+        $post_selectedslide_bgcolor = '303030';
         update_option('fps_selectedslide_bgcolor', $post_selectedslide_bgcolor);
     }
 
     $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
     if ( empty($post_unselectedslide_bgcolor) ) {
-        $post_unselectedslide_bgcolor = '444444';
+        $post_unselectedslide_bgcolor = '545454';
         update_option('fps_unselectedslide_bgcolor', $post_unselectedslide_bgcolor);
     }
 
@@ -254,19 +254,19 @@ function fps_activate()
 
     $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
     if ( empty($post_selectedslide_dropshadow_x) ) {
-        $post_selectedslide_dropshadow_x = '-1';
+        $post_selectedslide_dropshadow_x = '0';
         update_option('fps_selectedslide_dropshadow_x', $post_selectedslide_dropshadow_x);
     }
 
     $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
     if ( empty($post_selectedslide_dropshadow_y) ) {
-        $post_selectedslide_dropshadow_y = '-1';
+        $post_selectedslide_dropshadow_y = '2';
         update_option('fps_selectedslide_dropshadow_y', $post_selectedslide_dropshadow_y);
     }
 
     $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
     if ( empty($post_selectedslide_dropshadow_blur) ) {
-        $post_selectedslide_dropshadow_blur = '0';
+        $post_selectedslide_dropshadow_blur = '2';
         update_option('fps_selectedslide_dropshadow_blur', $post_selectedslide_dropshadow_blur);
     }
 
@@ -278,13 +278,13 @@ function fps_activate()
 
     $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
     if ( empty($post_unselectedslide_dropshadow_x) ) {
-        $post_unselectedslide_dropshadow_x = '-1';
+        $post_unselectedslide_dropshadow_x = '0';
         update_option('fps_unselectedslide_dropshadow_x', $post_unselectedslide_dropshadow_x);
     }
 
     $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
     if ( empty($post_unselectedslide_dropshadow_y) ) {
-        $post_unselectedslide_dropshadow_y = '-1';
+        $post_unselectedslide_dropshadow_y = '0';
         update_option('fps_unselectedslide_dropshadow_y', $post_unselectedslide_dropshadow_y);
     }
 
@@ -296,7 +296,7 @@ function fps_activate()
 
     $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
     if ( empty($post_unselectedslide_inset) ) {
-        $post_unselectedslide_inset = '1';
+        $post_unselectedslide_inset = '0';
         update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
     }
 
@@ -320,7 +320,7 @@ function fps_activate()
 
     $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
     if ( empty($post_slide_textshadow_y) ) {
-        $post_slide_textshadow_y = '-1';
+        $post_slide_textshadow_y = '1';
         update_option('fps_slide_textshadow_y', $post_slide_textshadow_y);
     }
 
