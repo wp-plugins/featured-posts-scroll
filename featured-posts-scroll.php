@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.11
+Version: 1.12
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -533,6 +533,30 @@ function fps_activate()
         update_option('fps_unselectedslide_fontheight', $post_unselectedslide_fontheight);
     }
 
+
+    $post_scroll_speed = get_option('fps_scroll_speed');
+    if ( empty($post_scroll_speed) ) {
+        $post_scroll_speed = '1000';
+        update_option('fps_scroll_speed', $post_scroll_speed);
+    }
+
+    $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
+    if ( empty($post_scroll_fadeInSpeed) ) {
+        $post_scroll_fadeInSpeed = '200';
+        update_option('fps_scroll_fadeInSpeed', $post_scroll_fadeInSpeed);
+    }
+
+    $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
+    if ( empty($post_scroll_fadeOutSpeed) ) {
+        $post_scroll_fadeOutSpeed = '100';
+        update_option('fps_scroll_fadeOutSpeed', $post_scroll_fadeOutSpeed);
+    }
+
+    $post_scroll_interval = get_option('fps_scroll_interval');
+    if ( empty($post_scroll_interval) ) {
+        $post_scroll_interval = '7000';
+        update_option('fps_scroll_interval', $post_scroll_interval);
+    }
     
 }
 
@@ -646,6 +670,11 @@ function fps_deactivate()
     delete_option('fps_heading_fontheight');
     delete_option('fps_selectedslide_fontheight');
     delete_option('fps_unselectedslide_fontheight');
+
+    delete_option('fps_scroll_speed');
+    delete_option('fps_scroll_fadeInSpeed');
+    delete_option('fps_scroll_fadeOutSpeed');
+    delete_option('fps_scroll_interval');
 }
 
 /* Setup menu page creation */
@@ -681,7 +710,7 @@ function fps_add_script()
 {
     if (!is_admin()) {
         wp_enqueue_script('jquery');
-        wp_enqueue_script('featuredpostslides', WP_PLUGIN_URL.'/featured-posts-scroll/js/featuredpostslides.js');
+        wp_enqueue_script('featuredpostslides', WP_PLUGIN_URL.'/featured-posts-scroll/js/featuredpostslides.php');
     }
     else {
         wp_enqueue_script('jquery');
