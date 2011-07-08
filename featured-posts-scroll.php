@@ -580,13 +580,15 @@ function fps_show($atts)
             $post_excerpt = $post_details[$i]['post_excerpt'];
             $post_img = $post_details[$i]['post_img_src'][0];
 
+
+            $output .= '<a href="'.$post_permalink.'">';
                 if ($post_img != '')
                 {
-                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'" style="background:url('.$post_img.')">';
+                    $output .= '<li class="'.$li_classes.'" style="background:url('.$post_img.')">';
                 }
                 else
                 {
-                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'">';
+                    $output .= '<li class="'.$li_classes.'">';
                 }
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
@@ -599,6 +601,7 @@ function fps_show($atts)
                         }
                     $output .= '</div>';
                 $output .= '</li>';
+            $output .= '</a>';
         }
         $output .= '</ul>';
         if ($post_arrow_position == 'sides')
@@ -642,7 +645,7 @@ function fps_show($atts)
 // Handle short code
 function fps_shortcode_handler($atts)
 {
-    return fps_show(NULL);
+    return fps_show($atts);
 }
 
 // Add the short code [fps]
