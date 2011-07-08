@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.9
+Version: 1.10
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -126,18 +126,6 @@ function fps_activate()
         update_option('fps_display_heading', $post_display_heading);
     }
 
-    $post_roundedconers = get_option('fps_roundedcorners');
-    if ( empty($post_roundedconers) ) {
-        $post_roundedconers = '1';
-        update_option('fps_roundedcorners', $post_roundedconers);
-    }
-
-    $post_dropshadows = get_option('fps_dropshadows');
-    if ( empty($post_dropshadows) ) {
-        $post_dropshadows = '1';
-        update_option('fps_dropshadows', $post_dropshadows);
-    }
-
     $post_autoscroll = get_option('fps_autoscroll');
     if ( empty($post_autoscroll) ) {
         $post_autoscroll = '1';
@@ -166,6 +154,30 @@ function fps_activate()
     if ( empty($post_dropshadow_blur) ) {
         $post_dropshadow_blur = '5';
         update_option('fps_dropshadow_blur', $post_dropshadow_blur);
+    }
+
+    $post_outer_radius = get_option('fps_outer_corner_radius');
+    if ( empty($post_outer_radius) ) {
+        $post_outer_radius = $post_radius;
+        update_option('fps_outer_corner_radius', $post_outer_radius);
+    }
+
+    $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
+    if ( empty($post_outer_dropshadow_x) ) {
+        $post_outer_dropshadow_x = $post_dropshadow_x;
+        update_option('fps_outer_dropshadow_x', $post_outer_dropshadow_x);
+    }
+
+    $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
+    if ( empty($post_outer_dropshadow_y) ) {
+        $post_outer_dropshadow_y = $post_dropshadow_y;
+        update_option('fps_outer_dropshadow_y', $post_outer_dropshadow_y);
+    }
+
+    $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
+    if ( empty($post_outer_dropshadow_blur) ) {
+        $post_outer_dropshadow_blur = $post_dropshadow_blur;
+        update_option('fps_outer_dropshadow_blur', $post_outer_dropshadow_blur);
     }
 
     $post_height = get_option('fps_height');
@@ -362,15 +374,17 @@ function fps_deactivate()
     delete_option('fps_display_excerpt');
     delete_option('fps_display_heading');
 
-    delete_option('fps_roundedcorners');
-    delete_option('fps_dropshadows');
-
     delete_option('fps_autoscroll');
 
     delete_option('fps_corner_radius');
     delete_option('fps_dropshadow_x');
     delete_option('fps_dropshadow_y');
     delete_option('fps_dropshadow_blur');
+
+    delete_option('fps_outer_corner_radius');
+    delete_option('fps_outer_dropshadow_x');
+    delete_option('fps_outer_dropshadow_y');
+    delete_option('fps_outer_dropshadow_blur');
 
     delete_option('fps_height');
     delete_option('fps_width');
@@ -474,36 +488,16 @@ function fps_show($atts)
     $post_display_excerpt = get_option('fps_display_excerpt');
     $post_display_heading = get_option('fps_display_heading');
 
-    $post_roundedconers = get_option('fps_roundedcorners');
-    $post_dropshadows = get_option('fps_dropshadows');
-
     $post_autoscroll = get_option('fps_autoscroll');
 
     $post_display_slidenumbers = get_option('fps_display_slidenumbers');
 
     $post_arrow_position = get_option('fps_arrow_position');
 
-
-    // Version 1.0 only supports single item layout
     $wrapper_classes .= "featured-posts-wrapper fps-single";
     $ul_classes .= "featured-posts fps-single";
     $bg_classes .= "featured-posts-background fps-single";
     $li_classes = "";
-
-    // Check if rounded corners are enabled
-    if ($post_roundedconers == '1')
-    {
-        $ul_classes .= " fps-rounded";
-        $bg_classes .= " fps-rounded";
-        $li_classes .= " fps-rounded";
-    }
-
-    // Check if drop shadows are enabled
-    if ($post_dropshadows == '1')
-    {
-        $ul_classes .= " fps-shadowed-inner";
-        $bg_classes .= " fps-shadowed-outer";
-    }
 
     // Check if auto scrolling is enabled
     if ($post_autoscroll == '1')
@@ -653,25 +647,5 @@ function fps_shortcode_handler($atts)
 
 // Add the short code [fps]
 add_shortcode('fps', 'fps_shortcode_handler');
-
-/* Convert a hex RGB string into individual RGB decimal values */
-function hex2RGB($hexStr, $returnAsString = false, $seperator = ',') {
-    $hexStr = preg_replace("/[^0-9A-Fa-f]/", '', $hexStr); // Gets a proper hex string
-    $rgbArray = array();
-    if (strlen($hexStr) == 6) { //If a proper hex code, convert using bitwise operation. No overhead... faster
-        $colorVal = hexdec($hexStr);
-        $rgbArray['red'] = 0xFF & ($colorVal >> 0x10);
-        $rgbArray['green'] = 0xFF & ($colorVal >> 0x8);
-        $rgbArray['blue'] = 0xFF & $colorVal;
-    } elseif (strlen($hexStr) == 3) { //if shorthand notation, need some string manipulations
-        $rgbArray['red'] = hexdec(str_repeat(substr($hexStr, 0, 1), 2));
-        $rgbArray['green'] = hexdec(str_repeat(substr($hexStr, 1, 1), 2));
-        $rgbArray['blue'] = hexdec(str_repeat(substr($hexStr, 2, 1), 2));
-    } else {
-        return false; //Invalid hex color code
-    }
-    return $returnAsString ? implode($seperator, $rgbArray) : $rgbArray; // returns the rgb string or the associative array
-}
-
 
 ?>

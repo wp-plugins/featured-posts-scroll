@@ -27,13 +27,15 @@
     $post_display_excerpt = get_option('fps_display_excerpt');
     $post_display_heading = get_option('fps_display_heading');
 
-    $post_roundedconers = get_option('fps_roundedcorners');
-    $post_dropshadows = get_option('fps_dropshadows');
-
     $post_corner_radius = get_option('fps_corner_radius');
     $post_dropshadow_x = get_option('fps_dropshadow_x');
     $post_dropshadow_y = get_option('fps_dropshadow_y');
     $post_dropshadow_blur = get_option('fps_dropshadow_blur');
+
+    $post_outer_corner_radius = get_option('fps_outer_corner_radius');
+    $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
+    $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
+    $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
 
     $post_autoscroll = get_option('fps_autoscroll');
 
@@ -164,6 +166,7 @@
 
     // Define drop-shadow
     $shadow = $post_dropshadow_x.'px '.$post_dropshadow_y.'px '.$post_dropshadow_blur.'px ';
+    $outer_shadow = $post_outer_dropshadow_x.'px '.$post_outer_dropshadow_y.'px '.$post_outer_dropshadow_blur.'px ';
 ?>
 
 
@@ -176,16 +179,28 @@ width: <?php echo $post_width ?>px;
 .featured-posts-background.fps-single {
 height: <?php echo ($post_height + $height_offset) ?>px;
 width: <?php echo ($post_width-25) ?>px;
+-moz-border-radius: <?php echo $post_outer_corner_radius ?>; 
+border-radius: <?php echo $post_outer_corner_radius ?>;
+-moz-box-shadow: <?php echo $outer_shadow ?> <?php echo $post_outershadow_color ?>; 
+-webkit-box-shadow: <?php echo $outer_shadow ?> <?php echo $post_outershadow_color ?>; 
+box-shadow: <?php echo $outer_shadow ?> <?php echo $post_outershadow_color ?>;
 }
 
 ul.featured-posts.fps-single {
 height: <?php echo ($post_height-20) ?>px; 
 width: <?php echo ($post_width-45) ?>px;
+-moz-border-radius: <?php echo $post_corner_radius ?>; 
+border-radius: <?php echo $post_corner_radius ?>;
+-moz-box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>; 
+-webkit-box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>; 
+box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>;
 }
 
 ul.featured-posts.fps-single li {
 height: <?php echo ($post_height-20) ?>px; 
 width: <?php echo ($post_width-45) ?>px;
+-moz-border-radius: <?php echo $post_corner_radius ?>; 
+border-radius: <?php echo $post_corner_radius ?>;
 }
 
 ul.featured-posts.fps-single li .fps-text {
@@ -218,23 +233,6 @@ background: <?php echo $post_selectedslide_bgcolor ?>;
 -moz-box-shadow: <?php echo $selected_shadow ?>; 
 -webkit-box-shadow: <?php echo $selected_shadow ?>;
 box-shadow: <?php echo $selected_shadow ?>;
-}
-
-.fps-rounded {
--moz-border-radius: <?php echo $post_corner_radius ?>; 
-border-radius: <?php echo $post_corner_radius ?>;
-}
-
-.fps-shadowed-inner {
--moz-box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>; 
--webkit-box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>; 
-box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>;
-}
-
-.fps-shadowed-outer {
--moz-box-shadow: <?php echo $shadow ?> <?php echo $post_outershadow_color ?>; 
--webkit-box-shadow: <?php echo $shadow ?> <?php echo $post_outershadow_color ?>; 
-box-shadow: <?php echo $shadow ?> <?php echo $post_outershadow_color ?>;
 }
 
 .fps-text {
@@ -291,3 +289,29 @@ margin: 0px 0px 12px;
 }
 
 <?php endif; ?>
+
+
+
+
+<?php
+
+/* Convert a hex RGB string into individual RGB decimal values */
+function hex2RGB($hexStr, $returnAsString = false, $seperator = ',') {
+    $hexStr = preg_replace("/[^0-9A-Fa-f]/", '', $hexStr); // Gets a proper hex string
+    $rgbArray = array();
+    if (strlen($hexStr) == 6) { //If a proper hex code, convert using bitwise operation. No overhead... faster
+        $colorVal = hexdec($hexStr);
+        $rgbArray['red'] = 0xFF & ($colorVal >> 0x10);
+        $rgbArray['green'] = 0xFF & ($colorVal >> 0x8);
+        $rgbArray['blue'] = 0xFF & $colorVal;
+    } elseif (strlen($hexStr) == 3) { //if shorthand notation, need some string manipulations
+        $rgbArray['red'] = hexdec(str_repeat(substr($hexStr, 0, 1), 2));
+        $rgbArray['green'] = hexdec(str_repeat(substr($hexStr, 1, 1), 2));
+        $rgbArray['blue'] = hexdec(str_repeat(substr($hexStr, 2, 1), 2));
+    } else {
+        return false; //Invalid hex color code
+    }
+    return $returnAsString ? implode($seperator, $rgbArray) : $rgbArray; // returns the rgb string or the associative array
+}
+
+?>

@@ -87,6 +87,9 @@
         $post_corner_radius = $_POST['fps_corner_radius'];
         update_option('fps_corner_radius', $post_corner_radius);
 
+        $post_outer_corner_radius = $_POST['fps_outer_corner_radius'];
+        update_option('fps_outer_corner_radius', $post_outer_corner_radius);
+
         $post_dropshadow_x = $_POST['fps_dropshadow_x'];
         update_option('fps_dropshadow_x', $post_dropshadow_x);
 
@@ -95,6 +98,15 @@
 
         $post_dropshadow_blur = $_POST['fps_dropshadow_blur'];
         update_option('fps_dropshadow_blur', $post_dropshadow_blur);
+
+        $post_outer_dropshadow_x = $_POST['fps_outer_dropshadow_x'];
+        update_option('fps_outer_dropshadow_x', $post_outer_dropshadow_x);
+
+        $post_outer_dropshadow_y = $_POST['fps_outer_dropshadow_y'];
+        update_option('fps_outer_dropshadow_y', $post_outer_dropshadow_y);
+
+        $post_outer_dropshadow_blur = $_POST['fps_outer_dropshadow_blur'];
+        update_option('fps_outer_dropshadow_blur', $post_outer_dropshadow_blur);
 
         $post_arrow_position = $_POST['fps_arrow_position'];
         update_option('fps_arrow_position', $post_arrow_position);
@@ -230,9 +242,15 @@
         $post_autoscroll = get_option('fps_autoscroll');
 
         $post_corner_radius = get_option('fps_corner_radius');
+        $post_outer_corner_radius = get_option('fps_outer_corner_radius');
+
         $post_dropshadow_x = get_option('fps_dropshadow_x');
         $post_dropshadow_y = get_option('fps_dropshadow_y');
         $post_dropshadow_blur = get_option('fps_dropshadow_blur');
+
+        $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
+        $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
+        $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
 
         $post_height = get_option('fps_height');
         $post_width = get_option('fps_width');
@@ -355,7 +373,7 @@
                         <br />
                         <br />
 
-                        <input type="text" name="fps_width" maxlength="5" size="5" value="7" />
+                        <input type="text" name="fps_autoscroll_interval" maxlength="5" size="5" value="7" />
                         <?php _e("Autoscroll Interval (seconds)"); ?>
                         <br />
                         <?php _e("Note: Currently can not be changed. Hardcoded to 7 seconds."); ?>
@@ -601,15 +619,15 @@
                 <td>                    
                 <fieldset>
 
-                    <input type="text" name="fps_dropshadow_x" value="<?php echo $post_dropshadow_x; ?>" size="4">
+                    <input type="text" name="fps_outer_dropshadow_x" value="<?php echo $post_outer_dropshadow_x; ?>" size="4">
                     <?php _e("Horizontal Offset"); ?>
                     <br />
                     
-                    <input type="text" name="fps_dropshadow_y" value="<?php echo $post_dropshadow_y; ?>" size="4">
+                    <input type="text" name="fps_outer_dropshadow_y" value="<?php echo $post_outer_dropshadow_y; ?>" size="4">
                     <?php _e("Vertical Offset"); ?>
                     <br />
                     
-                    <input type="text" name="fps_dropshadow_blur" value="<?php echo $post_dropshadow_blur; ?>" size="4">
+                    <input type="text" name="fps_outer_dropshadow_blur" value="<?php echo $post_outer_dropshadow_blur; ?>" size="4">
                     <?php _e("Blur Distance"); ?>
                     <br />
 
@@ -721,7 +739,7 @@
                     <?php _e("Slide Number BG"); ?>
                     <br />
                     
-                    <input type="text" name="fps_corner_radius" value="<?php echo $post_corner_radius; ?>" size="12">
+                    <input type="text" name="fps_outer_corner_radius" value="<?php echo $post_outer_corner_radius; ?>" size="12">
                     <?php _e("Outer Box"); ?>
                     <br />
                     
@@ -747,30 +765,6 @@
     </table>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 
 
