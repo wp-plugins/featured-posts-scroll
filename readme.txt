@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.9
+Stable tag: 1.10
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -33,6 +33,7 @@ If you find this plugin useful please remember to rate it and comment.
    Download the zip file and extract the contents.
    Upload the 'featured-posts-scroll' folder to your plugins directory (wp-content/plugins/).
 2. Activate the plugin through the WordPress 'Plugins' menu.
+3. Recommendation: Refer to "How to Use" and "FAQ" for useful info.
 
 = How to Use =
 
@@ -78,6 +79,14 @@ In either case, the image should be split into four evenly sized quadrants. The 
 
 == Changelog ==
 
+= 1.10 =
+* Reorganized admin page. Attempted to make arrangement more logical and remove clutter.
+* Removed <style> elements from generated HTML. An external stylesheet is now generated based on admin options.
+* Addressed issue where title/excerpt could overflow <li> container by ten pixels.
+* Addressed issue where title/excerpt would initially appear in a default position potentially in the middle of the post image.
+* Created separate settings for inner/outer box corner radii and drop shadows.
+* Removed drop-shadow and rounded-corners enable/disable settings. Disabling these features is now done by changing all related settings to zero.
+
 = 1.9 =
 * Added alternate arrow location under main image.
 * Added options for displaying slide numbers under main image.
@@ -108,9 +117,10 @@ In either case, the image should be split into four evenly sized quadrants. The 
 
 == Upgrade Notice ==
 
-= 1.9 =
-* Added alternate arrow location under main image.
-* Added options for displaying slide numbers under main image.
-* Added option to allow user to use their own custom arrow image.
-* Corrected an issue with right margin introduced by custom height/width code.
-* Other minor bug fixes.
+= 1.10 =
+* Reorganized admin page. Attempted to make arrangement more logical and remove clutter.
+* Removed <style> elements from generated HTML. An external stylesheet is now generated based on admin options.
+* Addressed issue where title/excerpt could overflow <li> container by ten pixels.
+* Addressed issue where title/excerpt would initially appear in a default position potentially in the middle of the post image.
+* Created separate settings for inner/outer box corner radii and drop shadows.
+* Removed drop-shadow and rounded-corners enable/disable settings. Disabling these features is now done by changing all related settings to zero.
