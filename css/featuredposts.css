@@ -66,20 +66,14 @@ padding: 0px;
 }
 
 p.fps-title {
-font-size: 12pt;
-font-weight: bold;
 text-decoration: none;
 }
 
 p.fps-excerpt {
-font-size: 10pt;
-line-height: 10pt;
 text-decoration: none;
 }
 
 p.featured-posts-header {
-font-size: 18pt;
-font-weight: bold;
 text-shadow: 2px 2px 2px #000;
 z-index: 5;
 margin-left: 29px;
@@ -177,8 +171,6 @@ margin: -5px 0px 0px 22px;
 padding: 0px;
 list-style: none;
 float: left;
-line-height: 14pt;
-font-size: 10pt;
 }
 
 ul.fps-slideNumberList li {

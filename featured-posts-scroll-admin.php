@@ -180,6 +180,96 @@
         $post_slide_textshadow_color = $_POST['fps_slide_textshadow_color'];
         update_option('fps_slide_textshadow_color', $post_slide_textshadow_color);
 
+        $post_title_font = $_POST['fps_title_font'];
+        update_option('fps_title_font', $post_title_font);
+
+        $post_excerpt_font = $_POST['fps_excerpt_font'];
+        update_option('fps_excerpt_font', $post_excerpt_font);
+
+        $post_heading_font = $_POST['fps_heading_font'];
+        update_option('fps_heading_font', $post_heading_font);
+
+        $post_selectedslide_font = $_POST['fps_selectedslide_font'];
+        update_option('fps_selectedslide_font', $post_selectedslide_font);
+
+        $post_unselectedslide_font = $_POST['fps_unselectedslide_font'];
+        update_option('fps_unselectedslide_font', $post_unselectedslide_font);
+
+        $post_title_fontstyle = $_POST['fps_title_fontstyle'];
+        update_option('fps_title_fontstyle', $post_title_fontstyle);
+
+        $post_excerpt_fontstyle = $_POST['fps_excerpt_fontstyle'];
+        update_option('fps_excerpt_fontstyle', $post_excerpt_fontstyle);
+
+        $post_heading_fontstyle = $_POST['fps_heading_fontstyle'];
+        update_option('fps_heading_fontstyle', $post_heading_fontstyle);
+
+        $post_selectedslide_fontstyle = $_POST['fps_selectedslide_fontstyle'];
+        update_option('fps_selectedslide_fontstyle', $post_selectedslide_fontstyle);
+
+        $post_unselectedslide_fontstyle = $_POST['fps_unselectedslide_fontstyle'];
+        update_option('fps_unselectedslide_fontstyle', $post_unselectedslide_fontstyle);
+
+        $post_title_fontvariant = $_POST['fps_title_fontvariant'];
+        update_option('fps_title_fontvariant', $post_title_fontvariant);
+
+        $post_excerpt_fontvariant = $_POST['fps_excerpt_fontvariant'];
+        update_option('fps_excerpt_fontvariant', $post_excerpt_fontvariant);
+
+        $post_heading_fontvariant = $_POST['fps_heading_fontvariant'];
+        update_option('fps_heading_fontvariant', $post_heading_fontvariant);
+
+        $post_selectedslide_fontvariant = $_POST['fps_selectedslide_fontvariant'];
+        update_option('fps_selectedslide_fontvariant', $post_selectedslide_fontvariant);
+
+        $post_unselectedslide_fontvariant = $_POST['fps_unselectedslide_fontvariant'];
+        update_option('fps_unselectedslide_fontvariant', $post_unselectedslide_fontvariant);
+
+        $post_title_fontweight = $_POST['fps_title_fontweight'];
+        update_option('fps_title_fontweight', $post_title_fontweight);
+
+        $post_excerpt_fontweight = $_POST['fps_excerpt_fontweight'];
+        update_option('fps_excerpt_fontweight', $post_excerpt_fontweight);
+
+        $post_heading_fontweight = $_POST['fps_heading_fontweight'];
+        update_option('fps_heading_fontweight', $post_heading_fontweight);
+
+        $post_selectedslide_fontweight = $_POST['fps_selectedslide_fontweight'];
+        update_option('fps_selectedslide_fontweight', $post_selectedslide_fontweight);
+
+        $post_unselectedslide_fontweight = $_POST['fps_unselectedslide_fontweight'];
+        update_option('fps_unselectedslide_fontweight', $post_unselectedslide_fontweight);
+
+        $post_title_fontsize = $_POST['fps_title_fontsize'];
+        update_option('fps_title_fontsize', $post_title_fontsize);
+
+        $post_excerpt_fontsize = $_POST['fps_excerpt_fontsize'];
+        update_option('fps_excerpt_fontsize', $post_excerpt_fontsize);
+
+        $post_heading_fontsize = $_POST['fps_heading_fontsize'];
+        update_option('fps_heading_fontsize', $post_heading_fontsize);
+
+        $post_selectedslide_fontsize = $_POST['fps_selectedslide_fontsize'];
+        update_option('fps_selectedslide_fontsize', $post_selectedslide_fontsize);
+
+        $post_unselectedslide_fontsize = $_POST['fps_unselectedslide_fontsize'];
+        update_option('fps_unselectedslide_fontsize', $post_unselectedslide_fontsize);
+
+        $post_title_fontheight = $_POST['fps_title_fontheight'];
+        update_option('fps_title_fontheight', $post_title_fontheight);
+
+        $post_excerpt_fontheight = $_POST['fps_excerpt_fontheight'];
+        update_option('fps_excerpt_fontheight', $post_excerpt_fontheight);
+
+        $post_heading_fontheight = $_POST['fps_heading_fontheight'];
+        update_option('fps_heading_fontheight', $post_heading_fontheight);
+
+        $post_selectedslide_fontheight = $_POST['fps_selectedslide_fontheight'];
+        update_option('fps_selectedslide_fontheight', $post_selectedslide_fontheight);
+
+        $post_unselectedslide_fontheight = $_POST['fps_unselectedslide_fontheight'];
+        update_option('fps_unselectedslide_fontheight', $post_unselectedslide_fontheight);
+
         $post_unselectedslide_inset = isset($_POST['fps_unselectedslide_inset']) ? 1:0;
         update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
 
@@ -289,6 +379,42 @@
         $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
         $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
         $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
+
+        $post_title_font = get_option('fps_title_font');
+        $post_excerpt_font = get_option('fps_excerpt_font');
+        $post_heading_font = get_option('fps_heading_font');
+        $post_selectedslide_font = get_option('fps_selectedslide_font');
+        $post_unselectedslide_font = get_option('fps_unselectedslide_font');
+
+        $post_title_fontstyle = get_option('fps_title_fontstyle');
+        $post_excerpt_fontstyle = get_option('fps_excerpt_fontstyle');
+        $post_heading_fontstyle = get_option('fps_heading_fontstyle');
+        $post_selectedslide_fontstyle = get_option('fps_selectedslide_fontstyle');
+        $post_unselectedslide_fontstyle = get_option('fps_unselectedslide_fontstyle');
+
+        $post_title_fontvariant = get_option('fps_title_fontvariant');
+        $post_excerpt_fontvariant = get_option('fps_excerpt_fontvariant');
+        $post_heading_fontvariant = get_option('fps_heading_fontvariant');
+        $post_selectedslide_fontvariant = get_option('fps_selectedslide_fontvariant');
+        $post_unselectedslide_fontvariant = get_option('fps_unselectedslide_fontvariant');
+
+        $post_title_fontweight = get_option('fps_title_fontweight');
+        $post_excerpt_fontweight = get_option('fps_excerpt_fontweight');
+        $post_heading_fontweight = get_option('fps_heading_fontweight');
+        $post_selectedslide_fontweight = get_option('fps_selectedslide_fontweight');
+        $post_unselectedslide_fontweight = get_option('fps_unselectedslide_fontweight');
+
+        $post_title_fontsize = get_option('fps_title_fontsize');
+        $post_excerpt_fontsize = get_option('fps_excerpt_fontsize');
+        $post_heading_fontsize = get_option('fps_heading_fontsize');
+        $post_selectedslide_fontsize = get_option('fps_selectedslide_fontsize');
+        $post_unselectedslide_fontsize = get_option('fps_unselectedslide_fontsize');
+
+        $post_title_fontheight = get_option('fps_title_fontheight');
+        $post_excerpt_fontheight = get_option('fps_excerpt_fontheight');
+        $post_heading_fontheight = get_option('fps_heading_fontheight');
+        $post_selectedslide_fontheight = get_option('fps_selectedslide_fontheight');
+        $post_unselectedslide_fontheight = get_option('fps_unselectedslide_fontheight');
         
     }
 ?>
@@ -512,18 +638,105 @@
             </tr>
 
             <tr valign="top">
+                <th scope="row">Title</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_title_font" size="25" value="<?php echo $post_title_font; ?>" />
+                    <?php _e("Font-Family"); ?>
+                    <br />
+                    <input type="text" name="fps_title_fontstyle" size="25" value="<?php echo $post_title_fontstyle; ?>" />
+                    <?php _e("Font-Style"); ?>
+                    <br />
+                    <input type="text" name="fps_title_fontvariant" size="25" value="<?php echo $post_title_fontvariant; ?>" />
+                    <?php _e("Font-Variant"); ?>
+                    <br />
+                    <input type="text" name="fps_title_fontweight" size="25" value="<?php echo $post_title_fontweight; ?>" />
+                    <?php _e("Font-Weight"); ?>
+                    <br />
+                    <input type="text" name="fps_title_fontsize" size="25" value="<?php echo $post_title_fontsize; ?>" />
+                    <?php _e("Font-Size"); ?>
+                    <br />
+                    <input type="text" name="fps_title_fontheight" size="25" value="<?php echo $post_title_fontheight; ?>" />
+                    <?php _e("Line-Height"); ?>
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Excerpt</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_excerpt_font" size="25" value="<?php echo $post_excerpt_font; ?>" />
+                    <?php _e("Font-Family"); ?>
+                    <br />
+                    <input type="text" name="fps_excerpt_fontstyle" size="25" value="<?php echo $post_excerpt_fontstyle; ?>" />
+                    <?php _e("Font-Style"); ?>
+                    <br />
+                    <input type="text" name="fps_excerpt_fontvariant" size="25" value="<?php echo $post_excerpt_fontvariant; ?>" />
+                    <?php _e("Font-Variant"); ?>
+                    <br />
+                    <input type="text" name="fps_excerpt_fontweight" size="25" value="<?php echo $post_excerpt_fontweight; ?>" />
+                    <?php _e("Font-Weight"); ?>
+                    <br />
+                    <input type="text" name="fps_excerpt_fontsize" size="25" value="<?php echo $post_excerpt_fontsize; ?>" />
+                    <?php _e("Font-Size"); ?>
+                    <br />
+                    <input type="text" name="fps_excerpt_fontheight" size="25" value="<?php echo $post_excerpt_fontheight; ?>" />
+                    <?php _e("Line-Height"); ?>
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Scroll Heading</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_heading_font" size="25" value="<?php echo $post_heading_font; ?>" />
+                    <?php _e("Font-Family"); ?>
+                    <br />
+                    <input type="text" name="fps_heading_fontstyle" size="25" value="<?php echo $post_heading_fontstyle; ?>" />
+                    <?php _e("Font-Style"); ?>
+                    <br />
+                    <input type="text" name="fps_heading_fontvariant" size="25" value="<?php echo $post_heading_fontvariant; ?>" />
+                    <?php _e("Font-Variant"); ?>
+                    <br />
+                    <input type="text" name="fps_heading_fontweight" size="25" value="<?php echo $post_heading_fontweight; ?>" />
+                    <?php _e("Font-Weight"); ?>
+                    <br />
+                    <input type="text" name="fps_heading_fontsize" size="25" value="<?php echo $post_heading_fontsize; ?>" />
+                    <?php _e("Font-Size"); ?>
+                    <br />
+                    <input type="text" name="fps_heading_fontheight" size="25" value="<?php echo $post_heading_fontheight; ?>" />
+                    <?php _e("Line-Height"); ?>
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
                 <th scope="row">Selected Slide Number</th>
                 <td>
                 <fieldset>
-
-                    <?php if($post_selectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-                    <input type="checkbox" name="fps_selectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold"); ?>
+                    <input type="text" name="fps_selectedslide_font" size="25" value="<?php echo $post_selectedslide_font; ?>" />
+                    <?php _e("Font-Family"); ?>
                     <br />
-
-                    <?php if($post_selectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-                    <input type="checkbox" name="fps_selectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
+                    <input type="text" name="fps_selectedslide_fontstyle" size="25" value="<?php echo $post_selectedslide_fontstyle; ?>" />
+                    <?php _e("Font-Style"); ?>
                     <br />
-
+                    <input type="text" name="fps_selectedslide_fontvariant" size="25" value="<?php echo $post_selectedslide_fontvariant; ?>" />
+                    <?php _e("Font-Variant"); ?>
+                    <br />
+                    <input type="text" name="fps_selectedslide_fontweight" size="25" value="<?php echo $post_selectedslide_fontweight; ?>" />
+                    <?php _e("Font-Weight"); ?>
+                    <br />
+                    <input type="text" name="fps_selectedslide_fontsize" size="25" value="<?php echo $post_selectedslide_fontsize; ?>" />
+                    <?php _e("Font-Size"); ?>
+                    <br />
+                    <input type="text" name="fps_selectedslide_fontheight" size="25" value="<?php echo $post_selectedslide_fontheight; ?>" />
+                    <?php _e("Line-Height"); ?>
+                    <br />
                 </fieldset>
                 </td>
             </tr>
@@ -532,15 +745,30 @@
                 <th scope="row">Unselected Slide Number</th>
                 <td>
                 <fieldset>
-
-                    <?php if($post_unselectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-                    <input type="checkbox" name="fps_unselectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold"); ?>
+                    <input type="text" name="fps_unselectedslide_font" size="25" value="<?php echo $post_unselectedslide_font; ?>" />
+                    <?php _e("Font-Family"); ?>
+                    <br />
+                    <input type="text" name="fps_unselectedslide_fontstyle" size="25" value="<?php echo $post_unselectedslide_fontstyle; ?>" />
+                    <?php _e("Font-Style"); ?>
+                    <br />
+                    <input type="text" name="fps_unselectedslide_fontvariant" size="25" value="<?php echo $post_unselectedslide_fontvariant; ?>" />
+                    <?php _e("Font-Variant"); ?>
+                    <br />
+                    <input type="text" name="fps_unselectedslide_fontweight" size="25" value="<?php echo $post_unselectedslide_fontweight; ?>" />
+                    <?php _e("Font-Weight"); ?>
+                    <br />
+                    <input type="text" name="fps_unselectedslide_fontsize" size="25" value="<?php echo $post_unselectedslide_fontsize; ?>" />
+                    <?php _e("Font-Size"); ?>
+                    <br />
+                    <input type="text" name="fps_unselectedslide_fontheight" size="25" value="<?php echo $post_unselectedslide_fontheight; ?>" />
+                    <?php _e("Line-Height"); ?>
+                    <br />
                     <br />
 
-                    <?php if($post_unselectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-                    <input type="checkbox" name="fps_unselectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
+                    <?php _e("Font entries can be used to override default settings"); ?>
                     <br />
-
+                    <a href="http://www.w3schools.com/cssref/pr_font_font.asp">See this site for more details</a>
+                    <br />
                 </fieldset>
                 </td>
             </tr>

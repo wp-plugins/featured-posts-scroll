@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.10
+Stable tag: 1.11
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -53,8 +53,12 @@ If you would like to customize what posts are displayed:
 3. Recommendation: Create a new 'featured' tag and put it on the posts that you want to displayed and add that category's slug to the array in the code above.
 
 If you would like to display the featured posts scroll inside of a post:
-1. Insert the following shortcode in your post:
+* Insert the following shortcode in your post:
 <code>[fps]</code>
+* Arguments can also be used with the shortcode to specify posts to display:
+<code>[fps cat="-3" tag="featured"]</code>
+
+
 
 == Frequently Asked Questions ==
 
@@ -78,6 +82,13 @@ In either case, the image should be split into four evenly sized quadrants. The 
 3. New Features: Slide Numbers, Alternate Arrow Position, Custom Sizing
 
 == Changelog ==
+
+= 1.11 =
+* Modified link formatting to enable the ability for the user to open links in alternate tab/window.
+* Added shortcode argument support.
+* Removed bold/italic options for slide numbers.
+* Added several font options for customizing appearnace of all plugin text.
+* Corrected issue with heading text not displaying (bug introduced in 1.10).
 
 = 1.10 =
 * Reorganized admin page. Attempted to make arrangement more logical and remove clutter.
@@ -117,10 +128,9 @@ In either case, the image should be split into four evenly sized quadrants. The 
 
 == Upgrade Notice ==
 
-= 1.10 =
-* Reorganized admin page. Attempted to make arrangement more logical and remove clutter.
-* Removed <style> elements from generated HTML. An external stylesheet is now generated based on admin options.
-* Addressed issue where title/excerpt could overflow <li> container by ten pixels.
-* Addressed issue where title/excerpt would initially appear in a default position potentially in the middle of the post image.
-* Created separate settings for inner/outer box corner radii and drop shadows.
-* Removed drop-shadow and rounded-corners enable/disable settings. Disabling these features is now done by changing all related settings to zero.
+= 1.11 =
+* Modified link formatting to enable the ability for the user to open links in alternate tab/window.
+* Added shortcode argument support.
+* Removed bold/italic options for slide numbers.
+* Added several font options for customizing appearnace of all plugin text.
+* Corrected issue with heading text not displaying (bug introduced in 1.10).
