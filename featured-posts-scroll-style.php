@@ -10,9 +10,43 @@
         
     $post_title_color = get_option('fps_title_color');
     $post_excerpt_color = get_option('fps_excerpt_color');
-
     $post_heading_color = get_option('fps_heading_color');
-    $post_heading_text = get_option('fps_heading_text');
+
+    $post_title_font = get_option('fps_title_font');
+    $post_excerpt_font = get_option('fps_excerpt_font');
+    $post_heading_font = get_option('fps_heading_font');
+    $post_selectedslide_font = get_option('fps_selectedslide_font');
+    $post_unselectedslide_font = get_option('fps_unselectedslide_font');
+
+    $post_title_fontstyle = get_option('fps_title_fontstyle');
+    $post_excerpt_fontstyle = get_option('fps_excerpt_fontstyle');
+    $post_heading_fontstyle = get_option('fps_heading_fontstyle');
+    $post_selectedslide_fontstyle = get_option('fps_selectedslide_fontstyle');
+    $post_unselectedslide_fontstyle = get_option('fps_unselectedslide_fontstyle');
+
+    $post_title_fontvariant = get_option('fps_title_fontvariant');
+    $post_excerpt_fontvariant = get_option('fps_excerpt_fontvariant');
+    $post_heading_fontvariant = get_option('fps_heading_fontvariant');
+    $post_selectedslide_fontvariant = get_option('fps_selectedslide_fontvariant');
+    $post_unselectedslide_fontvariant = get_option('fps_unselectedslide_fontvariant');
+
+    $post_title_fontweight = get_option('fps_title_fontweight');
+    $post_excerpt_fontweight = get_option('fps_excerpt_fontweight');
+    $post_heading_fontweight = get_option('fps_heading_fontweight');
+    $post_selectedslide_fontweight = get_option('fps_selectedslide_fontweight');
+    $post_unselectedslide_fontweight = get_option('fps_unselectedslide_fontweight');
+
+    $post_title_fontsize = get_option('fps_title_fontsize');
+    $post_excerpt_fontsize = get_option('fps_excerpt_fontsize');
+    $post_heading_fontsize = get_option('fps_heading_fontsize');
+    $post_selectedslide_fontsize = get_option('fps_selectedslide_fontsize');
+    $post_unselectedslide_fontsize = get_option('fps_unselectedslide_fontsize');
+
+    $post_title_fontheight = get_option('fps_title_fontheight');
+    $post_excerpt_fontheight = get_option('fps_excerpt_fontheight');
+    $post_heading_fontheight = get_option('fps_heading_fontheight');
+    $post_selectedslide_fontheight = get_option('fps_selectedslide_fontheight');
+    $post_unselectedslide_fontheight = get_option('fps_unselectedslide_fontheight');
     
     $post_bg_color = get_option('fps_bg_color');
     $post_textbg_color = get_option('fps_textbg_color');
@@ -22,10 +56,6 @@
     $post_outershadow_color = get_option('fps_outershadow_color');
 
     $post_arrow_color = get_option('fps_arrow_color');
-    
-    $post_display_title = get_option('fps_display_title');
-    $post_display_excerpt = get_option('fps_display_excerpt');
-    $post_display_heading = get_option('fps_display_heading');
 
     $post_corner_radius = get_option('fps_corner_radius');
     $post_dropshadow_x = get_option('fps_dropshadow_x');
@@ -52,12 +82,6 @@
 
     $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
     $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
-
-    $post_selectedslide_bold = get_option('fps_selectedslide_bold');
-    $post_selectedslide_italics = get_option('fps_selectedslide_italics');
-
-    $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
-    $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
 
     $post_slide_bgradius = get_option('fps_slide_bgradius');
 
@@ -105,30 +129,6 @@
     {
         $height_offset += 25;
     }
-
-    // Define font style/weight
-	$unselected_weight = 'normal';
-	$unselected_style = 'normal';
-	$selected_weight = 'normal';
-	$selected_style = 'normal';
-
-	if ($post_unselectedslide_bold == '1')
-	{
-	    $unselected_weight = 'bold';
-	}
-	if ($post_selectedslide_bold == '1')
-	{
-	    $selected_weight = 'bold';
-	}
-
-	if ($post_unselectedslide_italics == '1')
-	{
-	    $unselected_style = 'italic';
-	}
-	if ($post_selectedslide_italics == '1')
-	{
-	    $selected_style = 'italic';
-	}
 
 	// Define box shadow
 	$unselected_shadow = $post_unselectedslide_dropshadow_x.'px '.
@@ -214,8 +214,12 @@ margin: <?php echo (($post_height-45)/2) ?>px 0px <?php echo (($post_height-45)/
 .fps-slideNumberList li {
 color: <?php echo $post_unselectedslide_textcolor ?>; 
 text-shadow: <?php echo $post_slide_textshadow_x ?>px <?php echo $post_slide_textshadow_y ?>px <?php echo $post_slide_textshadow_blur ?>px <?php echo $post_slide_textshadow_color ?>; 
-font-weight: <?php echo $unselected_weight ?>; 
-font-style: <?php echo $unselected_style ?>; 
+font-family: <?php echo $post_unselectedslide_font ?>;
+font-style: <?php echo $post_unselectedslide_fontstyle ?>;
+font-variant: <?php echo $post_unselectedslide_fontvariant ?>;
+font-weight: <?php echo $post_unselectedslide_fontweight ?>;
+font-size: <?php echo $post_unselectedslide_fontsize ?>;
+line-height: <?php echo $post_unselectedslide_fontheight ?>;
 background: <?php echo $post_unselectedslide_bgcolor ?>; 
 -moz-border-radius: <?php echo $post_slide_bgradius ?>; 
 border-radius: <?php echo $post_slide_bgradius ?>; 
@@ -227,8 +231,12 @@ box-shadow: <?php echo $unselected_shadow ?> ;
 .fps-slideNumberList li.fps-selectedSlide, .fps-slideNumberList li:hover {
 color: <?php echo $post_selectedslide_textcolor ?>; 
 text-shadow: <?php echo $post_slide_textshadow_x ?>px <?php echo $post_slide_textshadow_y ?>px <?php echo $post_slide_textshadow_blur ?>px <?php echo $post_slide_textshadow_color ?>; 
-font-weight: <?php echo $selected_weight ?>; 
-font-style: <?php echo $selected_style ?>; 
+font-family: <?php echo $post_selectedslide_font ?>;
+font-style: <?php echo $post_selectedslide_fontstyle ?>;
+font-variant: <?php echo $post_selectedslide_fontvariant ?>;
+font-weight: <?php echo $post_selectedslide_fontweight ?>;
+font-size: <?php echo $post_selectedslide_fontsize ?>;
+line-height: <?php echo $post_selectedslide_fontheight ?>;
 background: <?php echo $post_selectedslide_bgcolor ?>; 
 -moz-box-shadow: <?php echo $selected_shadow ?>; 
 -webkit-box-shadow: <?php echo $selected_shadow ?>;
@@ -256,12 +264,34 @@ background-image: url(<?php echo $arrow_url ?>);
 background: <?php echo $post_bg_color ?>;
 }
 
-.fps-title {
+p.fps-title {
+font-family: <?php echo $post_title_font ?>;
+font-style: <?php echo $post_title_fontstyle ?>;
+font-variant: <?php echo $post_title_fontvariant ?>;
+font-weight: <?php echo $post_title_fontweight ?>;
+font-size: <?php echo $post_title_fontsize ?>;
+line-height: <?php echo $post_title_fontheight ?>;
 color: <?php echo $post_title_color ?>;
 }
 
-.fps-excerpt {
+p.fps-excerpt {
+font-family: <?php echo $post_excerpt_font ?>;
+font-style: <?php echo $post_excerpt_fontstyle ?>;
+font-variant: <?php echo $post_excerpt_fontvariant ?>;
+font-weight: <?php echo $post_excerpt_fontweight ?>;
+font-size: <?php echo $post_excerpt_fontsize ?>;
+line-height: <?php echo $post_excerpt_fontheight ?>;
 color: <?php echo $post_excerpt_color ?>;
+}
+
+p.featured-posts-header {
+font-family: <?php echo $post_heading_font ?>;
+font-style: <?php echo $post_heading_fontstyle ?>;
+font-variant: <?php echo $post_heading_fontvariant ?>;
+font-weight: <?php echo $post_heading_fontweight ?>;
+font-size: <?php echo $post_heading_fontsize ?>;
+line-height: <?php echo $post_heading_fontheight ?>;
+color: <?php echo $post_heading_color ?>;
 }
 
 

@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.10
+Version: 1.11
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -347,6 +347,192 @@ function fps_activate()
         $post_slide_textshadow_color = '000000';
         update_option('fps_slide_textshadow_color', $post_slide_textshadow_color);
     }
+
+    $post_title_font = get_option('fps_title_font');
+    if ( empty($post_title_font) ) {
+        $post_title_font = '';
+        update_option('fps_title_font', $post_title_font);
+    }
+
+    $post_excerpt_font = get_option('fps_excerpt_font');
+    if ( empty($post_excerpt_font) ) {
+        $post_excerpt_font = '';
+        update_option('fps_excerpt_font', $post_excerpt_font);
+    }
+
+    $post_heading_font = get_option('fps_heading_font');
+    if ( empty($post_heading_font) ) {
+        $post_heading_font = '';
+        update_option('fps_heading_font', $post_heading_font);
+    }
+
+    $post_selectedslide_font = get_option('fps_selectedslide_font');
+    if ( empty($post_selectedslide_font) ) {
+        $post_selectedslide_font = '';
+        update_option('fps_selectedslide_font', $post_selectedslide_font);
+    }
+
+    $post_unselectedslide_font = get_option('fps_unselectedslide_font');
+    if ( empty($post_unselectedslide_font) ) {
+        $post_unselectedslide_font = '';
+        update_option('fps_unselectedslide_font', $post_unselectedslide_font);
+    }
+
+
+    $post_title_fontstyle = get_option('fps_title_fontstyle');
+    if ( empty($post_title_fontstyle) ) {
+        $post_title_fontstyle = '';
+        update_option('fps_title_fontstyle', $post_title_fontstyle);
+    }
+
+    $post_excerpt_fontstyle = get_option('fps_excerpt_fontstyle');
+    if ( empty($post_excerpt_fontstyle) ) {
+        $post_excerpt_fontstyle = '';
+        update_option('fps_excerpt_fontstyle', $post_excerpt_fontstyle);
+    }
+
+    $post_heading_fontstyle = get_option('fps_heading_fontstyle');
+    if ( empty($post_heading_fontstyle) ) {
+        $post_heading_fontstyle = '';
+        update_option('fps_heading_fontstyle', $post_heading_fontstyle);
+    }
+
+    $post_selectedslide_fontstyle = get_option('fps_selectedslide_fontstyle');
+    if ( empty($post_selectedslide_fontstyle) ) {
+        $post_selectedslide_fontstyle = '';
+        update_option('fps_selectedslide_fontstyle', $post_selectedslide_fontstyle);
+    }
+
+    $post_unselectedslide_fontstyle = get_option('fps_unselectedslide_fontstyle');
+    if ( empty($post_unselectedslide_fontstyle) ) {
+        $post_unselectedslide_fontstyle = '';
+        update_option('fps_unselectedslide_fontstyle', $post_unselectedslide_fontstyle);
+    }
+
+
+    $post_title_fontvariant = get_option('fps_title_fontvariant');
+    if ( empty($post_title_fontvariant) ) {
+        $post_title_fontvariant = '';
+        update_option('fps_title_fontvariant', $post_title_fontvariant);
+    }
+
+    $post_excerpt_fontvariant = get_option('fps_excerpt_fontvariant');
+    if ( empty($post_excerpt_fontvariant) ) {
+        $post_excerpt_fontvariant = '';
+        update_option('fps_excerpt_fontvariant', $post_excerpt_fontvariant);
+    }
+
+    $post_heading_fontvariant = get_option('fps_heading_fontvariant');
+    if ( empty($post_heading_fontvariant) ) {
+        $post_heading_fontvariant = '';
+        update_option('fps_heading_fontvariant', $post_heading_fontvariant);
+    }
+
+    $post_selectedslide_fontvariant = get_option('fps_selectedslide_fontvariant');
+    if ( empty($post_selectedslide_fontvariant) ) {
+        $post_selectedslide_fontvariant = '';
+        update_option('fps_selectedslide_fontvariant', $post_selectedslide_fontvariant);
+    }
+
+    $post_unselectedslide_fontvariant = get_option('fps_unselectedslide_fontvariant');
+    if ( empty($post_unselectedslide_fontvariant) ) {
+        $post_unselectedslide_fontvariant = '';
+        update_option('fps_unselectedslide_fontvariant', $post_unselectedslide_fontvariant);
+    }
+
+
+    $post_title_fontweight = get_option('fps_title_fontweight');
+    if ( empty($post_title_fontweight) ) {
+        $post_title_fontweight = 'bold';
+        update_option('fps_title_fontweight', $post_title_fontweight);
+    }
+
+    $post_excerpt_fontweight = get_option('fps_excerpt_fontweight');
+    if ( empty($post_excerpt_fontweight) ) {
+        $post_excerpt_fontweight = '';
+        update_option('fps_excerpt_fontweight', $post_excerpt_fontweight);
+    }
+
+    $post_heading_fontweight = get_option('fps_heading_fontweight');
+    if ( empty($post_heading_fontweight) ) {
+        $post_heading_fontweight = 'bold';
+        update_option('fps_heading_fontweight', $post_heading_fontweight);
+    }
+
+    $post_selectedslide_fontweight = get_option('fps_selectedslide_fontweight');
+    if ( empty($post_selectedslide_fontweight) ) {
+        $post_selectedslide_fontweight = 'bold';
+        update_option('fps_selectedslide_fontweight', $post_selectedslide_fontweight);
+    }
+
+    $post_unselectedslide_fontweight = get_option('fps_unselectedslide_fontweight');
+    if ( empty($post_unselectedslide_fontweight) ) {
+        $post_unselectedslide_fontweight = 'bold';
+        update_option('fps_unselectedslide_fontweight', $post_unselectedslide_fontweight);
+    }
+
+
+    $post_title_fontsize = get_option('fps_title_fontsize');
+    if ( empty($post_title_fontsize) ) {
+        $post_title_fontsize = '12pt';
+        update_option('fps_title_fontsize', $post_title_fontsize);
+    }
+
+    $post_excerpt_fontsize = get_option('fps_excerpt_fontsize');
+    if ( empty($post_excerpt_fontsize) ) {
+        $post_excerpt_fontsize = '10pt';
+        update_option('fps_excerpt_fontsize', $post_excerpt_fontsize);
+    }
+
+    $post_heading_fontsize = get_option('fps_heading_fontsize');
+    if ( empty($post_heading_fontsize) ) {
+        $post_heading_fontsize = '18pt';
+        update_option('fps_heading_fontsize', $post_heading_fontsize);
+    }
+
+    $post_selectedslide_fontsize = get_option('fps_selectedslide_fontsize');
+    if ( empty($post_selectedslide_fontsize) ) {
+        $post_selectedslide_fontsize = '10pt';
+        update_option('fps_selectedslide_fontsize', $post_selectedslide_fontsize);
+    }
+
+    $post_unselectedslide_fontsize = get_option('fps_unselectedslide_fontsize');
+    if ( empty($post_unselectedslide_fontsize) ) {
+        $post_unselectedslide_fontsize = '10pt';
+        update_option('fps_unselectedslide_fontsize', $post_unselectedslide_fontsize);
+    }
+
+
+    $post_title_fontheight = get_option('fps_title_fontheight');
+    if ( empty($post_title_fontheight) ) {
+        $post_title_fontheight = '';
+        update_option('fps_title_fontheight', $post_title_fontheight);
+    }
+
+    $post_excerpt_fontheight = get_option('fps_excerpt_fontheight');
+    if ( empty($post_excerpt_fontheight) ) {
+        $post_excerpt_fontheight = '10pt';
+        update_option('fps_excerpt_fontheight', $post_excerpt_fontheight);
+    }
+
+    $post_heading_fontheight = get_option('fps_heading_fontheight');
+    if ( empty($post_heading_fontheight) ) {
+        $post_heading_fontheight = '';
+        update_option('fps_heading_fontheight', $post_heading_fontheight);
+    }
+
+    $post_selectedslide_fontheight = get_option('fps_selectedslide_fontheight');
+    if ( empty($post_selectedslide_fontheight) ) {
+        $post_selectedslide_fontheight = '14pt';
+        update_option('fps_selectedslide_fontheight', $post_selectedslide_fontheight);
+    }
+
+    $post_unselectedslide_fontheight = get_option('fps_unselectedslide_fontheight');
+    if ( empty($post_unselectedslide_fontheight) ) {
+        $post_unselectedslide_fontheight = '14pt';
+        update_option('fps_unselectedslide_fontheight', $post_unselectedslide_fontheight);
+    }
+
     
 }
 
@@ -424,6 +610,42 @@ function fps_deactivate()
     delete_option('fps_slide_textshadow_y');
     delete_option('fps_slide_textshadow_blur');
     delete_option('fps_slide_textshadow_color');
+
+    delete_option('fps_title_font');
+    delete_option('fps_excerpt_font');
+    delete_option('fps_heading_font');
+    delete_option('fps_selectedslide_font');
+    delete_option('fps_unselectedslide_font');
+
+    delete_option('fps_title_fontstyle');
+    delete_option('fps_excerpt_fontstyle');
+    delete_option('fps_heading_fontstyle');
+    delete_option('fps_selectedslide_fontstyle');
+    delete_option('fps_unselectedslide_fontstyle');
+
+    delete_option('fps_title_fontvariant');
+    delete_option('fps_excerpt_fontvariant');
+    delete_option('fps_heading_fontvariant');
+    delete_option('fps_selectedslide_fontvariant');
+    delete_option('fps_unselectedslide_fontvariant');
+
+    delete_option('fps_title_fontweight');
+    delete_option('fps_excerpt_fontweight');
+    delete_option('fps_heading_fontweight');
+    delete_option('fps_selectedslide_fontweight');
+    delete_option('fps_unselectedslide_fontweight');
+
+    delete_option('fps_title_fontsize');
+    delete_option('fps_excerpt_fontsize');
+    delete_option('fps_heading_fontsize');
+    delete_option('fps_selectedslide_fontsize');
+    delete_option('fps_unselectedslide_fontsize');
+
+    delete_option('fps_title_fontheight');
+    delete_option('fps_excerpt_fontheight');
+    delete_option('fps_heading_fontheight');
+    delete_option('fps_selectedslide_fontheight');
+    delete_option('fps_unselectedslide_fontheight');
 }
 
 /* Setup menu page creation */
@@ -487,12 +709,15 @@ function fps_show($atts)
     $post_display_title = get_option('fps_display_title');
     $post_display_excerpt = get_option('fps_display_excerpt');
     $post_display_heading = get_option('fps_display_heading');
+    $post_display_slidenumbers = get_option('fps_display_slidenumbers');
+
+    $post_heading_text = get_option('fps_heading_text');
 
     $post_autoscroll = get_option('fps_autoscroll');
 
-    $post_display_slidenumbers = get_option('fps_display_slidenumbers');
-
     $post_arrow_position = get_option('fps_arrow_position');
+
+    
 
     $wrapper_classes .= "featured-posts-wrapper fps-single";
     $ul_classes .= "featured-posts fps-single";
@@ -517,7 +742,7 @@ function fps_show($atts)
         // Display heading if option selected
         if ($post_display_heading == '1')
         {
-            $output .= '<p class="featured-posts-header" style="color:'.$post_heading_color.'">'.$post_heading_text.'</p>';
+            $output .= '<p class="featured-posts-header">'.$post_heading_text.'</p>';
         }
 
         // Add left arrow and open unordered list
@@ -580,13 +805,15 @@ function fps_show($atts)
             $post_excerpt = $post_details[$i]['post_excerpt'];
             $post_img = $post_details[$i]['post_img_src'][0];
 
+
+            $output .= '<a href="'.$post_permalink.'">';
                 if ($post_img != '')
                 {
-                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'" style="background:url('.$post_img.')">';
+                    $output .= '<li class="'.$li_classes.'" style="background:url('.$post_img.')">';
                 }
                 else
                 {
-                    $output .= '<li class="'.$li_classes.'" onclick="document.location.href=\''.$post_permalink.'\'">';
+                    $output .= '<li class="'.$li_classes.'">';
                 }
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
@@ -599,6 +826,7 @@ function fps_show($atts)
                         }
                     $output .= '</div>';
                 $output .= '</li>';
+            $output .= '</a>';
         }
         $output .= '</ul>';
         if ($post_arrow_position == 'sides')
@@ -642,7 +870,7 @@ function fps_show($atts)
 // Handle short code
 function fps_shortcode_handler($atts)
 {
-    return fps_show(NULL);
+    return fps_show($atts);
 }
 
 // Add the short code [fps]
