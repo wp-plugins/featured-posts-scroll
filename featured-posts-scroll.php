@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.9
+Version: 1.10
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -126,18 +126,6 @@ function fps_activate()
         update_option('fps_display_heading', $post_display_heading);
     }
 
-    $post_roundedconers = get_option('fps_roundedcorners');
-    if ( empty($post_roundedconers) ) {
-        $post_roundedconers = '1';
-        update_option('fps_roundedcorners', $post_roundedconers);
-    }
-
-    $post_dropshadows = get_option('fps_dropshadows');
-    if ( empty($post_dropshadows) ) {
-        $post_dropshadows = '1';
-        update_option('fps_dropshadows', $post_dropshadows);
-    }
-
     $post_autoscroll = get_option('fps_autoscroll');
     if ( empty($post_autoscroll) ) {
         $post_autoscroll = '1';
@@ -166,6 +154,30 @@ function fps_activate()
     if ( empty($post_dropshadow_blur) ) {
         $post_dropshadow_blur = '5';
         update_option('fps_dropshadow_blur', $post_dropshadow_blur);
+    }
+
+    $post_outer_radius = get_option('fps_outer_corner_radius');
+    if ( empty($post_outer_radius) ) {
+        $post_outer_radius = $post_radius;
+        update_option('fps_outer_corner_radius', $post_outer_radius);
+    }
+
+    $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
+    if ( empty($post_outer_dropshadow_x) ) {
+        $post_outer_dropshadow_x = $post_dropshadow_x;
+        update_option('fps_outer_dropshadow_x', $post_outer_dropshadow_x);
+    }
+
+    $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
+    if ( empty($post_outer_dropshadow_y) ) {
+        $post_outer_dropshadow_y = $post_dropshadow_y;
+        update_option('fps_outer_dropshadow_y', $post_outer_dropshadow_y);
+    }
+
+    $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
+    if ( empty($post_outer_dropshadow_blur) ) {
+        $post_outer_dropshadow_blur = $post_dropshadow_blur;
+        update_option('fps_outer_dropshadow_blur', $post_outer_dropshadow_blur);
     }
 
     $post_height = get_option('fps_height');
@@ -362,15 +374,17 @@ function fps_deactivate()
     delete_option('fps_display_excerpt');
     delete_option('fps_display_heading');
 
-    delete_option('fps_roundedcorners');
-    delete_option('fps_dropshadows');
-
     delete_option('fps_autoscroll');
 
     delete_option('fps_corner_radius');
     delete_option('fps_dropshadow_x');
     delete_option('fps_dropshadow_y');
     delete_option('fps_dropshadow_blur');
+
+    delete_option('fps_outer_corner_radius');
+    delete_option('fps_outer_dropshadow_x');
+    delete_option('fps_outer_dropshadow_y');
+    delete_option('fps_outer_dropshadow_blur');
 
     delete_option('fps_height');
     delete_option('fps_width');
@@ -437,6 +451,7 @@ function fps_menu_styles()
 function fps_add_style()
 {
     wp_enqueue_style('fps-style', WP_PLUGIN_URL.'/featured-posts-scroll/css/featuredposts.css');
+    wp_enqueue_style('fps-style-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/featured-posts-scroll-style.php');
 }
 
 /* Enqueue scripts necessary for the plugin */
@@ -468,115 +483,21 @@ function fps_show($atts)
 {
     // Retrieve all admin options
 	$max_posts = get_option('fps_max_posts');
-        
-    $post_title_color = get_option('fps_title_color');
-    $post_excerpt_color = get_option('fps_excerpt_color');
-
-    $post_heading_color = get_option('fps_heading_color');
-    $post_heading_text = get_option('fps_heading_text');
-    
-    $post_bg_color = get_option('fps_bg_color');
-    $post_textbg_color = get_option('fps_textbg_color');
-    $post_textbg_alpha = get_option('fps_textbg_alpha');
-    
-    $post_innershadow_color = get_option('fps_innershadow_color');
-    $post_outershadow_color = get_option('fps_outershadow_color');
-
-    $post_arrow_color = get_option('fps_arrow_color');
     
     $post_display_title = get_option('fps_display_title');
     $post_display_excerpt = get_option('fps_display_excerpt');
     $post_display_heading = get_option('fps_display_heading');
 
-    $post_roundedconers = get_option('fps_roundedcorners');
-    $post_dropshadows = get_option('fps_dropshadows');
-
-    $post_corner_radius = get_option('fps_corner_radius');
-    $post_dropshadow_x = get_option('fps_dropshadow_x');
-    $post_dropshadow_y = get_option('fps_dropshadow_y');
-    $post_dropshadow_blur = get_option('fps_dropshadow_blur');
-
     $post_autoscroll = get_option('fps_autoscroll');
-
-    $post_height = get_option('fps_height');
-    $post_width = get_option('fps_width');
 
     $post_display_slidenumbers = get_option('fps_display_slidenumbers');
 
     $post_arrow_position = get_option('fps_arrow_position');
-    $post_arrow_custom_url = get_option('fps_arrow_custom_url');
 
-    $post_selectedslide_textcolor = get_option('fps_selectedslide_textcolor');
-    $post_unselectedslide_textcolor = get_option('fps_unselectedslide_textcolor');
-
-    $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
-    $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
-
-    $post_selectedslide_bold = get_option('fps_selectedslide_bold');
-    $post_selectedslide_italics = get_option('fps_selectedslide_italics');
-
-    $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
-    $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
-
-    $post_slide_bgradius = get_option('fps_slide_bgradius');
-
-    $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
-    $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
-    $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
-    $post_selectedslide_inset = get_option('fps_selectedslide_inset');
-
-    $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
-    $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
-    $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
-    $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
-
-    $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
-    $post_unselectedslide_dropshadow_color = get_option('fps_unselectedslide_dropshadow_color');
-    $post_slide_textshadow_x = get_option('fps_slide_textshadow_x');
-    $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
-    $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
-    $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
-
-
-    // Format all color hex value strings
-    $post_title_color = "#".$post_title_color;
-    $post_excerpt_color = "#".$post_excerpt_color;
-    $post_heading_color = "#".$post_heading_color;
-    $post_bg_color = "#".$post_bg_color;
-    $post_innershadow_color = "#".$post_innershadow_color;
-    $post_outershadow_color = "#".$post_outershadow_color;
-    $post_selectedslide_textcolor = "#".$post_selectedslide_textcolor;
-    $post_unselectedslide_textcolor = "#".$post_unselectedslide_textcolor;
-    $post_selectedslide_bgcolor = "#".$post_selectedslide_bgcolor;
-    $post_unselectedslide_bgcolor = "#".$post_unselectedslide_bgcolor;
-
-    $post_selectedslide_dropshadow_color = "#".$post_selectedslide_dropshadow_color;
-    $post_unselectedslide_dropshadow_color = "#".$post_unselectedslide_dropshadow_color;
-    $post_slide_textshadow_color = "#".$post_slide_textshadow_color;
-
-    $post_textbg_rgba = 'rgba('.hex2RGB($post_textbg_color, true).','.$post_textbg_alpha.')';
-    $post_textbg_hex = "#".$post_textbg_color;
-
-    // Version 1.0 only supports single item layout
     $wrapper_classes .= "featured-posts-wrapper fps-single";
     $ul_classes .= "featured-posts fps-single";
     $bg_classes .= "featured-posts-background fps-single";
     $li_classes = "";
-
-    // Check if rounded corners are enabled
-    if ($post_roundedconers == '1')
-    {
-        $ul_classes .= " fps-rounded";
-        $bg_classes .= " fps-rounded";
-        $li_classes .= " fps-rounded";
-    }
-
-    // Check if drop shadows are enabled
-    if ($post_dropshadows == '1')
-    {
-        $ul_classes .= " fps-shadowed-inner";
-        $bg_classes .= " fps-shadowed-outer";
-    }
 
     // Check if auto scrolling is enabled
     if ($post_autoscroll == '1')
@@ -589,145 +510,6 @@ function fps_show($atts)
     if (!is_paged())
     {
         $output .= '<!--Automatic Image Slider w/ CSS & jQuery with some customization-->';
-        
-        // Define styles that are based on admin options
-        $output .= '<style type="text/css">';
-
-        
-        $height_offset = 0;
-        if ($post_display_slidenumbers == '1')
-        {
-            $height_offset += 25;
-        }
-
-        // Define element sizing
-        $output .= '.featured-posts-wrapper.fps-single {height: '.($post_height + $height_offset).'px; width: '.$post_width.'px;}';
-        $output .= '.featured-posts-background.fps-single {height: '.($post_height + $height_offset).'px; width: '.($post_width-25).'px;}';
-        $output .= 'ul.featured-posts.fps-single {height: '.($post_height-20).'px; width: '.($post_width-45).'px;}';
-        $output .= 'ul.featured-posts.fps-single li {height: '.($post_height-20).'px; width: '.($post_width-45).'px;}';
-        $output .= 'ul.featured-posts.fps-single li .fps-text {width: '.($post_width-45).'px;}';
-        $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {margin: '.(($post_height-45)/2).'px 0px '.(($post_height-45)/2).'px;}';
-
-        // Define slide number formatting
-        if ($post_display_slidenumbers == '1')
-        {
-            // Define font style/weight
-            $unselected_weight = 'normal';
-            $unselected_style = 'normal';
-            $selected_weight = 'normal';
-            $selected_style = 'normal';
-
-            if ($post_unselectedslide_bold == '1')
-            {
-                $unselected_weight = 'bold';
-            }
-            if ($post_selectedslide_bold == '1')
-            {
-                $selected_weight = 'bold';
-            }
-
-            if ($post_unselectedslide_italics == '1')
-            {
-                $unselected_style = 'italic';
-            }
-            if ($post_selectedslide_italics == '1')
-            {
-                $selected_style = 'italic';
-            }
-
-            // Define box shadow
-            $unselected_shadow = $post_unselectedslide_dropshadow_x.'px '.
-                                 $post_unselectedslide_dropshadow_y.'px '.
-                                 $post_unselectedslide_dropshadow_blur.'px '.
-                                 $post_unselectedslide_dropshadow_color.' ';
-            $selected_shadow = $post_selectedslide_dropshadow_x.'px '.
-                               $post_selectedslide_dropshadow_y.'px '.
-                               $post_selectedslide_dropshadow_blur.'px '.
-                               $post_selectedslide_dropshadow_color.' '; 
-
-            if ($post_unselectedslide_inset == '1')
-            {
-                $unselected_shadow .= 'inset';
-            }
-
-            if ($post_selectedslide_inset == '1')
-            {
-                $selected_shadow .= 'inset';
-            }
-
-            $output .= '.fps-slideNumberList li {color: '.$post_unselectedslide_textcolor.
-                        '; text-shadow: '.$post_slide_textshadow_x.'px '.$post_slide_textshadow_y.'px '.
-                                          $post_slide_textshadow_blur.'px '.$post_slide_textshadow_color.
-                        '; font-weight: '.$unselected_weight.
-                        '; font-style: '.$unselected_style.
-                        '; background: '.$post_unselectedslide_bgcolor.
-                        '; -moz-border-radius: '.$post_slide_bgradius.
-                        '; border-radius: '.$post_slide_bgradius.
-                        '; -moz-box-shadow: '.$unselected_shadow.
-                        '; -webkit-box-shadow: '.$unselected_shadow.
-                        '; box-shadow: '.$unselected_shadow.';}';
-            $output .= '.fps-slideNumberList li.fps-selectedSlide, .fps-slideNumberList li:hover {color: '.$post_selectedslide_textcolor.
-                        '; text-shadow: '.$post_slide_textshadow_x.'px '.$post_slide_textshadow_y.'px '.
-                                          $post_slide_textshadow_blur.'px '.$post_slide_textshadow_color.
-                        '; font-weight: '.$selected_weight.
-                        '; font-style: '.$selected_style.
-                        '; background: '.$post_selectedslide_bgcolor.
-                        '; -moz-box-shadow: '.$selected_shadow.
-                        '; -webkit-box-shadow: '.$selected_shadow.
-                        '; box-shadow: '.$selected_shadow.';}';
-        }
-
-        // Modify margin/height/width if arrows are below image
-        if ($post_arrow_position == 'below')
-        {
-            $output .= '.featured-posts-wrapper.fps-single {width: '.($post_width - 25).'px;}';
-            $output .= 'ul.featured-posts.fps-single {margin-left: 10px;}';
-            $output .= 'ul.fps-slideNumberList {margin-top: 10px; margin-left: 10px;}';
-            $output .= '.featured-posts-background.fps-single {margin: 0px 0px 12px;}';
-        }
-
-        // Define rounded corner class
-        $output .= '.fps-rounded {-moz-border-radius: '.$post_corner_radius.'; border-radius: '.$post_corner_radius.';}';
-
-        // Define drop-shadow class
-        $shadow = $post_dropshadow_x.'px '.$post_dropshadow_y.'px '.$post_dropshadow_blur.'px ';
-        $output .= '.fps-shadowed-inner {-moz-box-shadow: '.$shadow.' '.$post_innershadow_color.
-                   '; -webkit-box-shadow: '.$shadow.' '.$post_innershadow_color.
-                   '; box-shadow: '.$shadow.' '.$post_innershadow_color.';}';
-        $output .= '.fps-shadowed-outer {-moz-box-shadow: '.$shadow.' '.$post_outershadow_color.
-                   '; -webkit-box-shadow: '.$shadow.' '.$post_outershadow_color.
-                   '; box-shadow: '.$shadow.' '.$post_outershadow_color.';}';
-        
-        // Define classes for title/excerpt background
-        $output .= '.fps-text {background: '.$post_textbg_hex.'; background: '.$post_textbg_rgba.';}';
-        $output .= 'a:link.featured-posts-image,a:visited.featured-posts-image,a:hover.featured-posts-image {'.
-                   'color: '.$post_title_color.';}';
-
-        // Define the arrow image being used
-        
-        if ($post_arrow_color == 'custom')
-        {
-            $arrow_url = $post_arrow_custom_url;
-        }
-        else if ($post_arrow_position == 'below')
-        {
-            $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/pos2-arrows-'.$post_arrow_color.'.png';
-        }
-        else
-        {
-            $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/arrows-'.$post_arrow_color.'.png';
-        }
-
-
-        if ($post_arrow_position == 'sides')
-        {
-            $output .= '.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {background-image: url('.$arrow_url.');}';
-        }
-        else
-        {
-            $output .= '.scrollFeaturedPostsLeft-below, .scrollFeaturedPostsRight-below {background-image: url('.$arrow_url.');}';
-        }
-        $output .= '</style>';
 
         // div#featured-posts-wrapper
         $output .= '<div class="'.$wrapper_classes.'">';
@@ -776,6 +558,7 @@ function fps_show($atts)
         // Get details for each article retrieved in query
         foreach ( $recent_posts as $key=>$val ) 
         {
+            setup_postdata($val);
             $post_details[$key]['post_title'] = $val->post_title;
             $post_details[$key]['post_excerpt'] = $val->post_excerpt;
             $post_details[$key]['post_permalink'] = get_permalink($val->ID);
@@ -808,11 +591,11 @@ function fps_show($atts)
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
                         {
-                            $output .= '<p class="fps-title" style="color:'.$post_title_color.'">'.$post_title.'</p>';
+                            $output .= '<p class="fps-title">'.$post_title.'</p>';
                         }
                         if ($post_display_excerpt == '1')
                         {
-                            $output .= '<p class="fps-excerpt" style="color:'.$post_excerpt_color.'">'.$post_excerpt.'</p>';
+                            $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
                         }
                     $output .= '</div>';
                 $output .= '</li>';
@@ -845,7 +628,7 @@ function fps_show($atts)
         }
 
 
-        $output .= '<div class="'.$bg_classes.'" style="background:'.$post_bg_color.'"></div>';
+        $output .= '<div class="'.$bg_classes.'"></div>';
         $output .= '</div>'; // div#featured-posts-wrapper
     }
     else
@@ -864,25 +647,5 @@ function fps_shortcode_handler($atts)
 
 // Add the short code [fps]
 add_shortcode('fps', 'fps_shortcode_handler');
-
-/* Convert a hex RGB string into individual RGB decimal values */
-function hex2RGB($hexStr, $returnAsString = false, $seperator = ',') {
-    $hexStr = preg_replace("/[^0-9A-Fa-f]/", '', $hexStr); // Gets a proper hex string
-    $rgbArray = array();
-    if (strlen($hexStr) == 6) { //If a proper hex code, convert using bitwise operation. No overhead... faster
-        $colorVal = hexdec($hexStr);
-        $rgbArray['red'] = 0xFF & ($colorVal >> 0x10);
-        $rgbArray['green'] = 0xFF & ($colorVal >> 0x8);
-        $rgbArray['blue'] = 0xFF & $colorVal;
-    } elseif (strlen($hexStr) == 3) { //if shorthand notation, need some string manipulations
-        $rgbArray['red'] = hexdec(str_repeat(substr($hexStr, 0, 1), 2));
-        $rgbArray['green'] = hexdec(str_repeat(substr($hexStr, 1, 1), 2));
-        $rgbArray['blue'] = hexdec(str_repeat(substr($hexStr, 2, 1), 2));
-    } else {
-        return false; //Invalid hex color code
-    }
-    return $returnAsString ? implode($seperator, $rgbArray) : $rgbArray; // returns the rgb string or the associative array
-}
-
 
 ?>
