@@ -280,222 +280,502 @@
 
 <form name="fps_form" method="post" action="">
     <input type="hidden" name="fps_opt_hidden" value="Y">
-    <p>    
-        <?php _e("Max Number of Posts to Display"); ?> 
-        <input type="text" name="fps_max_posts" value="<?php echo $max_posts; ?>" size="4"><?php _e(" example : 5" ); ?>
-    </p>
-    <p>    
-        <?php _e("Header Text"); ?> 
-        <input type="text" name="fps_heading_text" value="<?php echo $post_heading_text; ?>" size="20">
-    </p>
-    <p> ----------------------------------------------------- </p>
-    <p>    
-        <?php _e("<strong>Text Elements:</strong>"); ?> 
-        <?php if($post_display_title == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_display_title" value="true" <?php echo $checked; ?>><?php _e(" Display Post Title | "); ?>
 
-        <?php if($post_display_excerpt == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_display_excerpt" value="true" <?php echo $checked; ?>><?php _e(" Display Post Excerpt | "); ?>
 
-        <?php if($post_display_heading == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_display_heading" value="true" <?php echo $checked; ?>><?php _e(" Display Scroll Box Heading"); ?>
-    </p>
-    <p>    
-        <?php _e("<strong>Visual Elements:</strong>"); ?> 
-        <?php if($post_roundedconers == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_roundedcorners" value="true" <?php echo $checked; ?>><?php _e(" Use Rounded Corners | "); ?>
+    <h3>Main Options</h3>
+    <table class="form-table">
+        <tbody>
+            <tr valign="top">
+                <th scope="row">Max Number of Posts to Display</th>
+                <td>
+                    <input type="text" name="fps_max_posts" value="<?php echo $max_posts; ?>" size="4">
+                </td>
+            </tr>
 
-        <?php if($post_dropshadows == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_dropshadows" value="true" <?php echo $checked; ?>><?php _e(" Use Drop Shadows"); ?>
-        <?php _e("<em>(note: these will only work in CSS3 compatible browsers)</em>"); ?>
-    </p>
-    <p>
-        <?php _e("<strong>Autoscroll:</strong>"); ?>
-        <?php if($post_autoscroll == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_autoscroll" value="true" <?php echo $checked; ?>><?php _e(" Autoscroll Posts (7 second interval)"); ?>
-    </p>
-    <p> ----------------------------------------------------- </p>
-    <p>
-        <?php _e("<strong>Scroll Size:</strong>"); ?>
-        <?php _e("Height"); ?>
-        <input type="text" name="fps_height" maxlength="5" size="5" value="<?php echo $post_height; ?>" />
-        <?php _e(" | Width"); ?>
-        <input type="text" name="fps_width" maxlength="5" size="5" value="<?php echo $post_width; ?>" />
-    </p>
-    <p>
-        <?php _e("Height and Width are in pixels."); ?>
-    </p>
-    <p>
-        <?php _e("Recommended thumbnail image sizes are height=(ScrollHeight-20) width=(ScrollWidth-45)"); ?>
-    </p>
-    <p> ----------------------------------------------------- </p>
-    <p>    
-        <?php _e("<strong>Arrow Color:</strong>"); ?> 
-        <select name="fps_arrow_color">
-            <option value="orange" <?php if($post_arrow_color=="orange"){echo 'selected';} ?>>Orange</option>
-            <option value="green" <?php if($post_arrow_color=="green"){echo 'selected';} ?>>Green</option>
-            <option value="black" <?php if($post_arrow_color=="black"){echo 'selected';} ?>>Black</option>
-            <option value="blue" <?php if($post_arrow_color=="blue"){echo 'selected';} ?>>Blue</option>
-            <option value="pink" <?php if($post_arrow_color=="pink"){echo 'selected';} ?>>Pink</option>
-            <option value="red" <?php if($post_arrow_color=="red"){echo 'selected';} ?>>Red</option>
-            <option value="yellow" <?php if($post_arrow_color=="yellow"){echo 'selected';} ?>>Yellow</option>
-            <option value="dark-blue" <?php if($post_arrow_color=="dark-blue"){echo 'selected';} ?>>Dark Blue</option>
-            <option value="dark-green" <?php if($post_arrow_color=="dark-green"){echo 'selected';} ?>>Dark Green</option>
-            <option value="darker-green" <?php if($post_arrow_color=="darker-green"){echo 'selected';} ?>>Darker Green</option>            
-            <option value="dark-grey" <?php if($post_arrow_color=="dark-grey"){echo 'selected';} ?>>Dark Grey</option>
-            <option value="dark-red" <?php if($post_arrow_color=="dark-red"){echo 'selected';} ?>>Dark Red</option>
-            <option value="dark-yellow" <?php if($post_arrow_color=="dark-yellow"){echo 'selected';} ?>>Dark Yellow</option>            
-            <option value="light-blue" <?php if($post_arrow_color=="light-blue"){echo 'selected';} ?>>Light Blue</option>
-            <option value="light-grey" <?php if($post_arrow_color=="light-grey"){echo 'selected';} ?>>Light Grey</option>            
-            <option value="custom" <?php if($post_arrow_color=="custom"){echo 'selected';} ?>>Custom URL</option>
-        </select>
-        <?php _e(" | Custom Arrow Image URL"); ?>
-        <input type="text" name="fps_arrow_custom_url" size="100" value="<?php echo $post_arrow_custom_url; ?>" />
-    </p>
-    <p>    
-        <?php _e("<strong>Arrow Position:</strong>"); ?> 
-        <select name="fps_arrow_position">
-            <option value="sides" <?php if($post_arrow_position=="sides"){echo 'selected';} ?>>Image Sides (default)</option>
-            <option value="below" <?php if($post_arrow_position=="below"){echo 'selected';} ?>>Below Image</option>
-        </select>
-    </p>
-    <p>
-        <?php _e("<strong>Text Colors:</strong>"); ?>
-        <?php _e("Title"); ?>
-        <input type="text" name="fps_title_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_title_color; ?>" />
-        <?php _e(" | Excerpt"); ?>
-        <input type="text" name="fps_excerpt_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_excerpt_color; ?>" />
-        <?php _e(" | Heading"); ?>
-        <input type="text" name="fps_heading_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_heading_color; ?>" />
-    </p>
-    <p>
-        <?php _e("<strong>Drop Shadow Colors:</strong>"); ?>
-        <?php _e("Inner Drop Shadow"); ?>
-        <input type="text" name="fps_innershadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_innershadow_color; ?>" />
-        <?php _e(" | Outer Drop Shadow"); ?>
-        <input type="text" name="fps_outershadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_outershadow_color; ?>" />
-    </p>
-    <p>
-        <?php _e("<strong>Misc Colors:</strong>"); ?>
-        <?php _e("Main BG/Border"); ?>
-        <input type="text" name="fps_bg_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_bg_color; ?>" />
-        <?php _e(" | Text BG Color"); ?>
-        <input type="text" name="fps_textbg_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_textbg_color; ?>" />
-        <?php _e(" | Text BG Alpha"); ?> 
-        <input type="text" name="fps_textbg_alpha" value="<?php echo $post_textbg_alpha; ?>" size="4"><?php _e(" 0.0(not visible) to 1.0(solid)"); ?>
-    </p>
-    <p> ----------------------------------------------------- </p>
-    <p>
-        <?php _e("<strong>Slide Numbers:</strong>"); ?>
-        <?php if($post_display_slidenumbers == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_display_slidenumbers" value="true" <?php echo $checked; ?>><?php _e(" Show Slide Numbers"); ?>
-    </p>
-    <p>
-        <?php _e("<strong>Slide Number Text Colors:</strong>"); ?>
-        <?php _e("Selected Slide"); ?>
-        <input type="text" name="fps_selectedslide_textcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_textcolor; ?>" />
-        <?php _e(" | Unselected Slide"); ?>
-        <input type="text" name="fps_unselectedslide_textcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_textcolor; ?>" />
-    </p>
-    <p>
-        <?php _e("<strong>Slide Number BG Colors:</strong>"); ?>
-        <?php _e("Selected Slide BG"); ?>
-        <input type="text" name="fps_selectedslide_bgcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_bgcolor; ?>" />
-        <?php _e(" | Unselected Slide BG"); ?>
-        <input type="text" name="fps_unselectedslide_bgcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_bgcolor; ?>" />
-    </p>
-    <p>
-        <?php _e("<strong>Slide Number Dropshadow Colors:</strong>"); ?>
-        <?php _e("Selected Slide BG"); ?>
-        <input type="text" name="fps_selectedslide_dropshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_dropshadow_color; ?>" />
-        <?php _e(" | Unselected Slide BG"); ?>
-        <input type="text" name="fps_unselectedslide_dropshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_dropshadow_color; ?>" />
-        <?php _e(" | Slide Text"); ?>
-        <input type="text" name="fps_slide_textshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_slide_textshadow_color; ?>" />
-    </p>
-    <p>
-        <?php _e("<strong>Selected Slide Number Weight:</strong>"); ?>
-        <?php if($post_selectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_selectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold | "); ?>
-        <?php if($post_selectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_selectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
-    </p>
-    <p>
-        <?php _e("<strong>Unselected Slide Number Weight:</strong>"); ?>
-        <?php if($post_unselectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_unselectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold | "); ?>
-        <?php if($post_unselectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_unselectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
-    </p>
-    <p>    
-        <?php _e("<strong>Slide Number BG Corner Radius:</strong>"); ?>
-        <input type="text" name="fps_slide_bgradius" value="<?php echo $post_slide_bgradius; ?>" size="12">
-        <?php _e(" examples:'5px', '10%', '3px 8px', '5% 2%' "); ?>
-    </p>
-    <p>    
-        <?php _e("<strong>Slide Text Drop Shadow Settings:</strong>"); ?>
-        <?php _e("Horizontal Offset"); ?>
-        <input type="text" name="fps_slide_textshadow_x" value="<?php echo $post_slide_textshadow_x; ?>" size="4">
-        <?php _e(" | Vertical Offset"); ?>
-        <input type="text" name="fps_slide_textshadow_y" value="<?php echo $post_slide_textshadow_y; ?>" size="4">
-        <?php _e(" | Blur Distance"); ?>
-        <input type="text" name="fps_slide_textshadow_blur" value="<?php echo $post_slide_textshadow_blur; ?>" size="4">
-    </p>
-    <p>    
-        <?php _e("<strong>Selected Slide Drop Shadow Settings:</strong>"); ?>
-        <?php _e("Horizontal Offset"); ?>
-        <input type="text" name="fps_selectedslide_dropshadow_x" value="<?php echo $post_selectedslide_dropshadow_x; ?>" size="4">
-        <?php _e(" | Vertical Offset"); ?>
-        <input type="text" name="fps_selectedslide_dropshadow_y" value="<?php echo $post_selectedslide_dropshadow_y; ?>" size="4">
-        <?php _e(" | Blur Distance"); ?>
-        <input type="text" name="fps_selectedslide_dropshadow_blur" value="<?php echo $post_selectedslide_dropshadow_blur; ?>" size="4">
-        <?php if($post_selectedslide_inset == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_selectedslide_inset" value="true" <?php echo $checked; ?>><?php _e("Inset"); ?>
-    </p>
-    <p>    
-        <?php _e("<strong>Unselected Slide Drop Shadow Settings:</strong>"); ?>
-        <?php _e("Horizontal Offset"); ?>
-        <input type="text" name="fps_unselectedslide_dropshadow_x" value="<?php echo $post_unselectedslide_dropshadow_x; ?>" size="4">
-        <?php _e(" | Vertical Offset"); ?>
-        <input type="text" name="fps_unselectedslide_dropshadow_y" value="<?php echo $post_unselectedslide_dropshadow_y; ?>" size="4">
-        <?php _e(" | Blur Distance"); ?>
-        <input type="text" name="fps_unselectedslide_dropshadow_blur" value="<?php echo $post_unselectedslide_dropshadow_blur; ?>" size="4">
-        <?php if($post_unselectedslide_inset == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-        <input type="checkbox" name="fps_unselectedslide_inset" value="true" <?php echo $checked; ?>><?php _e("Inset"); ?>
-    </p>
-    <p> ----------------------------------------------------- </p>
-    <p>    
-        <?php _e("<strong>Rounded Corner Radius:</strong>"); ?>
-        <input type="text" name="fps_corner_radius" value="<?php echo $post_corner_radius; ?>" size="12">
-        <?php _e(" examples:'5px', '10%', '3px 8px', '5% 2%' "); ?>
-    </p>
-    <p>
-        <?php _e("Valid corner radius is either one or two px or % values."); ?>
-    </p>
-    <p>
-        <a href="http://www.css3.info/preview/rounded-border/">See this site for more details</a>
-    </p>
-    <p> ----------------------------------------------------- </p>
-    <p>    
-        <?php _e("<strong>Drop Shadow Settings:</strong>"); ?>
-        <?php _e("Horizontal Offset"); ?>
-        <input type="text" name="fps_dropshadow_x" value="<?php echo $post_dropshadow_x; ?>" size="4">
-        <?php _e(" | Vertical Offset"); ?>
-        <input type="text" name="fps_dropshadow_y" value="<?php echo $post_dropshadow_y; ?>" size="4">
-        <?php _e(" | Blur Distance"); ?>
-        <input type="text" name="fps_dropshadow_blur" value="<?php echo $post_dropshadow_blur; ?>" size="4">
-    </p>
-    <p>
-        <?php _e("Horizontal and Vertival Offsets can be a positive or negative pixel value. Blur Distance is a single positive value."); ?>
-    </p>
-    <p>
-        <?php _e("Enter a single number without 'px' unit. Examples:'5', '10'"); ?>
-    </p>
-    <p>
-        <a href="http://www.css3.info/preview/box-shadow/">See this site for more details</a>
-    </p>
+            <tr valign="top">
+                <th scope="row">Header Text</th>
+                <td>
+                    <input type="text" name="fps_heading_text" value="<?php echo $post_heading_text; ?>" size="20">
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Elements to Display</th>
+                <td>
+                    <fieldset>
+                        <legend class="hidden">Elements to Display</legend>
+
+                        <?php if($post_display_title == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_display_title" value="true" <?php echo $checked; ?>><?php _e(" Post Title"); ?>
+                        <br />
+
+                        <?php if($post_display_excerpt == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_display_excerpt" value="true" <?php echo $checked; ?>><?php _e(" Post Excerpt"); ?>
+                        <br />
+
+                        <?php if($post_display_heading == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_display_heading" value="true" <?php echo $checked; ?>><?php _e(" Scroll Box Heading"); ?>
+                        <br />
+
+                        <?php if($post_display_slidenumbers == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_display_slidenumbers" value="true" <?php echo $checked; ?>><?php _e(" Slide Numbers"); ?>
+                        <br />
+
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Scroll Size</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_height" maxlength="5" size="5" value="<?php echo $post_height; ?>" />
+                    <?php _e("Height"); ?>
+                    <br />
+
+                    <input type="text" name="fps_width" maxlength="5" size="5" value="<?php echo $post_width; ?>" />
+                    <?php _e("Width"); ?>
+                    <br />
+
+                    <?php _e("Height and Width are in pixels."); ?>
+                    <br />
+                    <?php _e("Thumbnail images are height=(ScrollHeight-20) width=(ScrollWidth-45)"); ?>
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Autoscroll</th>
+                <td>
+                    <fieldset>
+                        <legend class="hidden">Autoscroll</legend>
+
+                        <?php if($post_autoscroll == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_autoscroll" value="true" <?php echo $checked; ?>><?php _e(" Automatically Scroll Posts"); ?>
+                        <br />
+                        <br />
+
+                        <input type="text" name="fps_width" maxlength="5" size="5" value="7" />
+                        <?php _e("Autoscroll Interval (seconds)"); ?>
+                        <br />
+                        <?php _e("Note: Currently can not be changed. Hardcoded to 7 seconds."); ?>
+                        <br />
+                    </fieldset>
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+
+    <h3>Arrow and BG Options</h3>
+    <table class="form-table">
+        <tbody>
+            <tr valign="top">
+                <th scope="row">Arrow Color</th>
+                <td>
+                    <select name="fps_arrow_color">
+                        <option value="orange" <?php if($post_arrow_color=="orange"){echo 'selected';} ?>>Orange</option>
+                        <option value="green" <?php if($post_arrow_color=="green"){echo 'selected';} ?>>Green</option>
+                        <option value="black" <?php if($post_arrow_color=="black"){echo 'selected';} ?>>Black</option>
+                        <option value="blue" <?php if($post_arrow_color=="blue"){echo 'selected';} ?>>Blue</option>
+                        <option value="pink" <?php if($post_arrow_color=="pink"){echo 'selected';} ?>>Pink</option>
+                        <option value="red" <?php if($post_arrow_color=="red"){echo 'selected';} ?>>Red</option>
+                        <option value="yellow" <?php if($post_arrow_color=="yellow"){echo 'selected';} ?>>Yellow</option>
+                        <option value="dark-blue" <?php if($post_arrow_color=="dark-blue"){echo 'selected';} ?>>Dark Blue</option>
+                        <option value="dark-green" <?php if($post_arrow_color=="dark-green"){echo 'selected';} ?>>Dark Green</option>
+                        <option value="darker-green" <?php if($post_arrow_color=="darker-green"){echo 'selected';} ?>>Darker Green</option>            
+                        <option value="dark-grey" <?php if($post_arrow_color=="dark-grey"){echo 'selected';} ?>>Dark Grey</option>
+                        <option value="dark-red" <?php if($post_arrow_color=="dark-red"){echo 'selected';} ?>>Dark Red</option>
+                        <option value="dark-yellow" <?php if($post_arrow_color=="dark-yellow"){echo 'selected';} ?>>Dark Yellow</option>            
+                        <option value="light-blue" <?php if($post_arrow_color=="light-blue"){echo 'selected';} ?>>Light Blue</option>
+                        <option value="light-grey" <?php if($post_arrow_color=="light-grey"){echo 'selected';} ?>>Light Grey</option>            
+                        <option value="custom" <?php if($post_arrow_color=="custom"){echo 'selected';} ?>>Custom URL</option>
+                    </select>
+                    <br />
+                    
+                    <fieldset>
+                        <input type="text" name="fps_arrow_custom_url" size="100" value="<?php echo $post_arrow_custom_url; ?>" />
+                        <?php _e("Custom Arrow Image URL"); ?>
+                        <br />
+                    </fieldset>
+                    
+                </td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">Arrow Position</th>
+                <td>
+                    <?php _e("<strong>Arrow Position:</strong>"); ?> 
+                    <select name="fps_arrow_position">
+                        <option value="sides" <?php if($post_arrow_position=="sides"){echo 'selected';} ?>>Image Sides</option>
+                        <option value="below" <?php if($post_arrow_position=="below"){echo 'selected';} ?>>Below Image</option>
+                    </select>                   
+                </td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">BG Colors</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_bg_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_bg_color; ?>" />
+                    <?php _e("Main BG/Border"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_textbg_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_textbg_color; ?>" />
+                    <?php _e("Title/Excerpt BG Color"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_selectedslide_bgcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_bgcolor; ?>" />
+                    <?php _e("Selected Slide Number BG"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_unselectedslide_bgcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_bgcolor; ?>" />
+                    <?php _e("Unselected Slide Number BG"); ?>
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">BG Transparency</th>
+                <td>
+                    <input type="text" name="fps_textbg_alpha" value="<?php echo $post_textbg_alpha; ?>" size="6">
+                    <?php _e("Title/Excerpt BG Alpha"); ?> 
+                    <br />
+                    <?php _e("Valid Range: 0.0(invisible) to 1.0(opaque)"); ?>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+    <h3>Text Options</h3>
+    <table class="form-table">
+        <tbody>
+            <tr valign="top">
+                <th scope="row">Text Colors</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_title_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_title_color; ?>" />
+                    <?php _e("Title"); ?>
+                    <br />
+
+                    <input type="text" name="fps_excerpt_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_excerpt_color; ?>" />
+                    <?php _e("Excerpt"); ?>
+                    <br />
+
+                    <input type="text" name="fps_heading_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_heading_color; ?>" />
+                    <?php _e("Post Scroll Heading"); ?>
+                    <br />
+
+                    <input type="text" name="fps_selectedslide_textcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_textcolor; ?>" />
+                    <?php _e("Selected Slide"); ?>
+                    <br />
+
+                    <input type="text" name="fps_unselectedslide_textcolor" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_textcolor; ?>" />
+                    <?php _e("Unselected Slide"); ?>
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Selected Slide Number</th>
+                <td>
+                <fieldset>
+
+                    <?php if($post_selectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                    <input type="checkbox" name="fps_selectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold"); ?>
+                    <br />
+
+                    <?php if($post_selectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                    <input type="checkbox" name="fps_selectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Unselected Slide Number</th>
+                <td>
+                <fieldset>
+
+                    <?php if($post_unselectedslide_bold == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                    <input type="checkbox" name="fps_unselectedslide_bold" value="true" <?php echo $checked; ?>><?php _e(" Bold"); ?>
+                    <br />
+
+                    <?php if($post_unselectedslide_italics == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                    <input type="checkbox" name="fps_unselectedslide_italics" value="true" <?php echo $checked; ?>><?php _e(" Italics"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+    
+
+        
+
+
+
+
+
+
+
+
+
+    <h3>Drop Shadow Options</h3>
+    <table class="form-table">
+        <tbody>
+            <tr valign="top">
+                <th scope="row">Drop Shadow Colors</th>
+                <td>                    
+                <fieldset>
+                    <input type="text" name="fps_innershadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_innershadow_color; ?>" />
+                    <?php _e("Inner Box Drop Shadow"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_outershadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_outershadow_color; ?>" />
+                    <?php _e("Outer Box Drop Shadow"); ?>
+                    <br />
+
+
+                    <input type="text" name="fps_selectedslide_dropshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_selectedslide_dropshadow_color; ?>" />
+                    <?php _e("Selected Slide Number BG"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_unselectedslide_dropshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_unselectedslide_dropshadow_color; ?>" />
+                    <?php _e("Unselected Slide Number BG"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_slide_textshadow_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_slide_textshadow_color; ?>" />
+                    <?php _e("Slide Number Text"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Inner Box Drop Shadow</th>
+                <td>                    
+                <fieldset>
+
+                    <input type="text" name="fps_dropshadow_x" value="<?php echo $post_dropshadow_x; ?>" size="4">
+                    <?php _e("Horizontal Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_dropshadow_y" value="<?php echo $post_dropshadow_y; ?>" size="4">
+                    <?php _e("Vertical Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_dropshadow_blur" value="<?php echo $post_dropshadow_blur; ?>" size="4">
+                    <?php _e("Blur Distance"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Outer Box Drop Shadow</th>
+                <td>                    
+                <fieldset>
+
+                    <input type="text" name="fps_dropshadow_x" value="<?php echo $post_dropshadow_x; ?>" size="4">
+                    <?php _e("Horizontal Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_dropshadow_y" value="<?php echo $post_dropshadow_y; ?>" size="4">
+                    <?php _e("Vertical Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_dropshadow_blur" value="<?php echo $post_dropshadow_blur; ?>" size="4">
+                    <?php _e("Blur Distance"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Slide Number Text Drop Shadow</th>
+                <td>                    
+                <fieldset>
+                    
+                    <input type="text" name="fps_slide_textshadow_x" value="<?php echo $post_slide_textshadow_x; ?>" size="4">
+                    <?php _e("Horizontal Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_slide_textshadow_y" value="<?php echo $post_slide_textshadow_y; ?>" size="4">
+                    <?php _e("Vertical Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_slide_textshadow_blur" value="<?php echo $post_slide_textshadow_blur; ?>" size="4">
+                    <?php _e("Blur Distance"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Selected Slide Number BG Drop Shadow</th>
+                <td>                    
+                <fieldset>
+                    
+                    <input type="text" name="fps_selectedslide_dropshadow_x" value="<?php echo $post_selectedslide_dropshadow_x; ?>" size="4">
+                    <?php _e("Horizontal Offset"); ?>
+                    <br />
+
+                    
+                    <input type="text" name="fps_selectedslide_dropshadow_y" value="<?php echo $post_selectedslide_dropshadow_y; ?>" size="4">
+                    <?php _e("Vertical Offset"); ?>
+                    <br />
+
+                    
+                    <input type="text" name="fps_selectedslide_dropshadow_blur" value="<?php echo $post_selectedslide_dropshadow_blur; ?>" size="4">
+                    <?php _e("Blur Distance"); ?>
+                    <br />
+
+                    <?php if($post_selectedslide_inset == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                    <input type="checkbox" name="fps_selectedslide_inset" value="true" <?php echo $checked; ?>><?php _e(" Inset"); ?>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Unselected Slide Number BG Drop Shadow</th>
+                <td>                    
+                <fieldset>
+                    
+                    <input type="text" name="fps_unselectedslide_dropshadow_x" value="<?php echo $post_unselectedslide_dropshadow_x; ?>" size="4">
+                    <?php _e("Horizontal Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_unselectedslide_dropshadow_y" value="<?php echo $post_unselectedslide_dropshadow_y; ?>" size="4">
+                    <?php _e("Vertical Offset"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_unselectedslide_dropshadow_blur" value="<?php echo $post_unselectedslide_dropshadow_blur; ?>" size="4">
+                    <?php _e("Blur Distance"); ?>
+                    <br />
+
+                    <?php if($post_unselectedslide_inset == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                    <input type="checkbox" name="fps_unselectedslide_inset" value="true" <?php echo $checked; ?>><?php _e(" Inset"); ?>
+                    <br />
+                    <br />
+
+                    <?php _e("Horizontal and Vertival Offsets can be a positive or negative pixel value. Blur Distance is a single positive value."); ?>
+                    <br />
+                    <?php _e("Enter a single number without 'px' unit."); ?>
+                    <br />
+                    <?php _e("Examples:'5', '10'"); ?>
+                    <br />
+                    <?php _e("Note: Enter '0' for all of an element's entries to remove its drop shadow entirely."); ?>
+                    <br />
+                    <a href="http://www.css3.info/preview/box-shadow/">See this site for more details</a>
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+
+    <h3>Rounded Corners</h3>
+    <table class="form-table">
+        <tbody>
+
+            <tr valign="top">
+                <th scope="row">Corner Radius</th>
+                <td>                    
+                <fieldset>
+
+                    <input type="text" name="fps_slide_bgradius" value="<?php echo $post_slide_bgradius; ?>" size="12">
+                    <?php _e("Slide Number BG"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_corner_radius" value="<?php echo $post_corner_radius; ?>" size="12">
+                    <?php _e("Outer Box"); ?>
+                    <br />
+                    
+                    <input type="text" name="fps_corner_radius" value="<?php echo $post_corner_radius; ?>" size="12">
+                    <?php _e("Inner Box"); ?>
+                    <br />
+                    <br />
+
+                    <?php _e("Valid corner radius is either one or two px or % values."); ?>
+                    <br />
+                    <?php _e("Examples:'5px', '10%', '3px 8px', '5% 2%' "); ?> 
+                    <br />
+                    <?php _e("Note: Enter '0' for all of an element's entries to remove its rounded corners entirely."); ?>
+                    <br />
+                    <a href="http://www.css3.info/preview/rounded-border/">See this site for more details</a>                
+                    <br />
+
+                </fieldset>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
     <p class="submit">
-    <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
     </p>
 </form>
 </div>
