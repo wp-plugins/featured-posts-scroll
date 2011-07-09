@@ -39,7 +39,7 @@ overflow: hidden;
 }
 
 ul.featured-posts.fps-single li {
-background: #333;
+background: #000 no-repeat 50% 50%;
 height: 225px;
 width: 480px;
 overflow: hidden;

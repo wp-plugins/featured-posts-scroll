@@ -838,7 +838,7 @@ function fps_show($atts)
             $output .= '<a href="'.$post_permalink.'">';
                 if ($post_img != '')
                 {
-                    $output .= '<li class="'.$li_classes.'" style="background:url('.$post_img.')">';
+                    $output .= '<li class="'.$li_classes.'" style="background-image:url('.$post_img.')">';
                 }
                 else
                 {
