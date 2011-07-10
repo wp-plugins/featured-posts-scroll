@@ -344,6 +344,10 @@ ul.featured-posts.fps-single li {
 width: <?php echo ($post_width-20) ?>px;
 }
 
+ul.featured-posts.fps-single li .fps-text {
+width: <?php echo ($post_width-30) ?>px;
+}
+
 .scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {
 margin: <?php echo (($post_height-55)/2) ?>px 0px <?php echo (($post_height-55)/2) ?>px;
 z-index: 10;

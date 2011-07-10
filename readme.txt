@@ -3,10 +3,10 @@ Contributors: Chaser324
 Donate link: http://bit.ly/lUqtRZ
 Author URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
-Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
+Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.12
+Stable tag: 1.13
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -74,17 +74,22 @@ Images are based on the "Featured Image" selected on the Edit Post screen. If th
 Any new image added to your site should have a thumbnail created in the correct new size. However, the old thumbnails will need to be regenerated. This can be done for all images on your site with the excellent ["Regenerate Thumbnails" plugin](http://wordpress.org/extend/plugins/regenerate-thumbnails/).
 
 = What guidelines should I use when creating custom arrow images? =
-The easiest way to figure this out is just to look at the images included with the plugin (wp-content/plugins/featured-posts-scroll/images), and format your images in the same basic manner. For the default arrow position (sides of the image), the arrow image should be 46x100. For the alternate arrow position at the bottom of the scroll, the arrow image should be 48x48. 
+The easiest way to figure this out is just to look at the images included with the plugin (wp-content/plugins/featured-posts-scroll/images), and format your images in the same basic manner. For the default arrow position (sides of the image), the arrow image should be 46x100. For the alternate arrow position at the bottom of the scroll, the arrow image should be 48x48. For the "no border" position, the arrow image should be 70x120.
 
-In either case, the image should be split into four evenly sized quadrants. The top row is left/right arrows as they normally appear and the bottom row are the arrows as they appear when hovered over. The left column should be arrows pointing left, and the right column should be arrows pointing right.
+For any configuration, the image should be split into four evenly sized quadrants. The top row is left/right arrows as they normally appear and the bottom row are the arrows as they appear when hovered over. The left column should be arrows pointing left, and the right column should be arrows pointing right.
 
 == Screenshots ==
 
 1. Admin Screen
 2. Appearance Customization
 3. New Features: Slide Numbers, Alternate Arrow Position, Custom Sizing
+4. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.13 =
+* Added "Spread" parameter for drop shadows.
+* Added new "No Border" arrow position. Note that Slide Numbers are not currently available with this configuration.
 
 = 1.12 =
 * Added user-defined auto-scroll interval, scroll speed, text fade in/out times.
@@ -137,7 +142,6 @@ In either case, the image should be split into four evenly sized quadrants. The 
 
 == Upgrade Notice ==
 
-= 1.12 =
-* Added user-defined auto-scroll interval, scroll speed, text fade in/out times.
-* Fixed some issues in versions of Firefox prior to 4.0 (broken scrolling, inconsistent text colors).
-* Addressed image tiling issue. Images now get centered in view if not large enough. Next version will have user specified background color.
+= 1.13 =
+* Added "Spread" parameter for drop shadows.
+* Added new "No Border" arrow position. Note that Slide Numbers are not currently available with this configuration.
