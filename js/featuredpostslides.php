@@ -36,7 +36,7 @@ function init()
     });
 
     // determine if the single or triple flavor is in use
-    if ($j('.fps-single').length != 0 && $j('.fps-single a li').length > 1)
+    if ($j('.fps-single').length != 0 && $j('.fps-single li').length > 1)
     {
         type = 'single'
 
@@ -44,15 +44,8 @@ function init()
         $j('.featured-posts-wrapper').each(function() {
            $j(this).find('.fps-text').slice(1).fadeOut();
            $j(this).find('ul.featured-posts a li').slice(1).css('display','none');
+           $j(this).find('ul.featured-posts li').slice(1).css('display','none');
         });      
-    }
-    else if ($j('.fps-triple').length != 0 && $j('ul.fps-triple a li').length > 3)
-    {
-        type = 'triple'
-
-        // hide all but first three entries in featured posts list
-        $j('.fps-text').slice(3).fadeOut();
-        $j('.featured-posts-wrapper ul a li').slice(3).css('display','none');        
     }
 
     // initialize the scroll buttons and autoscroll
@@ -170,10 +163,22 @@ function scrollToPost(slideButton)
         // get the currently displayed element(s)
         var currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children().children('li:visible');
 
+        if (currentItem.length == 0)
+        {
+            currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li:visible');
+        }
+
         // get the next item to display
         var nextItemIndex = parseInt($j(slideButton).text());
         
-        var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children().children('li').eq(nextItemIndex-1);
+        if (currentItem.parent('a').length == 1)
+        {
+            var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children().children('li').eq(nextItemIndex-1);
+        }
+        else
+        {
+            var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li').eq(nextItemIndex-1);
+        }
 
         setSelectedSlide(nextItem);
         animate(nextItem, currentItem, 'right')
@@ -190,9 +195,9 @@ function scrollFeaturedPosts(button, dir)
         // get the currently displayed element(s)
         var currentItem = $j(button).siblings('ul.featured-posts').children().children('li:visible');
 
-        if ($j(currentItem).length == 0)
+        if (currentItem.length == 0)
         {
-            currentItem = $j(button).siblings('ul.featured-posts').children('a:first').children('li');
+            currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
         }
 
         var nextItem;
@@ -201,69 +206,48 @@ function scrollFeaturedPosts(button, dir)
         {        
             if (dir == 'right')
             {
-                nextItem = currentItem.parent().next().children('li');
+                if (currentItem.parent('a').length == 1)
+                {
+                    nextItem = currentItem.parent().next().children('li');
+                }
+                else
+                {
+                    nextItem = currentItem.next().next();
+                }
+
                 if (nextItem.length == 0)
                 {
-                    nextItem = currentItem.parent().siblings().first().children('li');
+                    if (currentItem.parent('a').length == 1)
+                    {
+                        nextItem = currentItem.parent().siblings().first().children('li');
+                    }
+                    else
+                    {
+                        nextItem = currentItem.siblings().first().next();
+                    }
                 }
             }
             else if (dir == 'left')
             {
-                nextItem = currentItem.parent().prev().children('li');
+                if (currentItem.parent('a').length == 1)
+                {
+                    nextItem = currentItem.parent().prev().children('li');
+                }
+                else
+                {
+                    nextItem = currentItem.prev().prev();
+                }
+
                 if (nextItem.length == 0)
                 {
-                    nextItem = currentItem.parent().siblings().last().children('li');
-                }
-            }
-        }
-        else
-        {
-            if (dir == 'right')
-            {
-                nextItem = currentItem.last().nextAll();
-                if (nextItem.length > 3)
-                {
-                    nextItem = nextItem.slice(0,3);
-                }
-                else if (nextItem.length < 3)
-                {
-                    currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
-
-                    if (nextItem.length < 2)
+                    if (currentItem.parent('a').length == 1)
                     {
-                        currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                        nextItem = currentItem.parent().siblings().last().children('li');
                     }
-
-                    if (nextItem.length < 1)
+                    else
                     {
-                        currentItem.siblings().first().appendTo($j('.featured-posts-wrapper ul'));
+                        nextItem = currentItem.siblings().last();
                     }
-
-                    nextItem = currentItem.last().nextAll();
-                }
-            }
-            else if (dir == 'left')
-            {
-                nextItem = currentItem.last().prevAll();
-                if (nextItem.length > 3)
-                {
-                    nextItem = nextItem.slice(-3);
-                }
-                else if (nextItem.length < 3)
-                {
-                    currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-
-                    if (nextItem.length < 2)
-                    {
-                        currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-                    }
-
-                    if (nextItem.length < 1)
-                    {
-                        currentItem.siblings().last().prependTo($j('.featured-posts-wrapper ul'));
-                    }
-
-                    nextItem = currentItem.last().prevAll();
                 }
             }
         }
@@ -276,12 +260,34 @@ function scrollFeaturedPosts(button, dir)
 function setSelectedSlide(toShow)
 {
     // Remove class from current slide
-    $j(toShow).parent().parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
+    if (toShow.parent('a').length == 1)
+    {
+        $j(toShow).parent().parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
+    }
+    else
+    {
+        $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
+    }
 
     // Get the index of the next item to be displayed
-    var nextSlideIndex = $j(toShow).parent().index();
+    var nextSlideIndex;
+    if (toShow.parent('a').length == 1)
+    {
+        nextSlideIndex = $j(toShow).parent().index();
+    }
+    else
+    {
+        nextSlideIndex = (($j(toShow).index()) - 1) / 2;
+    }
 
-    $j(toShow).parent().parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
+    if (toShow.parent('a').length == 1)
+    {
+        $j(toShow).parent().parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
+    }
+    else
+    {
+        $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
+    }
 }
 
 function animate(toShow, toHide, dir)
