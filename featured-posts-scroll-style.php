@@ -61,11 +61,13 @@
     $post_dropshadow_x = get_option('fps_dropshadow_x');
     $post_dropshadow_y = get_option('fps_dropshadow_y');
     $post_dropshadow_blur = get_option('fps_dropshadow_blur');
+    $post_dropshadow_spread = get_option('fps_dropshadow_spread');
 
     $post_outer_corner_radius = get_option('fps_outer_corner_radius');
     $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
     $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
     $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
+    $post_outer_dropshadow_spread = get_option('fps_outer_dropshadow_spread');
 
     $post_autoscroll = get_option('fps_autoscroll');
 
@@ -88,11 +90,13 @@
     $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
     $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
     $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
+    $post_selectedslide_dropshadow_spread = get_option('fps_selectedslide_dropshadow_spread');
     $post_selectedslide_inset = get_option('fps_selectedslide_inset');
 
     $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
     $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
     $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
+    $post_unselectedslide_dropshadow_spread = get_option('fps_unselectedslide_dropshadow_spread');
     $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
 
     $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
@@ -125,7 +129,7 @@
 
     // Height offset
 	$height_offset = 0;
-    if ($post_display_slidenumbers == '1')
+    if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
     {
         $height_offset += 25;
     }
@@ -134,10 +138,12 @@
 	$unselected_shadow = $post_unselectedslide_dropshadow_x.'px '.
 	                     $post_unselectedslide_dropshadow_y.'px '.
 	                     $post_unselectedslide_dropshadow_blur.'px '.
+                         $post_unselectedslide_dropshadow_spread.'px '.
 	                     $post_unselectedslide_dropshadow_color.' ';
 	$selected_shadow = $post_selectedslide_dropshadow_x.'px '.
 	                   $post_selectedslide_dropshadow_y.'px '.
 	                   $post_selectedslide_dropshadow_blur.'px '.
+                       $post_selectedslide_dropshadow_spread.'px '.
 	                   $post_selectedslide_dropshadow_color.' '; 
 
 	if ($post_unselectedslide_inset == '1')
@@ -159,14 +165,18 @@
     {
         $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/pos2-arrows-'.$post_arrow_color.'.png';
     }
+    else if ($post_arrow_position == 'borderless')
+    {
+        $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/pos3-arrows-'.$post_arrow_color.'.png';
+    }
     else
     {
         $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/arrows-'.$post_arrow_color.'.png';
     }
 
     // Define drop-shadow
-    $shadow = $post_dropshadow_x.'px '.$post_dropshadow_y.'px '.$post_dropshadow_blur.'px ';
-    $outer_shadow = $post_outer_dropshadow_x.'px '.$post_outer_dropshadow_y.'px '.$post_outer_dropshadow_blur.'px ';
+    $shadow = $post_dropshadow_x.'px '.$post_dropshadow_y.'px '.$post_dropshadow_blur.'px '.$post_dropshadow_spread.'px ';
+    $outer_shadow = $post_outer_dropshadow_x.'px '.$post_outer_dropshadow_y.'px '.$post_outer_dropshadow_blur.'px '.$post_outer_dropshadow_spread.'px ';
 ?>
 
 
@@ -321,6 +331,58 @@ margin: 0px 0px 12px;
 <?php endif; ?>
 
 
+<?php 
+// Modify margin/height/width if arrows are below image
+if ($post_arrow_position == 'borderless') : 
+?>
+
+ul.featured-posts.fps-single {
+width: <?php echo ($post_width-20) ?>px;
+}
+
+ul.featured-posts.fps-single li {
+width: <?php echo ($post_width-20) ?>px;
+}
+
+ul.featured-posts.fps-single li .fps-text {
+width: <?php echo ($post_width-30) ?>px;
+}
+
+.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {
+margin: <?php echo (($post_height-55)/2) ?>px 0px <?php echo (($post_height-55)/2) ?>px;
+z-index: 10;
+height: 60px;
+}
+
+.scrollFeaturedPostsLeft {
+background-position: 0px 0px;
+margin-right: -25px;
+width: 35px;
+}
+
+.scrollFeaturedPostsRight {
+background-position: -35px 0px;
+margin-left: -25px;
+width: 35px;
+}
+
+.scrollFeaturedPostsLeft:hover {
+background-position: 0px -60px;
+}
+
+.scrollFeaturedPostsRight:hover {
+background-position: -35px -60px;
+}
+
+.scrollFeaturedPostsLeft:active {
+background-position: 0px 0px;
+}
+
+.scrollFeaturedPostsRight:active {
+background-position: -35px 0px;
+}
+
+<?php endif; ?>
 
 
 <?php
