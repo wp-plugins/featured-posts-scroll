@@ -803,7 +803,7 @@ function fps_show($atts)
         }
 
         // Add left arrow and open unordered list
-        if ($post_arrow_position == 'sides')
+        if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
         {
             $output .= '<div class="scrollFeaturedPostsLeft"></div>';
         }
@@ -886,12 +886,12 @@ function fps_show($atts)
             $output .= '</a>';
         }
         $output .= '</ul>';
-        if ($post_arrow_position == 'sides')
+        if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
         {
             $output .= '<div class="scrollFeaturedPostsRight"></div>';
         }
 
-        if ($post_display_slidenumbers == '1')
+        if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
         {
             // Populate fps-slideNumberList li classes based on admin options
 
@@ -913,7 +913,11 @@ function fps_show($atts)
         }
 
 
-        $output .= '<div class="'.$bg_classes.'"></div>';
+        if ($post_arrow_position == 'below')
+        {
+            $output .= '<div class="'.$bg_classes.'"></div>';    
+        }
+        
         $output .= '</div>'; // div#featured-posts-wrapper
     }
     else

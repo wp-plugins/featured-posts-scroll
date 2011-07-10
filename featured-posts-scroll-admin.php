@@ -600,7 +600,7 @@
                     <select name="fps_arrow_position">
                         <option value="sides" <?php if($post_arrow_position=="sides"){echo 'selected';} ?>>Image Sides</option>
                         <option value="below" <?php if($post_arrow_position=="below"){echo 'selected';} ?>>Below Image</option>
-                        <option value="borderless" <?php if($post_arrow_position=="below"){echo 'selected';} ?>>Image Sides (No Border)</option>
+                        <option value="borderless" <?php if($post_arrow_position=="borderless"){echo 'selected';} ?>>Image Sides (No Border)</option>
                     </select>                   
                 </td>
             </tr>

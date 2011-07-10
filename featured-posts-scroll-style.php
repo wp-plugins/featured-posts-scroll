@@ -129,7 +129,7 @@
 
     // Height offset
 	$height_offset = 0;
-    if ($post_display_slidenumbers == '1')
+    if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
     {
         $height_offset += 25;
     }
@@ -164,6 +164,10 @@
     else if ($post_arrow_position == 'below')
     {
         $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/pos2-arrows-'.$post_arrow_color.'.png';
+    }
+    else if ($post_arrow_position == 'borderless')
+    {
+        $arrow_url = WP_PLUGIN_URL.'/featured-posts-scroll/images/pos3-arrows-'.$post_arrow_color.'.png';
     }
     else
     {
@@ -327,6 +331,54 @@ margin: 0px 0px 12px;
 <?php endif; ?>
 
 
+<?php 
+// Modify margin/height/width if arrows are below image
+if ($post_arrow_position == 'borderless') : 
+?>
+
+ul.featured-posts.fps-single {
+width: <?php echo ($post_width-20) ?>px;
+}
+
+ul.featured-posts.fps-single li {
+width: <?php echo ($post_width-20) ?>px;
+}
+
+.scrollFeaturedPostsLeft, .scrollFeaturedPostsRight {
+margin: <?php echo (($post_height-55)/2) ?>px 0px <?php echo (($post_height-55)/2) ?>px;
+z-index: 10;
+height: 60px;
+}
+
+.scrollFeaturedPostsLeft {
+background-position: 0px 0px;
+margin-right: -25px;
+width: 35px;
+}
+
+.scrollFeaturedPostsRight {
+background-position: -35px 0px;
+margin-left: -25px;
+width: 35px;
+}
+
+.scrollFeaturedPostsLeft:hover {
+background-position: 0px -60px;
+}
+
+.scrollFeaturedPostsRight:hover {
+background-position: -35px -60px;
+}
+
+.scrollFeaturedPostsLeft:active {
+background-position: 0px 0px;
+}
+
+.scrollFeaturedPostsRight:active {
+background-position: -35px 0px;
+}
+
+<?php endif; ?>
 
 
 <?php
