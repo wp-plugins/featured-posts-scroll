@@ -102,7 +102,7 @@ In either case, the image should be split into four evenly sized quadrants. The 
 = 1.10 =
 * Reorganized admin page. Attempted to make arrangement more logical and remove clutter.
 * Removed <style> elements from generated HTML. An external stylesheet is now generated based on admin options.
-* Addressed issue where title/excerpt could overflow <li> container by ten pixels.
+* Addressed issue where title/excerpt could overflow container by ten pixels.
 * Addressed issue where title/excerpt would initially appear in a default position potentially in the middle of the post image.
 * Created separate settings for inner/outer box corner radii and drop shadows.
 * Removed drop-shadow and rounded-corners enable/disable settings. Disabling these features is now done by changing all related settings to zero.

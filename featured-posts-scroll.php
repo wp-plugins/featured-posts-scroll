@@ -156,6 +156,12 @@ function fps_activate()
         update_option('fps_dropshadow_blur', $post_dropshadow_blur);
     }
 
+    $post_dropshadow_spread = get_option('fps_dropshadow_spread');
+    if ( empty($post_dropshadow_spread) ) {
+        $post_dropshadow_spread = '0';
+        update_option('fps_dropshadow_spread', $post_dropshadow_spread);
+    }
+
     $post_outer_radius = get_option('fps_outer_corner_radius');
     if ( empty($post_outer_radius) ) {
         $post_outer_radius = $post_radius;
@@ -178,6 +184,12 @@ function fps_activate()
     if ( empty($post_outer_dropshadow_blur) ) {
         $post_outer_dropshadow_blur = $post_dropshadow_blur;
         update_option('fps_outer_dropshadow_blur', $post_outer_dropshadow_blur);
+    }
+
+    $post_outer_dropshadow_spread = get_option('fps_outer_dropshadow_spread');
+    if ( empty($post_outer_dropshadow_spread) ) {
+        $post_outer_dropshadow_spread = '0';
+        update_option('fps_outer_dropshadow_spread', $post_outer_dropshadow_spread);
     }
 
     $post_height = get_option('fps_height');
@@ -282,6 +294,12 @@ function fps_activate()
         update_option('fps_selectedslide_dropshadow_blur', $post_selectedslide_dropshadow_blur);
     }
 
+    $post_selectedslide_dropshadow_spread = get_option('fps_selectedslide_dropshadow_spread');
+    if ( empty($post_selectedslide_dropshadow_spread) ) {
+        $post_selectedslide_dropshadow_spread = '0';
+        update_option('fps_selectedslide_dropshadow_spread', $post_selectedslide_dropshadow_spread);
+    }
+
     $post_selectedslide_inset = get_option('fps_selectedslide_inset');
     if ( empty($post_selectedslide_inset) ) {
         $post_selectedslide_inset = '1';
@@ -304,6 +322,12 @@ function fps_activate()
     if ( empty($post_unselectedslide_dropshadow_blur) ) {
         $post_unselectedslide_dropshadow_blur = '0';
         update_option('fps_unselectedslide_dropshadow_blur', $post_unselectedslide_dropshadow_blur);
+    }
+
+    $post_unselectedslide_dropshadow_spread = get_option('fps_unselectedslide_dropshadow_spread');
+    if ( empty($post_unselectedslide_dropshadow_spread) ) {
+        $post_unselectedslide_dropshadow_spread = '0';
+        update_option('fps_unselectedslide_dropshadow_spread', $post_unselectedslide_dropshadow_spread);
     }
 
     $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
@@ -590,11 +614,13 @@ function fps_deactivate()
     delete_option('fps_dropshadow_x');
     delete_option('fps_dropshadow_y');
     delete_option('fps_dropshadow_blur');
+    delete_option('fps_dropshadow_spread');
 
     delete_option('fps_outer_corner_radius');
     delete_option('fps_outer_dropshadow_x');
     delete_option('fps_outer_dropshadow_y');
     delete_option('fps_outer_dropshadow_blur');
+    delete_option('fps_outer_dropshadow_spread');
 
     delete_option('fps_height');
     delete_option('fps_width');
@@ -621,11 +647,13 @@ function fps_deactivate()
     delete_option('fps_selectedslide_dropshadow_x');
     delete_option('fps_selectedslide_dropshadow_y');
     delete_option('fps_selectedslide_dropshadow_blur');
+    delete_option('fps_selectedslide_dropshadow_spread');
     delete_option('fps_selectedslide_inset');
 
     delete_option('fps_unselectedslide_dropshadow_x');
     delete_option('fps_unselectedslide_dropshadow_y');
     delete_option('fps_unselectedslide_dropshadow_blur');
+    delete_option('fps_unselectedslide_dropshadow_spread');
     delete_option('fps_unselectedslide_inset');
 
     delete_option('fps_selectedslide_dropshadow_color');

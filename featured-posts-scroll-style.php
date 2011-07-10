@@ -61,11 +61,13 @@
     $post_dropshadow_x = get_option('fps_dropshadow_x');
     $post_dropshadow_y = get_option('fps_dropshadow_y');
     $post_dropshadow_blur = get_option('fps_dropshadow_blur');
+    $post_dropshadow_spread = get_option('fps_dropshadow_spread');
 
     $post_outer_corner_radius = get_option('fps_outer_corner_radius');
     $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
     $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
     $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
+    $post_outer_dropshadow_spread = get_option('fps_outer_dropshadow_spread');
 
     $post_autoscroll = get_option('fps_autoscroll');
 
@@ -88,11 +90,13 @@
     $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
     $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
     $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
+    $post_selectedslide_dropshadow_spread = get_option('fps_selectedslide_dropshadow_spread');
     $post_selectedslide_inset = get_option('fps_selectedslide_inset');
 
     $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
     $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
     $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
+    $post_unselectedslide_dropshadow_spread = get_option('fps_unselectedslide_dropshadow_spread');
     $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
 
     $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
@@ -134,10 +138,12 @@
 	$unselected_shadow = $post_unselectedslide_dropshadow_x.'px '.
 	                     $post_unselectedslide_dropshadow_y.'px '.
 	                     $post_unselectedslide_dropshadow_blur.'px '.
+                         $post_unselectedslide_dropshadow_spread.'px '.
 	                     $post_unselectedslide_dropshadow_color.' ';
 	$selected_shadow = $post_selectedslide_dropshadow_x.'px '.
 	                   $post_selectedslide_dropshadow_y.'px '.
 	                   $post_selectedslide_dropshadow_blur.'px '.
+                       $post_selectedslide_dropshadow_spread.'px '.
 	                   $post_selectedslide_dropshadow_color.' '; 
 
 	if ($post_unselectedslide_inset == '1')
@@ -165,8 +171,8 @@
     }
 
     // Define drop-shadow
-    $shadow = $post_dropshadow_x.'px '.$post_dropshadow_y.'px '.$post_dropshadow_blur.'px ';
-    $outer_shadow = $post_outer_dropshadow_x.'px '.$post_outer_dropshadow_y.'px '.$post_outer_dropshadow_blur.'px ';
+    $shadow = $post_dropshadow_x.'px '.$post_dropshadow_y.'px '.$post_dropshadow_blur.'px '.$post_dropshadow_spread.'px ';
+    $outer_shadow = $post_outer_dropshadow_x.'px '.$post_outer_dropshadow_y.'px '.$post_outer_dropshadow_blur.'px '.$post_outer_dropshadow_spread.'px ';
 ?>
 
 
