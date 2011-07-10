@@ -30,7 +30,7 @@ position: relative;
 z-index: 4;
 height: 225px;
 width: 480px;
-margin: 10px 0px 0px;
+margin-top: 10px;
 padding: 0px;
 background: #fff;
 list-style: none;
@@ -39,11 +39,10 @@ overflow: hidden;
 }
 
 ul.featured-posts.fps-single li {
-background: #333;
+background: #000 no-repeat 50% 50%;
 height: 225px;
 width: 480px;
 overflow: hidden;
-cursor: pointer;
 }
 
 /**** Featured Posts Text ****/
@@ -167,7 +166,8 @@ ul.fps-slideNumberList {
 position: relative;
 z-index: 2;
 background: transparent;
-margin: -5px 0px 0px 22px;
+margin-top: -5px;
+margin-left: 22px;
 padding: 0px;
 list-style: none;
 float: left;

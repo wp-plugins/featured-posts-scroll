@@ -270,6 +270,18 @@
         $post_unselectedslide_fontheight = $_POST['fps_unselectedslide_fontheight'];
         update_option('fps_unselectedslide_fontheight', $post_unselectedslide_fontheight);
 
+        $post_scroll_speed = $_POST['fps_scroll_speed'];
+        update_option('fps_scroll_speed', $post_scroll_speed);
+
+        $post_scroll_fadeInSpeed = $_POST['fps_scroll_fadeInSpeed'];
+        update_option('fps_scroll_fadeInSpeed', $post_scroll_fadeInSpeed);
+
+        $post_scroll_fadeOutSpeed = $_POST['fps_scroll_fadeOutSpeed'];
+        update_option('fps_scroll_fadeOutSpeed', $post_scroll_fadeOutSpeed);
+
+        $post_scroll_interval = $_POST['fps_scroll_interval'];
+        update_option('fps_scroll_interval', $post_scroll_interval);
+
         $post_unselectedslide_inset = isset($_POST['fps_unselectedslide_inset']) ? 1:0;
         update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
 
@@ -415,6 +427,11 @@
         $post_heading_fontheight = get_option('fps_heading_fontheight');
         $post_selectedslide_fontheight = get_option('fps_selectedslide_fontheight');
         $post_unselectedslide_fontheight = get_option('fps_unselectedslide_fontheight');
+
+        $post_scroll_speed = get_option('fps_scroll_speed');
+        $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
+        $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
+        $post_scroll_interval = get_option('fps_scroll_interval');
         
     }
 ?>
@@ -489,20 +506,30 @@
             </tr>
 
             <tr valign="top">
-                <th scope="row">Autoscroll</th>
+                <th scope="row">Scrolling</th>
                 <td>
                     <fieldset>
-                        <legend class="hidden">Autoscroll</legend>
+                        <legend class="hidden">Scrolling</legend>
 
                         <?php if($post_autoscroll == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
                         <input type="checkbox" name="fps_autoscroll" value="true" <?php echo $checked; ?>><?php _e(" Automatically Scroll Posts"); ?>
                         <br />
                         <br />
 
-                        <input type="text" name="fps_autoscroll_interval" maxlength="5" size="5" value="7" />
-                        <?php _e("Autoscroll Interval (seconds)"); ?>
+                        <input type="text" name="fps_scroll_interval" maxlength="5" size="5" value="<?php echo $post_scroll_interval; ?>" />
+                        <?php _e("Autoscroll Interval (milliseconds)"); ?>
                         <br />
-                        <?php _e("Note: Currently can not be changed. Hardcoded to 7 seconds."); ?>
+
+                        <input type="text" name="fps_scroll_speed" maxlength="5" size="5" value="<?php echo $post_scroll_speed; ?>" />
+                        <?php _e("Scroll Speed (milliseconds)"); ?>
+                        <br />
+
+                        <input type="text" name="fps_scroll_fadeInSpeed" maxlength="5" size="5" value="<?php echo $post_scroll_fadeInSpeed; ?>" />
+                        <?php _e("Text Fade In Speed (milliseconds)"); ?>
+                        <br />
+
+                        <input type="text" name="fps_scroll_fadeOutSpeed" maxlength="5" size="5" value="<?php echo $post_scroll_fadeOutSpeed; ?>" />
+                        <?php _e("Text Fade Out Speed (milliseconds)"); ?>
                         <br />
                     </fieldset>
 
@@ -511,8 +538,6 @@
 
         </tbody>
     </table>
-
-
 
 
 
@@ -555,7 +580,6 @@
             <tr valign="top">
                 <th scope="row">Arrow Position</th>
                 <td>
-                    <?php _e("<strong>Arrow Position:</strong>"); ?> 
                     <select name="fps_arrow_position">
                         <option value="sides" <?php if($post_arrow_position=="sides"){echo 'selected';} ?>>Image Sides</option>
                         <option value="below" <?php if($post_arrow_position=="below"){echo 'selected';} ?>>Below Image</option>

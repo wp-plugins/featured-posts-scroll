@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts, highlighted posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.11
+Stable tag: 1.12
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -38,10 +38,12 @@ If you find this plugin useful please remember to rate it and comment.
 = How to Use =
 
 To use this plugin to display the most recent posts in any category and with any tag:
+
 1. Copy and paste the code below to your desired template location:
 <code><?php if (function_exists('fps_show')) { echo fps_show(NULL); } ?></code>
 
 If you would like to customize what posts are displayed:
+
 1. Copy and paste the code below to your desired template location:
 <code><?php if (function_exists('fps_show')) {
             $args = array(
@@ -53,6 +55,7 @@ If you would like to customize what posts are displayed:
 3. Recommendation: Create a new 'featured' tag and put it on the posts that you want to displayed and add that category's slug to the array in the code above.
 
 If you would like to display the featured posts scroll inside of a post:
+
 * Insert the following shortcode in your post:
 <code>[fps]</code>
 * Arguments can also be used with the shortcode to specify posts to display:
@@ -82,6 +85,12 @@ In either case, the image should be split into four evenly sized quadrants. The 
 3. New Features: Slide Numbers, Alternate Arrow Position, Custom Sizing
 
 == Changelog ==
+
+= 1.12 =
+* Added user-defined auto-scroll interval, scroll speed, text fade in/out times.
+* Fixed some issues in versions of Firefox prior to 4.0 (broken scrolling, inconsistent text colors).
+* Addressed image tiling issue. Images now get centered in view if not large enough. Next version will have user specified background color.
+* Corrected minor admin page issues (typos).
 
 = 1.11 =
 * Modified link formatting to enable the ability for the user to open links in alternate tab/window.
@@ -128,9 +137,7 @@ In either case, the image should be split into four evenly sized quadrants. The 
 
 == Upgrade Notice ==
 
-= 1.11 =
-* Modified link formatting to enable the ability for the user to open links in alternate tab/window.
-* Added shortcode argument support.
-* Removed bold/italic options for slide numbers.
-* Added several font options for customizing appearnace of all plugin text.
-* Corrected issue with heading text not displaying (bug introduced in 1.10).
+= 1.12 =
+* Added user-defined auto-scroll interval, scroll speed, text fade in/out times.
+* Fixed some issues in versions of Firefox prior to 4.0 (broken scrolling, inconsistent text colors).
+* Addressed image tiling issue. Images now get centered in view if not large enough. Next version will have user specified background color.

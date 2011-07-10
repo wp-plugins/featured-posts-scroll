@@ -1,5 +1,5 @@
 <?php 
-	header('Content-type: text/css'); 
+	header('content-type: text/css'); 
 	define('WP_USE_THEMES', false);
     require_once((dirname(dirname( dirname( dirname ( __FILE__ ) ) ))).'/wp-config.php');
 ?>
@@ -264,7 +264,7 @@ background-image: url(<?php echo $arrow_url ?>);
 background: <?php echo $post_bg_color ?>;
 }
 
-p.fps-title {
+p.fps-title, p.fps-title a:link, p.fps-title a:visited, p.fps-title a:active {
 font-family: <?php echo $post_title_font ?>;
 font-style: <?php echo $post_title_fontstyle ?>;
 font-variant: <?php echo $post_title_fontvariant ?>;
@@ -274,7 +274,7 @@ line-height: <?php echo $post_title_fontheight ?>;
 color: <?php echo $post_title_color ?>;
 }
 
-p.fps-excerpt {
+p.fps-excerpt, p.fps-excerpt a:link, p.fps-excerpt a:visited, p.fps-excerpt a:active {
 font-family: <?php echo $post_excerpt_font ?>;
 font-style: <?php echo $post_excerpt_fontstyle ?>;
 font-variant: <?php echo $post_excerpt_fontvariant ?>;
