@@ -1104,9 +1104,9 @@
                         <legend class="hidden">Scaling Options</legend>
 
                         <?php if($post_image_scale == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
-                        <input type="checkbox" name="fps_image_scale" value="true" <?php echo $checked; ?>><?php _e(" Scale Mode"); ?>
+                        <input type="checkbox" name="fps_image_scale" value="true" <?php echo $checked; ?>><?php _e(" Crop Mode"); ?>
                         <br />
-                        <?php _e("Default is Crop Mode if this option is unchecked. Checking this option will proportionally scale the image to fit."); ?>
+                        <?php _e("Default is Crop Mode when this option is checked. Unchecking this option will scale the image to fit (proportions not maintained)."); ?>
                         <br />
                         <br />
 
