@@ -22,19 +22,6 @@ function init()
     // lock animations while initializing
     animationLocked = true;
 
-    // calculate the height of each item's text
-    $j('.fps-text').each(function() {
-        var myHeight = $j(this).children('.fps-title').height();
-        myHeight += $j(this).children('.fps-excerpt').height();
-        myHeight += 6; // padding
-
-        var containerHeight = $j(this).parent().height();
-        containerHeight -= myHeight;
-
-        $j(this).height(myHeight);
-        $j(this).css('margin-top',containerHeight);
-    });
-
     // determine if the single or triple flavor is in use
     if ($j('.fps-single').length != 0 && $j('.fps-single li').length > 1)
     {

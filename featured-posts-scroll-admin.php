@@ -294,6 +294,43 @@
         $post_scroll_interval = $_POST['fps_scroll_interval'];
         update_option('fps_scroll_interval', $post_scroll_interval);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $post_image_bg_color = $_POST['fps_image_bg_color'];
+        update_option('fps_image_bg_color', $post_image_bg_color);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $post_unselectedslide_inset = isset($_POST['fps_unselectedslide_inset']) ? 1:0;
         update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
 
@@ -448,6 +485,8 @@
         $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
         $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
         $post_scroll_interval = get_option('fps_scroll_interval');
+
+        $post_image_bg_color = get_option('fps_image_bg_color');
         
 
     }
@@ -1046,6 +1085,33 @@
                 </fieldset>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+    <h3>Image Options</h3>
+    <table class="form-table">
+        <tbody>
+
+        
+            <tr valign="top">
+                <th scope="row">Image BG Color</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_image_bg_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_image_bg_color; ?>" />
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            
 
         </tbody>
     </table>

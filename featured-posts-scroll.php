@@ -581,6 +581,18 @@ function fps_activate()
         $post_scroll_interval = '7000';
         update_option('fps_scroll_interval', $post_scroll_interval);
     }
+
+
+
+
+
+
+    $post_image_bg_color = get_option('fps_image_bg_color');
+    if ( empty($post_image_bg_color) ) {
+        $post_image_bg_color = '000000';
+        update_option('fps_image_bg_color', $post_image_bg_color);
+    }
+
     
 }
 
@@ -703,6 +715,8 @@ function fps_deactivate()
     delete_option('fps_scroll_fadeInSpeed');
     delete_option('fps_scroll_fadeOutSpeed');
     delete_option('fps_scroll_interval');
+
+    delete_option('fps_image_bg_color');
 }
 
 /* Setup menu page creation */
@@ -864,14 +878,12 @@ function fps_show($atts)
 
 
             $output .= '<a href="'.$post_permalink.'">';
-                if ($post_img != '')
-                {
-                    $output .= '<li class="'.$li_classes.'" style="background-image:url('.$post_img.')">';
-                }
-                else
-                {
-                    $output .= '<li class="'.$li_classes.'">';
-                }
+            $output .= '<li class="'.$li_classes.'" >';
+                    $output .= '<div class="fps-image-div" >';
+                        $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                    $output .= '</div>';
+
+
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
                         {
