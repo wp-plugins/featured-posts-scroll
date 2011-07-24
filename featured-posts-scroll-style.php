@@ -108,6 +108,9 @@
 
     $post_image_bg_color = get_option('fps_image_bg_color');
 
+    $post_image_height_stretch = get_option('fps_image_height_stretch');
+    $post_image_width_stretch = get_option('fps_image_width_stretch');
+
 
     // Format all color hex value strings
     $post_title_color = "#".$post_title_color;
@@ -132,7 +135,7 @@
 
     // Height offset
 	$height_offset = 0;
-    if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
+    if (($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless') || $post_arrow_position == 'below')
     {
         $height_offset += 25;
     }
@@ -308,6 +311,16 @@ line-height: <?php echo $post_heading_fontheight ?>;
 color: <?php echo $post_heading_color ?>;
 }
 
+ul.featured-posts.fps-single li .fps-image-div img.fps-image {
+<?php if ($post_image_height_stretch == '1') : ?>
+height: <?php echo ($post_height-20) ?>px;
+<?php endif; ?>
+<?php if ($post_image_width_stretch == '1') : ?>
+width: <?php if ($post_arrow_position == 'borderless') {echo ($post_width-20);} else {echo ($post_width-45);} ?>px;
+<?php endif; ?>
+}
+
+ 
 
 
 

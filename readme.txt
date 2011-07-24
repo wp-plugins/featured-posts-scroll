@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.13
+Stable tag: 1.14
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -29,8 +29,10 @@ If you find this plugin useful please remember to rate it and comment.
 = Installation =
 
 1. Use the built-in WordPress plugin installer.
+
    OR
-   Download the zip file and extract the contents.
+
+1. Download the zip file and extract the contents.
    Upload the 'featured-posts-scroll' folder to your plugins directory (wp-content/plugins/).
 2. Activate the plugin through the WordPress 'Plugins' menu.
 3. Recommendation: Refer to "How to Use" and "FAQ" for useful info.
@@ -39,20 +41,20 @@ If you find this plugin useful please remember to rate it and comment.
 
 To use this plugin to display the most recent posts in any category and with any tag:
 
-1. Copy and paste the code below to your desired template location:
+* Copy and paste the code below to your desired template location:
 <code><?php if (function_exists('fps_show')) { echo fps_show(NULL); } ?></code>
 
 If you would like to customize what posts are displayed:
 
-1. Copy and paste the code below to your desired template location:
+* Copy and paste the code below to your desired template location:
 <code><?php if (function_exists('fps_show')) {
             $args = array(
                 'cat'     => '',/* comma separated list of category ids to include (put '-' in front of ids to exclude) */
                 'tag'     => '' /* comma separated list tag slugs to include */);
             echo fps_show($args);
         }?></code>
-2. Modify the '$args' array to filter out only the posts that you would like displayed. Delete any entries in the array you don't want to use (be careful with the commas. See here(http://codex.wordpress.org/Function_Reference/WP_Query#Parameters) for more details on all valid query parameters. Contact me if you have any questions about getting just the posts that you want.
-3. Recommendation: Create a new 'featured' tag and put it on the posts that you want to displayed and add that category's slug to the array in the code above.
+* Modify the '$args' array to filter out only the posts that you would like displayed. Delete any entries in the array you don't want to use (be careful with the commas. See here(http://codex.wordpress.org/Function_Reference/WP_Query#Parameters) for more details on all valid query parameters. Contact me if you have any questions about getting just the posts that you want.
+* Recommendation: Create a new 'featured' tag and put it on the posts that you want to displayed and add that category's slug to the array in the code above.
 
 If you would like to display the featured posts scroll inside of a post:
 
@@ -86,6 +88,11 @@ For any configuration, the image should be split into four evenly sized quadrant
 4. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.14 =
+* Added admin option for image background color.
+* Fixed bug where bg didn't appear behind arrows in bottom position when slide numbers were not also selected.
+* Added some admin options for controlling image scaling/cropping.
 
 = 1.13 =
 * Added "Spread" parameter for drop shadows.
@@ -142,6 +149,7 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Upgrade Notice ==
 
-= 1.13 =
-* Added "Spread" parameter for drop shadows.
-* Added new "No Border" arrow position. Note that Slide Numbers are not currently available with this configuration.
+= 1.14 =
+* Added admin option for image background color.
+* Fixed bug where bg didn't appear behind arrows in bottom position when slide numbers were not also selected.
+* Added some admin options for controlling image scaling/cropping.

@@ -67,6 +67,7 @@ height: 100%;
 }
 
 ul.featured-posts.fps-single li .fps-image-div img.fps-image {
+display: block;
 position: relative;
 margin: auto;
 }
