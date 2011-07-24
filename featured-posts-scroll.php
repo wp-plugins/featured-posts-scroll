@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.14
+Version: 1.15
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -590,7 +590,7 @@ function fps_activate()
 
     $post_image_scale = get_option('fps_image_scale');
     if ( empty($post_image_scale) ) {
-        $post_image_scale = '0';
+        $post_image_scale = '1';
         update_option('fps_image_scale', $post_image_scale);
     }
 
@@ -812,12 +812,12 @@ function fps_define_image_sizes()
     $post_width -= 45;
     $post_height -= 20;
 
-    if ($post_image_height_noscale == '1' && $post_image_scale == '1')
+    if ($post_image_height_noscale == '1' && $post_image_scale_bool == false)
     {
         $post_height = 9999;
     }
 
-    if ($post_image_width_noscale == '1' && $post_image_scale == '1')
+    if ($post_image_width_noscale == '1' && $post_image_scale_bool == false)
     {
         $post_width = 9999;
     }

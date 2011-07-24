@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.14
+Stable tag: 1.15
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -28,14 +28,14 @@ If you find this plugin useful please remember to rate it and comment.
 
 = Installation =
 
-1. Use the built-in WordPress plugin installer.
+* Use the built-in WordPress plugin installer.
 
    OR
 
-1. Download the zip file and extract the contents.
+* Download the zip file and extract the contents.
    Upload the 'featured-posts-scroll' folder to your plugins directory (wp-content/plugins/).
-2. Activate the plugin through the WordPress 'Plugins' menu.
-3. Recommendation: Refer to "How to Use" and "FAQ" for useful info.
+* Activate the plugin through the WordPress 'Plugins' menu.
+* Recommendation: Refer to "How to Use" and "FAQ" for useful info.
 
 = How to Use =
 
@@ -88,6 +88,9 @@ For any configuration, the image should be split into four evenly sized quadrant
 4. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.15 =
+* Corrected labeling of "Crop Mode" option and made it the default option.
 
 = 1.14 =
 * Added admin option for image background color.
@@ -149,7 +152,5 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Upgrade Notice ==
 
-= 1.14 =
-* Added admin option for image background color.
-* Fixed bug where bg didn't appear behind arrows in bottom position when slide numbers were not also selected.
-* Added some admin options for controlling image scaling/cropping.
+= 1.15 =
+* Corrected labeling of "Crop Mode" option and made it the default option.
