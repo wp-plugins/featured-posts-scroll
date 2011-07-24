@@ -39,7 +39,7 @@ overflow: hidden;
 }
 
 ul.featured-posts.fps-single li {
-background: #000 no-repeat 50% 50%;
+position: relative;
 height: 225px;
 width: 480px;
 overflow: hidden;
@@ -48,10 +48,28 @@ overflow: hidden;
 /**** Featured Posts Text ****/
 ul.featured-posts.fps-single li .fps-text {
 width: 480px;
-height: 53px;
-margin-top: 2000px;
+position: absolute;
+left: 0px;
+bottom: 0px;
+z-index: 10;
 float: left;
 padding: 3px 5px;
+}
+
+ul.featured-posts.fps-single li .fps-image-div {
+position: absolute;
+left: 0px;
+top: 0px;
+z-index: 0;
+float: left;
+width: 100%;
+height: 100%;
+}
+
+ul.featured-posts.fps-single li .fps-image-div img.fps-image {
+display: block;
+position: relative;
+margin: auto;
 }
 
 ul.featured-posts.fps-single a {

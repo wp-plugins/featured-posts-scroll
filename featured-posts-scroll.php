@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.13
+Version: 1.14
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -581,6 +581,45 @@ function fps_activate()
         $post_scroll_interval = '7000';
         update_option('fps_scroll_interval', $post_scroll_interval);
     }
+
+    $post_image_bg_color = get_option('fps_image_bg_color');
+    if ( empty($post_image_bg_color) ) {
+        $post_image_bg_color = '000000';
+        update_option('fps_image_bg_color', $post_image_bg_color);
+    }
+
+    $post_image_scale = get_option('fps_image_scale');
+    if ( empty($post_image_scale) ) {
+        $post_image_scale = '0';
+        update_option('fps_image_scale', $post_image_scale);
+    }
+
+    $post_image_height_noscale = get_option('fps_image_height_noscale');
+    if ( empty($post_image_height_noscale) ) {
+        $post_image_height_noscale = '0';
+        update_option('fps_image_height_noscale', $post_image_height_noscale);
+    }
+
+    $post_image_width_noscale = get_option('fps_image_width_noscale');
+    if ( empty($post_image_width_noscale) ) {
+        $post_image_width_noscale = '0';
+        update_option('fps_image_width_noscale', $post_image_width_noscale);
+    }
+
+    $post_image_height_stretch = get_option('fps_image_height_stretch');
+    if ( empty($post_image_height_stretch) ) {
+        $post_image_height_stretch = '1';
+        update_option('fps_image_height_stretch', $post_image_height_stretch);
+    }
+
+    $post_image_width_stretch = get_option('fps_image_width_stretch');
+    if ( empty($post_image_width_stretch) ) {
+        $post_image_width_stretch = '1';
+        update_option('fps_image_width_stretch', $post_image_width_stretch);
+    }
+
+
+
     
 }
 
@@ -703,6 +742,13 @@ function fps_deactivate()
     delete_option('fps_scroll_fadeInSpeed');
     delete_option('fps_scroll_fadeOutSpeed');
     delete_option('fps_scroll_interval');
+
+    delete_option('fps_image_bg_color');
+    delete_option('fps_image_scale');
+    delete_option('fps_image_height_noscale');
+    delete_option('fps_image_width_noscale');
+    delete_option('fps_image_height_stretch');
+    delete_option('fps_image_width_stretch');
 }
 
 /* Setup menu page creation */
@@ -753,8 +799,32 @@ function fps_define_image_sizes()
     //add_theme_support( 'post-thumbnails' ); // Add support for posts
     $post_height = get_option('fps_height');
     $post_width = get_option('fps_width');
+    $post_image_scale = get_option('fps_image_scale');
+    $post_image_height_noscale = get_option('fps_image_height_noscale');
+    $post_image_width_noscale = get_option('fps_image_width_noscale');
 
-    add_image_size( 'fps-post', ($post_width-45), ($post_height-20), true ); // large size, hard crop mode
+    $post_image_scale_bool = true;
+    if ($post_image_scale == '0')
+    {
+        $post_image_scale_bool = false;
+    }
+
+    $post_width -= 45;
+    $post_height -= 20;
+
+    if ($post_image_height_noscale == '1' && $post_image_scale == '1')
+    {
+        $post_height = 9999;
+    }
+
+    if ($post_image_width_noscale == '1' && $post_image_scale == '1')
+    {
+        $post_width = 9999;
+    }
+
+
+
+    add_image_size( 'fps-post', ($post_width), ($post_height), $post_image_scale_bool );
 }
 
 /* Generate the plugin display */
@@ -864,14 +934,12 @@ function fps_show($atts)
 
 
             $output .= '<a href="'.$post_permalink.'">';
-                if ($post_img != '')
-                {
-                    $output .= '<li class="'.$li_classes.'" style="background-image:url('.$post_img.')">';
-                }
-                else
-                {
-                    $output .= '<li class="'.$li_classes.'">';
-                }
+            $output .= '<li class="'.$li_classes.'" >';
+                    $output .= '<div class="fps-image-div" >';
+                        $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                    $output .= '</div>';
+
+
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
                         {

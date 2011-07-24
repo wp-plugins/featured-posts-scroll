@@ -294,6 +294,24 @@
         $post_scroll_interval = $_POST['fps_scroll_interval'];
         update_option('fps_scroll_interval', $post_scroll_interval);
 
+        $post_image_bg_color = $_POST['fps_image_bg_color'];
+        update_option('fps_image_bg_color', $post_image_bg_color);
+
+        $post_image_scale = isset($_POST['fps_image_scale']) ? 1:0;
+        update_option('fps_image_scale', $post_image_scale);
+
+        $post_image_height_noscale = isset($_POST['fps_image_height_noscale']) ? 1:0;
+        update_option('fps_image_height_noscale', $post_image_height_noscale);
+
+        $post_image_width_noscale = isset($_POST['fps_image_width_noscale']) ? 1:0;
+        update_option('fps_image_width_noscale', $post_image_width_noscale);
+
+        $post_image_height_stretch = isset($_POST['fps_image_height_stretch']) ? 1:0;
+        update_option('fps_image_height_stretch', $post_image_height_stretch);
+
+        $post_image_width_stretch = isset($_POST['fps_image_width_stretch']) ? 1:0;
+        update_option('fps_image_width_stretch', $post_image_width_stretch);
+
         $post_unselectedslide_inset = isset($_POST['fps_unselectedslide_inset']) ? 1:0;
         update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
 
@@ -448,6 +466,13 @@
         $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
         $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
         $post_scroll_interval = get_option('fps_scroll_interval');
+
+        $post_image_bg_color = get_option('fps_image_bg_color');
+        $post_image_scale = get_option('fps_image_scale');
+        $post_image_height_noscale = get_option('fps_image_height_noscale');
+        $post_image_width_noscale = get_option('fps_image_width_noscale');
+        $post_image_height_stretch = get_option('fps_image_height_stretch');
+        $post_image_width_stretch = get_option('fps_image_width_stretch');
         
 
     }
@@ -1046,6 +1071,77 @@
                 </fieldset>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+    <h3>Image Options</h3>
+    <table class="form-table">
+        <tbody>
+
+        
+            <tr valign="top">
+                <th scope="row">Image BG Color</th>
+                <td>
+                <fieldset>
+                    <input type="text" name="fps_image_bg_color" maxlength="6" size="6" class="inp-heading" value="<?php echo $post_image_bg_color; ?>" />
+                    <br />
+                </fieldset>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Scaling Options</th>
+                <td>
+                    <fieldset>
+                        <legend class="hidden">Scaling Options</legend>
+
+                        <?php if($post_image_scale == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_image_scale" value="true" <?php echo $checked; ?>><?php _e(" Scale Mode"); ?>
+                        <br />
+                        <?php _e("Default is Crop Mode if this option is unchecked. Checking this option will proportionally scale the image to fit."); ?>
+                        <br />
+                        <br />
+
+                        <?php if($post_image_height_noscale == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_image_height_noscale" value="true" <?php echo $checked; ?>><?php _e(" Don't Scale Height"); ?>
+                        <br />
+                        <?php if($post_image_width_noscale == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_image_width_noscale" value="true" <?php echo $checked; ?>><?php _e(" Don't Scale Width"); ?>
+                        <br />
+                        <?php _e("If Scale Mode is enabled, checking either of these options will prevent a dimension from being scaled."); ?>
+                        <br />
+                        <br />
+
+                        <?php if($post_image_height_stretch == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_image_height_stretch" value="true" <?php echo $checked; ?>><?php _e(" Fit Height"); ?>
+                        <br />
+                        <?php if($post_image_width_stretch == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                        <input type="checkbox" name="fps_image_width_stretch" value="true" <?php echo $checked; ?>><?php _e(" Fit Width"); ?>
+                        <br />
+                        <?php _e("Checking these options will stretch the width/height to fill the post scroll area."); ?>
+                        <br />
+                        <?php _e("If only one is selected, scaling will be proportional. Selecting both will disregard proportions."); ?>
+                        <br />
+                        <br />
+                        <br />
+                        <?php _e("After changing any of these options or changing the post scroll height/width, you should regenerate all of your thumbnails."); ?>
+                        <br />
+                        <?php _e("See this plugin's FAQ for details on how to do this."); ?>
+
+
+                    </fieldset>
+                </td>
+            </tr>
+
+            
 
         </tbody>
     </table>

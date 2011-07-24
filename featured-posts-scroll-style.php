@@ -106,6 +106,11 @@
     $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
     $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
 
+    $post_image_bg_color = get_option('fps_image_bg_color');
+
+    $post_image_height_stretch = get_option('fps_image_height_stretch');
+    $post_image_width_stretch = get_option('fps_image_width_stretch');
+
 
     // Format all color hex value strings
     $post_title_color = "#".$post_title_color;
@@ -118,6 +123,7 @@
     $post_unselectedslide_textcolor = "#".$post_unselectedslide_textcolor;
     $post_selectedslide_bgcolor = "#".$post_selectedslide_bgcolor;
     $post_unselectedslide_bgcolor = "#".$post_unselectedslide_bgcolor;
+    $post_image_bg_color = "#".$post_image_bg_color;
 
     $post_selectedslide_dropshadow_color = "#".$post_selectedslide_dropshadow_color;
     $post_unselectedslide_dropshadow_color = "#".$post_unselectedslide_dropshadow_color;
@@ -129,7 +135,7 @@
 
     // Height offset
 	$height_offset = 0;
-    if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
+    if (($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless') || $post_arrow_position == 'below')
     {
         $height_offset += 25;
     }
@@ -207,6 +213,7 @@ box-shadow: <?php echo $shadow ?> <?php echo $post_innershadow_color ?>;
 }
 
 ul.featured-posts.fps-single li {
+background-color: <?php echo $post_image_bg_color ?>;
 height: <?php echo ($post_height-20) ?>px; 
 width: <?php echo ($post_width-45) ?>px;
 -moz-border-radius: <?php echo $post_corner_radius ?>; 
@@ -304,9 +311,23 @@ line-height: <?php echo $post_heading_fontheight ?>;
 color: <?php echo $post_heading_color ?>;
 }
 
+ul.featured-posts.fps-single li .fps-image-div img.fps-image {
+<?php if ($post_image_height_stretch == '1') : ?>
+height: <?php echo ($post_height-20) ?>px;
+<?php endif; ?>
+<?php if ($post_image_width_stretch == '1') : ?>
+width: <?php if ($post_arrow_position == 'borderless') {echo ($post_width-20);} else {echo ($post_width-45);} ?>px;
+<?php endif; ?>
+}
+
+ 
+
+
+
 
 
 <?php 
+/***** ARROWS BELOW MODIFICATIONS *****/
 // Modify margin/height/width if arrows are below image
 if ($post_arrow_position == 'below') : 
 ?>
@@ -328,10 +349,17 @@ margin-left: 10px;
 margin: 0px 0px 12px;
 }
 
-<?php endif; ?>
+<?php 
+/***** END - ARROWS BELOW MODIFICATIONS *****/
+endif; ?>
+
+
+
+
 
 
 <?php 
+/***** BORDERLESS MODIFICATIONS *****/
 // Modify margin/height/width if arrows are below image
 if ($post_arrow_position == 'borderless') : 
 ?>
@@ -382,7 +410,13 @@ background-position: 0px 0px;
 background-position: -35px 0px;
 }
 
-<?php endif; ?>
+<?php 
+/***** END - BORDERLESS MODIFICATIONS *****/
+endif; ?>
+
+
+
+
 
 
 <?php
