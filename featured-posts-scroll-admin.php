@@ -1162,9 +1162,9 @@
                                 <br />
                                 <br />
                                 <br />
-                                <?php _e("After changing any of these options or changing the post scroll height/width, you should regenerate all of your thumbnails."); ?>
+                                <?php _e("After changing any of these options or changing the post scroll height/width, you should regenerate the thumbnails of images on your site that will appear in the post scroll."); ?>
                                 <br />
-                                <?php _e("See this plugin's FAQ for details on how to do this."); ?>
+                                This can be easily done with the <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails Plugin</a>.
 
 
                             </fieldset>
