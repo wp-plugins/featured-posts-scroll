@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.15
+Version: 1.16
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -770,6 +770,7 @@ function fps_admin() {
 function fps_menu_styles()
 {
     wp_enqueue_style( 'jcolorpicker-style', WP_PLUGIN_URL.'/featured-posts-scroll/css/colorpicker.css' );
+    wp_enqueue_style( 'jquery-ui-tabs-css','http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/cupertino/jquery-ui.css' );
 }
 
 /* Enqueue styles necessary for the plugin */
@@ -788,6 +789,9 @@ function fps_add_script()
     }
     else {
         wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-tabs');
+        wp_enqueue_script('featuredpostslides-admin', WP_PLUGIN_URL.'/featured-posts-scroll/js/fps-admin.js');
         wp_enqueue_script('jcolorpicker', WP_PLUGIN_URL.'/featured-posts-scroll/js/colorpicker.js');
         wp_enqueue_script('admincolors', WP_PLUGIN_URL.'/featured-posts-scroll/js/admincolors.js');
     }

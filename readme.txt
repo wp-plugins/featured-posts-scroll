@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.15
+Stable tag: 1.16
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -89,6 +89,9 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Changelog ==
 
+= 1.16 =
+* Implemented tabbed admin page.
+
 = 1.15 =
 * Corrected labeling of "Crop Mode" option and made it the default option.
 
@@ -152,5 +155,5 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Upgrade Notice ==
 
-= 1.15 =
-* Corrected labeling of "Crop Mode" option and made it the default option.
+= 1.16 =
+* Implemented tabbed admin page.
