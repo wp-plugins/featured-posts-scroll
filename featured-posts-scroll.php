@@ -42,7 +42,7 @@ add_action('admin_init', 'fps_define_image_sizes');
 /* Activate the plugin by creating/initializing all options */
 function fps_activate()
 {
-	$max_posts = get_option('fps_max_posts');
+    $max_posts = get_option('fps_max_posts');
     if ( empty($max_posts) ) {
         $max_posts = '5';
         update_option('fps_max_posts', $max_posts);
@@ -754,7 +754,7 @@ function fps_deactivate()
 /* Setup menu page creation */
 function fps_admin_actions()
 {
-	$page = add_menu_page('Featured Posts Scroll', 'Featured Posts Scroll', 'manage_options', 'featured-posts-scroll', 'fps_admin');
+    $page = add_menu_page('Featured Posts Scroll', 'Featured Posts Scroll', 'manage_options', 'featured-posts-scroll', 'fps_admin');
     
     add_action( 'admin_print_styles-' . $page, 'fps_menu_styles' );
 }
@@ -835,7 +835,7 @@ function fps_define_image_sizes()
 function fps_show($atts)
 {
     // Retrieve all admin options
-	$max_posts = get_option('fps_max_posts');
+    $max_posts = get_option('fps_max_posts');
     
     $post_display_title = get_option('fps_display_title');
     $post_display_excerpt = get_option('fps_display_excerpt');
