@@ -1,7 +1,7 @@
 === Featured Posts Scroll ===
 Contributors: Chaser324
-Donate link: http://bit.ly/lUqtRZ
-Author URI: http://chasepettit.com/2011/03/featured-posts-scroll/
+Donate link: http://bit.ly/ouu3IA
+Author URI: http://chasepettit.com/
 Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
