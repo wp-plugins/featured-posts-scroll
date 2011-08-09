@@ -937,25 +937,29 @@ function fps_show($atts)
             $post_img = $post_details[$i]['post_img_src'][0];
 
 
-            $output .= '<a href="'.$post_permalink.'">';
             $output .= '<li class="'.$li_classes.'" >';
                     $output .= '<div class="fps-image-div" >';
-                        $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                        $output .= '<a href="'.$post_permalink.'">';
+                            $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                        $output .= '</a>';
                     $output .= '</div>';
 
 
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
                         {
-                            $output .= '<p class="fps-title">'.$post_title.'</p>';
+                            $output .= '<a href="'.$post_permalink.'">';
+                                $output .= '<p class="fps-title">'.$post_title.'</p>';
+                            $output .= '</a>';
                         }
                         if ($post_display_excerpt == '1')
                         {
-                            $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
+                            $output .= '<a href="'.$post_permalink.'">';
+                                $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
+                            $output .= '</a>';
                         }
                     $output .= '</div>';
                 $output .= '</li>';
-            $output .= '</a>';
         }
         $output .= '</ul>';
         if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
