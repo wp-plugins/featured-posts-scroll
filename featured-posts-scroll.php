@@ -48,6 +48,12 @@ function fps_activate()
         update_option('fps_max_posts', $max_posts);
     }
 
+    $fps_image_full_size = get_option('fps_image_full_size');
+    if ( empty($fps_image_full_size) ) {
+        $fps_image_full_size = '0';
+        update_option('fps_image_full_size', $fps_image_full_size);
+    }
+
     $post_title_color = get_option('fps_title_color');
     if ( empty($post_title_color) ) {
         $post_title_color = 'ffffff';
@@ -627,6 +633,7 @@ function fps_activate()
 function fps_deactivate()
 {
     delete_option('fps_max_posts');
+    delete_option('fps_image_full_size');
         
     delete_option('fps_title_color');
     delete_option('fps_excerpt_color');
@@ -848,6 +855,8 @@ function fps_show($atts)
 
     $post_arrow_position = get_option('fps_arrow_position');
 
+    $fps_image_full_size = get_option('fps_image_full_size');
+
     
 
     $wrapper_classes .= "featured-posts-wrapper fps-single";
@@ -920,7 +929,14 @@ function fps_show($atts)
             $post_details[$key]['post_permalink'] = get_permalink($val->ID);
             if (has_post_thumbnail($val->ID))
             {
-                $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'fps-post');
+                if ($fps_image_full_size == '0')
+                {
+                    $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'fps-post');
+                }
+                else
+                {
+                    $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'full');
+                }
             }
             else
             {
@@ -989,7 +1005,7 @@ function fps_show($atts)
         }
 
 
-        if ($post_arrow_position == 'below')
+        if ($post_arrow_position != 'borderless')
         {
             $output .= '<div class="'.$bg_classes.'"></div>';    
         }
