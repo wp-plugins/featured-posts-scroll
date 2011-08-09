@@ -118,22 +118,11 @@ function initAutoscroll()
         $j('.featured-posts-wrapper').each(function(index) {
             if ($j(this).hasClass('fps-autoscroll'))
             {
-                if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
-                {
-                    var callback = 
-                        "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
-                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right')";
-                    autoscrollInterval[index] = setInterval(
-                        callback, <?php echo $post_scroll_interval ?>);
-                }
-                else
-                {
-                    var callback = 
-                        "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
-                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right')";
-                    autoscrollInterval[index] = setInterval(
-                        callback, <?php echo $post_scroll_interval ?>);
-                }
+                var callback = 
+                    "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                    index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right')";
+                autoscrollInterval[index] = setInterval(
+                    callback, <?php echo $post_scroll_interval ?>);
             }
         });
     }
@@ -146,25 +135,12 @@ function scrollToPost(slideButton)
         // lock animations
         animationLocked = true;
 
-        // get the currently displayed element(s)
-        var currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children().children('li:visible');
-
-        if (currentItem.length == 0)
-        {
-            currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li:visible');
-        }
+        var currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li:visible');
 
         // get the next item to display
         var nextItemIndex = parseInt($j(slideButton).text());
         
-        if (currentItem.parent('a').length == 1)
-        {
-            var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children().children('li').eq(nextItemIndex-1);
-        }
-        else
-        {
-            var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li').eq(nextItemIndex-1);
-        }
+        var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li').eq(nextItemIndex-1);
 
         setSelectedSlide(nextItem);
         animate(nextItem, currentItem, 'right')
@@ -179,12 +155,7 @@ function scrollFeaturedPosts(button, dir)
         animationLocked = true;
 
         // get the currently displayed element(s)
-        var currentItem = $j(button).siblings('ul.featured-posts').children().children('li:visible');
-
-        if (currentItem.length == 0)
-        {
-            currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
-        }
+        var currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
 
         var nextItem;
 
@@ -192,48 +163,20 @@ function scrollFeaturedPosts(button, dir)
         {        
             if (dir == 'right')
             {
-                if (currentItem.parent('a').length == 1)
-                {
-                    nextItem = currentItem.parent().next().children('li');
-                }
-                else
-                {
-                    nextItem = currentItem.next().next();
-                }
+                nextItem = currentItem.next();
 
                 if (nextItem.length == 0)
                 {
-                    if (currentItem.parent('a').length == 1)
-                    {
-                        nextItem = currentItem.parent().siblings().first().children('li');
-                    }
-                    else
-                    {
-                        nextItem = currentItem.siblings().first().next();
-                    }
+                    nextItem = currentItem.siblings().first();
                 }
             }
             else if (dir == 'left')
             {
-                if (currentItem.parent('a').length == 1)
-                {
-                    nextItem = currentItem.parent().prev().children('li');
-                }
-                else
-                {
-                    nextItem = currentItem.prev().prev();
-                }
+                nextItem = currentItem.prev();
 
                 if (nextItem.length == 0)
                 {
-                    if (currentItem.parent('a').length == 1)
-                    {
-                        nextItem = currentItem.parent().siblings().last().children('li');
-                    }
-                    else
-                    {
-                        nextItem = currentItem.siblings().last();
-                    }
+                    nextItem = currentItem.siblings().last();
                 }
             }
         }
@@ -246,34 +189,12 @@ function scrollFeaturedPosts(button, dir)
 function setSelectedSlide(toShow)
 {
     // Remove class from current slide
-    if (toShow.parent('a').length == 1)
-    {
-        $j(toShow).parent().parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
-    }
-    else
-    {
-        $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
-    }
+    $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
 
     // Get the index of the next item to be displayed
-    var nextSlideIndex;
-    if (toShow.parent('a').length == 1)
-    {
-        nextSlideIndex = $j(toShow).parent().index();
-    }
-    else
-    {
-        nextSlideIndex = (($j(toShow).index()) - 1) / 2;
-    }
+    var nextSlideIndex = (($j(toShow).index()) - 1) / 2;
 
-    if (toShow.parent('a').length == 1)
-    {
-        $j(toShow).parent().parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
-    }
-    else
-    {
-        $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
-    }
+    $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
 }
 
 function animate(toShow, toHide, dir)
