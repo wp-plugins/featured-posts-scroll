@@ -30,7 +30,6 @@ function init()
         // hide all but first entry in featured posts list
         $j('.featured-posts-wrapper').each(function() {
            $j(this).find('.fps-text').slice(1).fadeOut();
-           $j(this).find('ul.featured-posts a li').slice(1).css('display','none');
            $j(this).find('ul.featured-posts li').slice(1).css('display','none');
         });      
     }
