@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.16
+Version: 1.17
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -42,10 +42,16 @@ add_action('admin_init', 'fps_define_image_sizes');
 /* Activate the plugin by creating/initializing all options */
 function fps_activate()
 {
-	$max_posts = get_option('fps_max_posts');
+    $max_posts = get_option('fps_max_posts');
     if ( empty($max_posts) ) {
         $max_posts = '5';
         update_option('fps_max_posts', $max_posts);
+    }
+
+    $fps_image_full_size = get_option('fps_image_full_size');
+    if ( empty($fps_image_full_size) ) {
+        $fps_image_full_size = '0';
+        update_option('fps_image_full_size', $fps_image_full_size);
     }
 
     $post_title_color = get_option('fps_title_color');
@@ -627,6 +633,7 @@ function fps_activate()
 function fps_deactivate()
 {
     delete_option('fps_max_posts');
+    delete_option('fps_image_full_size');
         
     delete_option('fps_title_color');
     delete_option('fps_excerpt_color');
@@ -754,7 +761,7 @@ function fps_deactivate()
 /* Setup menu page creation */
 function fps_admin_actions()
 {
-	$page = add_menu_page('Featured Posts Scroll', 'Featured Posts Scroll', 'manage_options', 'featured-posts-scroll', 'fps_admin');
+    $page = add_menu_page('Featured Posts Scroll', 'Featured Posts Scroll', 'manage_options', 'featured-posts-scroll', 'fps_admin');
     
     add_action( 'admin_print_styles-' . $page, 'fps_menu_styles' );
 }
@@ -835,7 +842,7 @@ function fps_define_image_sizes()
 function fps_show($atts)
 {
     // Retrieve all admin options
-	$max_posts = get_option('fps_max_posts');
+    $max_posts = get_option('fps_max_posts');
     
     $post_display_title = get_option('fps_display_title');
     $post_display_excerpt = get_option('fps_display_excerpt');
@@ -847,6 +854,8 @@ function fps_show($atts)
     $post_autoscroll = get_option('fps_autoscroll');
 
     $post_arrow_position = get_option('fps_arrow_position');
+
+    $fps_image_full_size = get_option('fps_image_full_size');
 
     
 
@@ -920,7 +929,14 @@ function fps_show($atts)
             $post_details[$key]['post_permalink'] = get_permalink($val->ID);
             if (has_post_thumbnail($val->ID))
             {
-                $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'fps-post');
+                if ($fps_image_full_size == '0')
+                {
+                    $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'fps-post');
+                }
+                else
+                {
+                    $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'full');
+                }
             }
             else
             {
@@ -937,25 +953,29 @@ function fps_show($atts)
             $post_img = $post_details[$i]['post_img_src'][0];
 
 
-            $output .= '<a href="'.$post_permalink.'">';
             $output .= '<li class="'.$li_classes.'" >';
                     $output .= '<div class="fps-image-div" >';
-                        $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                        $output .= '<a href="'.$post_permalink.'">';
+                            $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                        $output .= '</a>';
                     $output .= '</div>';
 
 
                     $output .= '<div class="fps-text">';
                         if ($post_display_title == '1')
                         {
-                            $output .= '<p class="fps-title">'.$post_title.'</p>';
+                            $output .= '<a href="'.$post_permalink.'">';
+                                $output .= '<p class="fps-title">'.$post_title.'</p>';
+                            $output .= '</a>';
                         }
                         if ($post_display_excerpt == '1')
                         {
-                            $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
+                            $output .= '<a href="'.$post_permalink.'">';
+                                $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
+                            $output .= '</a>';
                         }
                     $output .= '</div>';
                 $output .= '</li>';
-            $output .= '</a>';
         }
         $output .= '</ul>';
         if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
@@ -985,7 +1005,7 @@ function fps_show($atts)
         }
 
 
-        if ($post_arrow_position == 'below')
+        if ($post_arrow_position != 'borderless')
         {
             $output .= '<div class="'.$bg_classes.'"></div>';    
         }

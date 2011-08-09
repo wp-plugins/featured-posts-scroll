@@ -297,6 +297,9 @@
         $post_image_bg_color = $_POST['fps_image_bg_color'];
         update_option('fps_image_bg_color', $post_image_bg_color);
 
+        $fps_image_full_size = isset($_POST['fps_image_full_size']) ? 1:0;
+        update_option('fps_image_full_size', $fps_image_full_size);
+
         $post_image_scale = isset($_POST['fps_image_scale']) ? 1:0;
         update_option('fps_image_scale', $post_image_scale);
 
@@ -348,6 +351,7 @@
         <?php }
     } else {
         $max_posts = get_option('fps_max_posts');
+        $fps_image_full_size = get_option('fps_image_full_size');
         
         $post_title_color = get_option('fps_title_color');
         $post_excerpt_color = get_option('fps_excerpt_color');
@@ -1137,6 +1141,13 @@
                                 <input type="checkbox" name="fps_image_scale" value="true" <?php echo $checked; ?>><?php _e(" Crop Mode"); ?>
                                 <br />
                                 <?php _e("Default is Crop Mode when this option is checked. Unchecking this option will scale the image to fit (proportions not maintained)."); ?>
+                                <br />
+                                <br />
+
+                                <?php if($fps_image_full_size == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                                <input type="checkbox" name="fps_image_full_size" value="true" <?php echo $checked; ?>><?php _e(" Always Use Full Size"); ?>
+                                <br />
+                                <?php _e("Enabling this option will cause the full size image to be used instead of the custom thumbnail size."); ?>
                                 <br />
                                 <br />
 
