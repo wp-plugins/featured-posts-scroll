@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.17
+Stable tag: 1.18
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -89,6 +89,9 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Changelog ==
 
+= 1.18 =
+* Fixed auto-scrolling when arrows are at side positions.
+
 = 1.17 =
 * Added option to always use the full size image instead of generated thumbnails.
 * Fixed IE 6/7 support.
@@ -160,7 +163,5 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Upgrade Notice ==
 
-= 1.17 =
-* Added option to always use the full size image instead of generated thumbnails.
-* Fixed IE 6/7 support.
-* Fixed original arrow position support.
+= 1.18 =
+* Fixed auto-scrolling when arrows are at side positions.
