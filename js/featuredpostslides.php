@@ -118,11 +118,22 @@ function initAutoscroll()
         $j('.featured-posts-wrapper').each(function(index) {
             if ($j(this).hasClass('fps-autoscroll'))
             {
-                var callback = 
-                    "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
-                    index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right')";
-                autoscrollInterval[index] = setInterval(
-                    callback, <?php echo $post_scroll_interval ?>);
+                if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
+                {
+                    var callback = 
+                        "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right')";
+                    autoscrollInterval[index] = setInterval(
+                        callback, <?php echo $post_scroll_interval ?>);
+                }
+                else
+                {
+                    var callback = 
+                        "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right')";
+                    autoscrollInterval[index] = setInterval(
+                        callback, <?php echo $post_scroll_interval ?>);
+                }
             }
         });
     }
