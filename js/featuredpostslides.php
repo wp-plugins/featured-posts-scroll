@@ -12,20 +12,17 @@
 ?>
 
 var type = 'none'; // Type of slider present (v1.0 only supports 'single')
-var animationLocked = false; // Lock object for animations
+var fpg_animLocked = new Array(); // Lock object for animations
 var autoscrollInterval = new Array();
 var $j = jQuery.noConflict(); // Prevent jQuery conflicts
 
 /** Initialize jQuery based animations */
 function init()
 {
-    // lock animations while initializing
-    animationLocked = true;
-
     // determine if the single or triple flavor is in use
     if ($j('.fps-single').length != 0 && $j('.fps-single li').length > 1)
     {
-        type = 'single'
+        type = 'single';
 
         // hide all but first entry in featured posts list
         $j('.featured-posts-wrapper').each(function() {
@@ -34,12 +31,18 @@ function init()
         });      
     }
 
-    // initialize the scroll buttons and autoscroll
-    initScrollButtons();
-    initSlideNumbers();
+    // init animations
     initAutoscroll();
 
-    animationLocked = false;
+    // initialize the scroll and slide buttons
+    initScrollButtons();
+    initSlideNumbers();
+
+    // release animation locks
+    for (var i=1; i<=fpg_animLocked.length; i++)
+    {
+        fpg_animLocked[i-1] = false;
+    }
 }
 
 /** Add click event handlers to scroll buttons */
@@ -49,9 +52,9 @@ function initScrollButtons()
     {
         $j('.scrollFeaturedPostsRight').each(function(index) {
             $j(this).click(function() {
-                if (animationLocked == false)
+                if (fpg_animLocked[index] == false)
                 {
-                    scrollFeaturedPosts(this, 'right');
+                    scrollFeaturedPosts(this, 'right', index);
                 }
                 clearInterval(autoscrollInterval[index]);
             });
@@ -59,9 +62,9 @@ function initScrollButtons()
 
         $j('.scrollFeaturedPostsLeft').each(function(index) {
             $j(this).click(function() {
-                if (animationLocked == false)
+                if (fpg_animLocked[index] == false)
                 {
-                    scrollFeaturedPosts(this, 'left');
+                    scrollFeaturedPosts(this, 'left', index);
                 }
                 clearInterval(autoscrollInterval[index]);
             });
@@ -69,9 +72,9 @@ function initScrollButtons()
 
         $j('.scrollFeaturedPostsRight-below').each(function(index) {
             $j(this).click(function() {
-                if (animationLocked == false)
+                if (fpg_animLocked[index] == false)
                 {
-                    scrollFeaturedPosts(this, 'right');
+                    scrollFeaturedPosts(this, 'right', index);
                 }
                 clearInterval(autoscrollInterval[index]);
             });
@@ -79,9 +82,9 @@ function initScrollButtons()
 
         $j('.scrollFeaturedPostsLeft-below').each(function(index) {
             $j(this).click(function() {
-                if (animationLocked == false)
+                if (fpg_animLocked[index] == false)
                 {
-                    scrollFeaturedPosts(this, 'left');
+                    scrollFeaturedPosts(this, 'left', index);
                 }
                 clearInterval(autoscrollInterval[index]);
             });
@@ -101,9 +104,9 @@ function initSlideNumbers()
     {
         $j('ul.fps-slideNumberList').each(function(index) {
             $j(this).children('li').click(function() {
-                if (animationLocked == false)
+                if (fpg_animLocked[index] == false)
                 {
-                    scrollToPost(this);
+                    scrollToPost(this, index);
                 }
                 clearInterval(autoscrollInterval[index]);
             });
@@ -116,13 +119,14 @@ function initAutoscroll()
     if (type != 'none')
     {
         $j('.featured-posts-wrapper').each(function(index) {
+            fpg_animLocked[index] = true;
             if ($j(this).hasClass('fps-autoscroll'))
             {
                 if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
                 {
                     var callback = 
                         "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
-                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right')";
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right', " + index + ")";
                     autoscrollInterval[index] = setInterval(
                         callback, <?php echo $post_scroll_interval ?>);
                 }
@@ -130,7 +134,7 @@ function initAutoscroll()
                 {
                     var callback = 
                         "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
-                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right')";
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right', " + index + ")";
                     autoscrollInterval[index] = setInterval(
                         callback, <?php echo $post_scroll_interval ?>);
                 }
@@ -139,12 +143,12 @@ function initAutoscroll()
     }
 }
 
-function scrollToPost(slideButton)
+function scrollToPost(slideButton, index)
 {
     if (!($j(slideButton).hasClass('fps-selectedSlide')))
     {
         // lock animations
-        animationLocked = true;
+        fpg_animLocked[index] = true;
 
         var currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li:visible');
 
@@ -154,16 +158,16 @@ function scrollToPost(slideButton)
         var nextItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li').eq(nextItemIndex-1);
 
         setSelectedSlide(nextItem);
-        animate(nextItem, currentItem, 'right')
+        animate(nextItem, currentItem, 'right', index)
     }
 }
 
-function scrollFeaturedPosts(button, dir)
+function scrollFeaturedPosts(button, dir, index)
 {
-    if (animationLocked != true)
+    if (fpg_animLocked[index] != true)
     {
         // lock animations
-        animationLocked = true;
+        fpg_animLocked[index] = true;
 
         // get the currently displayed element(s)
         var currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
@@ -193,7 +197,7 @@ function scrollFeaturedPosts(button, dir)
         }
 
         setSelectedSlide(nextItem);
-        animate(nextItem, currentItem, dir);
+        animate(nextItem, currentItem, dir, index);
     }
 }
 
@@ -208,7 +212,7 @@ function setSelectedSlide(toShow)
     $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
 }
 
-function animate(toShow, toHide, dir)
+function animate(toShow, toHide, dir, index)
 {
     var shownWidth = toHide.width();
 
@@ -237,7 +241,7 @@ function animate(toShow, toHide, dir)
             toShow.css('float','');
             toHide.css('float','');
             $j(toShow).find('.fps-text').fadeIn(<?php echo $post_scroll_fadeInSpeed ?>, function() {
-                animationLocked = false;
+                fpg_animLocked[index] = false;
             });
         });
 
