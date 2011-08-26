@@ -207,7 +207,7 @@ function setSelectedSlide(toShow)
     $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li.fps-selectedSlide').removeClass('fps-selectedSlide');
 
     // Get the index of the next item to be displayed
-    var nextSlideIndex = (($j(toShow).index()) - 1) / 2;
+    var nextSlideIndex = (($j(toShow).index()));
 
     $j(toShow).parent().siblings('ul.fps-slideNumberList').children('li').eq(nextSlideIndex).addClass('fps-selectedSlide');
 }
