@@ -59,7 +59,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                 $j(this).click(function() {
                     if (fpg_animLocked[index] == false)
                     {
-                        scrollFeaturedPosts(this, 'right', index);
+                        FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'right', index);
                     }
                     clearInterval(autoscrollInterval[index]);
                 });
@@ -69,7 +69,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                 $j(this).click(function() {
                     if (fpg_animLocked[index] == false)
                     {
-                        scrollFeaturedPosts(this, 'left', index);
+                        FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'left', index);
                     }
                     clearInterval(autoscrollInterval[index]);
                 });
@@ -79,7 +79,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                 $j(this).click(function() {
                     if (fpg_animLocked[index] == false)
                     {
-                        scrollFeaturedPosts(this, 'right', index);
+                        FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'right', index);
                     }
                     clearInterval(autoscrollInterval[index]);
                 });
@@ -89,7 +89,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                 $j(this).click(function() {
                     if (fpg_animLocked[index] == false)
                     {
-                        scrollFeaturedPosts(this, 'left', index);
+                        FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'left', index);
                     }
                     clearInterval(autoscrollInterval[index]);
                 });
@@ -132,7 +132,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                     if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
                     {
                         var callback = 
-                            "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                            "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
                             index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right', " + index + ")";
                         autoscrollInterval[index] = setInterval(
                             callback, <?php echo $post_scroll_interval ?>);
@@ -140,7 +140,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                     else
                     {
                         var callback = 
-                            "scrollFeaturedPosts($j('.featured-posts-wrapper').slice(" + 
+                            "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
                             index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right', " + index + ")";
                         autoscrollInterval[index] = setInterval(
                             callback, <?php echo $post_scroll_interval ?>);
@@ -171,7 +171,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
     }
 
 
-    function scrollFeaturedPosts(button, dir, index)
+    FeaturedPostsLib.fps.scrollFeaturedPosts = function(button, dir, index)
     {
         if (fpg_animLocked[index] != true)
         {
@@ -208,7 +208,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
             setSelectedSlide(nextItem);
             animate(nextItem, currentItem, dir, index);
         }
-    }
+    };
 
 
     function setSelectedSlide(toShow)
