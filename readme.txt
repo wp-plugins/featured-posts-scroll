@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.21
+Stable tag: 1.22
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -88,6 +88,9 @@ For any configuration, the image should be split into four evenly sized quadrant
 4. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.22 =
+* Fixed autoscrolling. (Corrected jQuery reference in autoscroll callback function)
 
 = 1.21 =
 * Refactored JavaScript to prevent causing issues with plugins that assume "$" references jQuery.
@@ -172,5 +175,5 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Upgrade Notice ==
 
-= 1.21 =
-* Refactored JavaScript to prevent causing issues with plugins that assume "$" references jQuery.
+= 1.22 =
+* Fixed autoscrolling. (Corrected jQuery reference in autoscroll callback function)
