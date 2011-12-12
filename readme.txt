@@ -175,5 +175,6 @@ For any configuration, the image should be split into four evenly sized quadrant
 
 == Upgrade Notice ==
 
-= 1.22 =
-* Fixed autoscrolling. (Corrected jQuery reference in autoscroll callback function)
+= 1.23 =
+* Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
+* Code refactoring and cleanup: activate/deactivate functions, admin page.

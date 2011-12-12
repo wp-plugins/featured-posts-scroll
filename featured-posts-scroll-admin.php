@@ -1,344 +1,141 @@
 <?php 
     if ( isset($_POST['fps_opt_hidden']) && $_POST['fps_opt_hidden'] == 'Y' ) {
-        $max_posts = $_POST['fps_max_posts'];
-        if ( is_numeric($max_posts) )
-            update_option('fps_max_posts', $max_posts);
-        else
-            $error[] = "ERROR: Max Posts - Please enter a number.";
-        
-        $post_title_color = $_POST['fps_title_color'];
-        update_option('fps_title_color', $post_title_color);
+        /* Numeric Variables */
+        $variables = array (
+            'fps_max_posts',
+            'fps_textbg_alpha'
+            'fps_dropshadow_x',
+            'fps_dropshadow_y',
+            'fps_dropshadow_blur',
+            'fps_dropshadow_spread',
+            'fps_outer_dropshadow_x',
+            'fps_outer_dropshadow_y',
+            'fps_outer_dropshadow_blur',
+            'fps_outer_dropshadow_spread',
+            'fps_height',
+            'fps_width',
+            'fps_slide_bgradius',
+            'fps_selectedslide_dropshadow_x',
+            'fps_selectedslide_dropshadow_y',
+            'fps_selectedslide_dropshadow_blur',
+            'fps_selectedslide_dropshadow_spread',
+            'fps_unselectedslide_dropshadow_x',
+            'fps_unselectedslide_dropshadow_y',
+            'fps_unselectedslide_dropshadow_blur',
+            'fps_unselectedslide_dropshadow_spread',
+            'fps_slide_textshadow_x',
+            'fps_slide_textshadow_y',
+            'fps_slide_textshadow_blur',
+            'fps_scroll_speed',
+            'fps_scroll_fadeInSpeed',
+            'fps_scroll_fadeOutSpeed',
+            'fps_scroll_interval'
+        );
 
-        $post_excerpt_color = $_POST['fps_excerpt_color'];
-        update_option('fps_excerpt_color', $post_excerpt_color);
-
-        $post_heading_color = $_POST['fps_heading_color'];
-        update_option('fps_heading_color', $post_heading_color);
-
-        $post_heading_text = $_POST['fps_heading_text'];
-        update_option('fps_heading_text', $post_heading_text);
-
-        $post_bg_color = $_POST['fps_bg_color'];
-        update_option('fps_bg_color', $post_bg_color);
-
-        $post_textbg_color = $_POST['fps_textbg_color'];
-        update_option('fps_textbg_color', $post_textbg_color);
-
-        $post_textbg_alpha = $_POST['fps_textbg_alpha'];
-        if ( is_numeric($post_textbg_alpha) )
-        {
-            if ($post_textbg_alpha >= 0.0 && $post_textbg_alpha <= 1.0)
-            {
-                update_option('fps_textbg_alpha', $post_textbg_alpha);
-            }
+        foreach ($variables as $var) {
+            $var_value = $_POST[$var];
+            if ( is_numeric($var_value) )
+                update_option($var, $var_value);
             else
-            {
-                $error[] = "ERROR: Text BG Alpha - Please enter a valid number in range (0.0-1.0).";
-            }
-        }
-        else
-        {
-            $error[] = "ERROR: Text BG Alpha - Please enter a valid number in range (0.0-1.0).";
+                $error[] = "ERROR: ".$var." - Must be a number.";
         }
 
-        $post_height = $_POST['fps_height'];
-        if ( is_numeric($post_height) )
-        {
-            if ($post_height >= 50 && $post_height <= 2000)
-            {
-                update_option('fps_height', $post_height);
-            }
-            else
-            {
-                $error[] = "ERROR: Scroll Height - Please enter a valid number in range (50-2000).";
-            }
+
+
+
+        /* Text Variables */
+        $variables = array (
+            'fps_title_color',
+            'fps_excerpt_color',
+            'fps_heading_color',
+            'fps_heading_text',
+            'fps_bg_color',
+            'fps_textbg_color',
+            'fps_innershadow_color',
+            'fps_outershadow_color',
+            'fps_arrow_color',
+            'fps_corner_radius',
+            'fps_outer_corner_radius',
+            'fps_arrow_position',
+            'fps_arrow_custom_url',
+            'fps_selectedslide_textcolor',
+            'fps_unselectedslide_textcolor',
+            'fps_selectedslide_bgcolor',
+            'fps_unselectedslide_bgcolor',
+            'fps_selectedslide_dropshadow_color',
+            'fps_unselectedslide_dropshadow_color',
+            'fps_slide_textshadow_color',
+            'fps_title_font',
+            'fps_excerpt_font',
+            'fps_heading_font',
+            'fps_selectedslide_font',
+            'fps_unselectedslide_font',
+            'fps_title_fontstyle',
+            'fps_excerpt_fontstyle',
+            'fps_heading_fontstyle',
+            'fps_selectedslide_fontstyle',
+            'fps_unselectedslide_fontstyle',
+            'fps_title_fontvariant',
+            'fps_excerpt_fontvariant',
+            'fps_heading_fontvariant',
+            'fps_selectedslide_fontvariant',
+            'fps_unselectedslide_fontvariant',
+            'fps_title_fontweight',
+            'fps_excerpt_fontweight',
+            'fps_heading_fontweight',
+            'fps_selectedslide_fontweight',
+            'fps_unselectedslide_fontweight',
+            'fps_title_fontsize',
+            'fps_excerpt_fontsize',
+            'fps_heading_fontsize',
+            'fps_selectedslide_fontsize',
+            'fps_unselectedslide_fontsize',
+            'fps_title_fontheight',
+            'fps_excerpt_fontheight',
+            'fps_heading_fontheight',
+            'fps_selectedslide_fontheight',
+            'fps_unselectedslide_fontheight',
+            'fps_image_bg_color'
+
+        );
+
+        foreach ($variables as $var) {
+            $var_value = $_POST[$var];
+            update_option($var, $var_value);
         }
-        else
-        {
-            $error[] = "ERROR: Scroll Height - Please enter a valid number in range (50-2000).";
+
+
+
+        /* Boolean Variables */
+        $variables = array (
+            'fps_image_full_size',
+            'fps_display_title',
+            'fps_display_excerpt',
+            'fps_display_heading',
+            'fps_autoscroll',
+            'fps_display_slidenumbers',
+            'fps_selectedslide_bold',
+            'fps_selectedslide_italics',
+            'fps_unselectedslide_bold',
+            'fps_unselectedslide_italics',
+            'fps_selectedslide_inset',
+            'fps_unselectedslide_inset',
+            'fps_image_scale',
+            'fps_image_height_noscale',
+            'fps_image_width_noscale',
+            'fps_image_height_stretch',
+            'fps_image_width_stretch'
+
+        );
+
+        foreach ($variables as $var) {
+            $var_value = isset($_POST[$var]) ? 1:0;
+            update_option($var, $var_value);
         }
 
-        $post_width = $_POST['fps_width'];
-        if ( is_numeric($post_width) )
-        {
-            if ($post_width >= 70 && $post_width <= 2000)
-            {
-                update_option('fps_width', $post_width);
-            }
-            else
-            {
-                $error[] = "ERROR: Scroll Width - Please enter a valid number in range (70-2000).";
-            }
-        }
-        else
-        {
-            $error[] = "ERROR: Scroll Width - Please enter a valid number in range (70-2000).";
-        }
 
-        $post_innershadow_color = $_POST['fps_innershadow_color'];
-        update_option('fps_innershadow_color', $post_innershadow_color);
 
-        $post_outershadow_color = $_POST['fps_outershadow_color'];
-        update_option('fps_outershadow_color', $post_outershadow_color);
 
-        $post_arrow_color = $_POST['fps_arrow_color'];
-        update_option('fps_arrow_color', $post_arrow_color);
-
-        $post_corner_radius = $_POST['fps_corner_radius'];
-        update_option('fps_corner_radius', $post_corner_radius);
-
-        $post_outer_corner_radius = $_POST['fps_outer_corner_radius'];
-        update_option('fps_outer_corner_radius', $post_outer_corner_radius);
-
-        $post_dropshadow_x = $_POST['fps_dropshadow_x'];
-        update_option('fps_dropshadow_x', $post_dropshadow_x);
-
-        $post_dropshadow_y = $_POST['fps_dropshadow_y'];
-        update_option('fps_dropshadow_y', $post_dropshadow_y);
-
-        $post_dropshadow_blur = $_POST['fps_dropshadow_blur'];
-        update_option('fps_dropshadow_blur', $post_dropshadow_blur);
-
-        $post_dropshadow_spread = $_POST['fps_dropshadow_spread'];
-        update_option('fps_dropshadow_spread', $post_dropshadow_spread);
-
-        $post_outer_dropshadow_x = $_POST['fps_outer_dropshadow_x'];
-        update_option('fps_outer_dropshadow_x', $post_outer_dropshadow_x);
-
-        $post_outer_dropshadow_y = $_POST['fps_outer_dropshadow_y'];
-        update_option('fps_outer_dropshadow_y', $post_outer_dropshadow_y);
-
-        $post_outer_dropshadow_blur = $_POST['fps_outer_dropshadow_blur'];
-        update_option('fps_outer_dropshadow_blur', $post_outer_dropshadow_blur);
-
-        $post_outer_dropshadow_spread = $_POST['fps_outer_dropshadow_spread'];
-        update_option('fps_outer_dropshadow_spread', $post_outer_dropshadow_spread);
-
-        $post_arrow_position = $_POST['fps_arrow_position'];
-        update_option('fps_arrow_position', $post_arrow_position);
-
-        $post_arrow_custom_url = $_POST['fps_arrow_custom_url'];
-        update_option('fps_arrow_custom_url', $post_arrow_custom_url);
-
-        $post_selectedslide_textcolor = $_POST['fps_selectedslide_textcolor'];
-        update_option('fps_selectedslide_textcolor', $post_selectedslide_textcolor);
-
-        $post_unselectedslide_textcolor = $_POST['fps_unselectedslide_textcolor'];
-        update_option('fps_unselectedslide_textcolor', $post_unselectedslide_textcolor);
-
-        $post_selectedslide_bgcolor = $_POST['fps_selectedslide_bgcolor'];
-        update_option('fps_selectedslide_bgcolor', $post_selectedslide_bgcolor);
-
-        $post_unselectedslide_bgcolor = $_POST['fps_unselectedslide_bgcolor'];
-        update_option('fps_unselectedslide_bgcolor', $post_unselectedslide_bgcolor);
-
-        $post_selectedslide_bold = isset($_POST['fps_selectedslide_bold']) ? 1:0;
-        update_option('fps_selectedslide_bold', $post_selectedslide_bold);
-
-        $post_selectedslide_italics = isset($_POST['fps_selectedslide_italics']) ? 1:0;
-        update_option('fps_selectedslide_italics', $post_selectedslide_italics);
-
-        $post_unselectedslide_bold = isset($_POST['fps_unselectedslide_bold']) ? 1:0;
-        update_option('fps_unselectedslide_bold', $post_unselectedslide_bold);
-
-        $post_unselectedslide_italics = isset($_POST['fps_unselectedslide_italics']) ? 1:0;
-        update_option('fps_unselectedslide_italics', $post_unselectedslide_italics);
-
-        $post_slide_bgradius = $_POST['fps_slide_bgradius'];
-        update_option('fps_slide_bgradius', $post_slide_bgradius);
-
-        $post_selectedslide_dropshadow_x = $_POST['fps_selectedslide_dropshadow_x'];
-        update_option('fps_selectedslide_dropshadow_x', $post_selectedslide_dropshadow_x);
-
-        $post_selectedslide_dropshadow_y = $_POST['fps_selectedslide_dropshadow_y'];
-        update_option('fps_selectedslide_dropshadow_y', $post_selectedslide_dropshadow_y);
-
-        $post_selectedslide_dropshadow_blur = $_POST['fps_selectedslide_dropshadow_blur'];
-        update_option('fps_selectedslide_dropshadow_blur', $post_selectedslide_dropshadow_blur);
-
-        $post_selectedslide_dropshadow_spread = $_POST['fps_selectedslide_dropshadow_spread'];
-        update_option('fps_selectedslide_dropshadow_spread', $post_selectedslide_dropshadow_spread);
-
-        $post_selectedslide_inset = isset($_POST['fps_selectedslide_inset']) ? 1:0;
-        update_option('fps_selectedslide_inset', $post_selectedslide_inset);
-
-        $post_unselectedslide_dropshadow_x = $_POST['fps_unselectedslide_dropshadow_x'];
-        update_option('fps_unselectedslide_dropshadow_x', $post_unselectedslide_dropshadow_x);
-
-        $post_unselectedslide_dropshadow_y = $_POST['fps_unselectedslide_dropshadow_y'];
-        update_option('fps_unselectedslide_dropshadow_y', $post_unselectedslide_dropshadow_y);
-
-        $post_unselectedslide_dropshadow_blur = $_POST['fps_unselectedslide_dropshadow_blur'];
-        update_option('fps_unselectedslide_dropshadow_blur', $post_unselectedslide_dropshadow_blur);
-
-        $post_unselectedslide_dropshadow_spread = $_POST['fps_unselectedslide_dropshadow_spread'];
-        update_option('fps_unselectedslide_dropshadow_spread', $post_unselectedslide_dropshadow_spread);
-
-        $post_selectedslide_dropshadow_color = $_POST['fps_selectedslide_dropshadow_color'];
-        update_option('fps_selectedslide_dropshadow_color', $post_selectedslide_dropshadow_color);
-
-        $post_unselectedslide_dropshadow_color = $_POST['fps_unselectedslide_dropshadow_color'];
-        update_option('fps_unselectedslide_dropshadow_color', $post_unselectedslide_dropshadow_color);
-
-        $post_slide_textshadow_x = $_POST['fps_slide_textshadow_x'];
-        update_option('fps_slide_textshadow_x', $post_slide_textshadow_x);
-
-        $post_slide_textshadow_y = $_POST['fps_slide_textshadow_y'];
-        update_option('fps_slide_textshadow_y', $post_slide_textshadow_y);
-
-        $post_slide_textshadow_blur = $_POST['fps_slide_textshadow_blur'];
-        update_option('fps_slide_textshadow_blur', $post_slide_textshadow_blur);
-
-        $post_slide_textshadow_color = $_POST['fps_slide_textshadow_color'];
-        update_option('fps_slide_textshadow_color', $post_slide_textshadow_color);
-
-        $post_title_font = $_POST['fps_title_font'];
-        update_option('fps_title_font', $post_title_font);
-
-        $post_excerpt_font = $_POST['fps_excerpt_font'];
-        update_option('fps_excerpt_font', $post_excerpt_font);
-
-        $post_heading_font = $_POST['fps_heading_font'];
-        update_option('fps_heading_font', $post_heading_font);
-
-        $post_selectedslide_font = $_POST['fps_selectedslide_font'];
-        update_option('fps_selectedslide_font', $post_selectedslide_font);
-
-        $post_unselectedslide_font = $_POST['fps_unselectedslide_font'];
-        update_option('fps_unselectedslide_font', $post_unselectedslide_font);
-
-        $post_title_fontstyle = $_POST['fps_title_fontstyle'];
-        update_option('fps_title_fontstyle', $post_title_fontstyle);
-
-        $post_excerpt_fontstyle = $_POST['fps_excerpt_fontstyle'];
-        update_option('fps_excerpt_fontstyle', $post_excerpt_fontstyle);
-
-        $post_heading_fontstyle = $_POST['fps_heading_fontstyle'];
-        update_option('fps_heading_fontstyle', $post_heading_fontstyle);
-
-        $post_selectedslide_fontstyle = $_POST['fps_selectedslide_fontstyle'];
-        update_option('fps_selectedslide_fontstyle', $post_selectedslide_fontstyle);
-
-        $post_unselectedslide_fontstyle = $_POST['fps_unselectedslide_fontstyle'];
-        update_option('fps_unselectedslide_fontstyle', $post_unselectedslide_fontstyle);
-
-        $post_title_fontvariant = $_POST['fps_title_fontvariant'];
-        update_option('fps_title_fontvariant', $post_title_fontvariant);
-
-        $post_excerpt_fontvariant = $_POST['fps_excerpt_fontvariant'];
-        update_option('fps_excerpt_fontvariant', $post_excerpt_fontvariant);
-
-        $post_heading_fontvariant = $_POST['fps_heading_fontvariant'];
-        update_option('fps_heading_fontvariant', $post_heading_fontvariant);
-
-        $post_selectedslide_fontvariant = $_POST['fps_selectedslide_fontvariant'];
-        update_option('fps_selectedslide_fontvariant', $post_selectedslide_fontvariant);
-
-        $post_unselectedslide_fontvariant = $_POST['fps_unselectedslide_fontvariant'];
-        update_option('fps_unselectedslide_fontvariant', $post_unselectedslide_fontvariant);
-
-        $post_title_fontweight = $_POST['fps_title_fontweight'];
-        update_option('fps_title_fontweight', $post_title_fontweight);
-
-        $post_excerpt_fontweight = $_POST['fps_excerpt_fontweight'];
-        update_option('fps_excerpt_fontweight', $post_excerpt_fontweight);
-
-        $post_heading_fontweight = $_POST['fps_heading_fontweight'];
-        update_option('fps_heading_fontweight', $post_heading_fontweight);
-
-        $post_selectedslide_fontweight = $_POST['fps_selectedslide_fontweight'];
-        update_option('fps_selectedslide_fontweight', $post_selectedslide_fontweight);
-
-        $post_unselectedslide_fontweight = $_POST['fps_unselectedslide_fontweight'];
-        update_option('fps_unselectedslide_fontweight', $post_unselectedslide_fontweight);
-
-        $post_title_fontsize = $_POST['fps_title_fontsize'];
-        update_option('fps_title_fontsize', $post_title_fontsize);
-
-        $post_excerpt_fontsize = $_POST['fps_excerpt_fontsize'];
-        update_option('fps_excerpt_fontsize', $post_excerpt_fontsize);
-
-        $post_heading_fontsize = $_POST['fps_heading_fontsize'];
-        update_option('fps_heading_fontsize', $post_heading_fontsize);
-
-        $post_selectedslide_fontsize = $_POST['fps_selectedslide_fontsize'];
-        update_option('fps_selectedslide_fontsize', $post_selectedslide_fontsize);
-
-        $post_unselectedslide_fontsize = $_POST['fps_unselectedslide_fontsize'];
-        update_option('fps_unselectedslide_fontsize', $post_unselectedslide_fontsize);
-
-        $post_title_fontheight = $_POST['fps_title_fontheight'];
-        update_option('fps_title_fontheight', $post_title_fontheight);
-
-        $post_excerpt_fontheight = $_POST['fps_excerpt_fontheight'];
-        update_option('fps_excerpt_fontheight', $post_excerpt_fontheight);
-
-        $post_heading_fontheight = $_POST['fps_heading_fontheight'];
-        update_option('fps_heading_fontheight', $post_heading_fontheight);
-
-        $post_selectedslide_fontheight = $_POST['fps_selectedslide_fontheight'];
-        update_option('fps_selectedslide_fontheight', $post_selectedslide_fontheight);
-
-        $post_unselectedslide_fontheight = $_POST['fps_unselectedslide_fontheight'];
-        update_option('fps_unselectedslide_fontheight', $post_unselectedslide_fontheight);
-
-        $post_scroll_speed = $_POST['fps_scroll_speed'];
-        update_option('fps_scroll_speed', $post_scroll_speed);
-
-        $post_scroll_fadeInSpeed = $_POST['fps_scroll_fadeInSpeed'];
-        update_option('fps_scroll_fadeInSpeed', $post_scroll_fadeInSpeed);
-
-        $post_scroll_fadeOutSpeed = $_POST['fps_scroll_fadeOutSpeed'];
-        update_option('fps_scroll_fadeOutSpeed', $post_scroll_fadeOutSpeed);
-
-        $post_scroll_interval = $_POST['fps_scroll_interval'];
-        update_option('fps_scroll_interval', $post_scroll_interval);
-
-        $post_image_bg_color = $_POST['fps_image_bg_color'];
-        update_option('fps_image_bg_color', $post_image_bg_color);
-
-        $fps_image_full_size = isset($_POST['fps_image_full_size']) ? 1:0;
-        update_option('fps_image_full_size', $fps_image_full_size);
-
-        $post_image_scale = isset($_POST['fps_image_scale']) ? 1:0;
-        update_option('fps_image_scale', $post_image_scale);
-
-        $post_image_height_noscale = isset($_POST['fps_image_height_noscale']) ? 1:0;
-        update_option('fps_image_height_noscale', $post_image_height_noscale);
-
-        $post_image_width_noscale = isset($_POST['fps_image_width_noscale']) ? 1:0;
-        update_option('fps_image_width_noscale', $post_image_width_noscale);
-
-        $post_image_height_stretch = isset($_POST['fps_image_height_stretch']) ? 1:0;
-        update_option('fps_image_height_stretch', $post_image_height_stretch);
-
-        $post_image_width_stretch = isset($_POST['fps_image_width_stretch']) ? 1:0;
-        update_option('fps_image_width_stretch', $post_image_width_stretch);
-
-        $post_unselectedslide_inset = isset($_POST['fps_unselectedslide_inset']) ? 1:0;
-        update_option('fps_unselectedslide_inset', $post_unselectedslide_inset);
-
-        $post_display_title = isset($_POST['fps_display_title']) ? 1:0;
-        update_option('fps_display_title', $post_display_title);
-
-        $post_display_excerpt = isset($_POST['fps_display_excerpt']) ? 1:0;
-        update_option('fps_display_excerpt', $post_display_excerpt);
-
-        $post_display_heading = isset($_POST['fps_display_heading']) ? 1:0;
-        update_option('fps_display_heading', $post_display_heading);
-
-        $post_roundedconers = isset($_POST['fps_roundedcorners']) ? 1:0;
-        update_option('fps_roundedcorners', $post_roundedconers);
-
-        $post_dropshadows = isset($_POST['fps_dropshadows']) ? 1:0;
-        update_option('fps_dropshadows', $post_dropshadows);
-
-        $post_autoscroll = isset($_POST['fps_autoscroll']) ? 1:0;
-        update_option('fps_autoscroll', $post_autoscroll);
-
-        $post_display_slidenumbers = isset($_POST['fps_display_slidenumbers']) ? 1:0;
-        update_option('fps_display_slidenumbers', $post_display_slidenumbers);
-        
         if( empty($error) ){ ?>
             <div class="updated"><p><strong><?php _e('Settings Saved.', 'wp-rp' ); ?></strong></p></div>
         <?php }else{ ?>
@@ -349,137 +146,135 @@
             }
         ?></strong></p></div>
         <?php }
-    } else {
-        $max_posts = get_option('fps_max_posts');
-        $fps_image_full_size = get_option('fps_image_full_size');
-        
-        $post_title_color = get_option('fps_title_color');
-        $post_excerpt_color = get_option('fps_excerpt_color');
-
-        $post_heading_color = get_option('fps_heading_color');
-        $post_heading_text = get_option('fps_heading_text');
-        
-        $post_bg_color = get_option('fps_bg_color');
-        $post_textbg_color = get_option('fps_textbg_color');
-        $post_textbg_alpha = get_option('fps_textbg_alpha');
-        
-        $post_innershadow_color = get_option('fps_innershadow_color');
-        $post_outershadow_color = get_option('fps_outershadow_color');
-
-        $post_arrow_color = get_option('fps_arrow_color');
-        
-        $post_display_title = get_option('fps_display_title');
-        $post_display_excerpt = get_option('fps_display_excerpt');
-        $post_display_heading = get_option('fps_display_heading');
-
-        $post_roundedconers = get_option('fps_roundedcorners');
-        $post_dropshadows = get_option('fps_dropshadows');
-
-        $post_autoscroll = get_option('fps_autoscroll');
-
-        $post_corner_radius = get_option('fps_corner_radius');
-        $post_outer_corner_radius = get_option('fps_outer_corner_radius');
-
-        $post_dropshadow_x = get_option('fps_dropshadow_x');
-        $post_dropshadow_y = get_option('fps_dropshadow_y');
-        $post_dropshadow_blur = get_option('fps_dropshadow_blur');
-        $post_dropshadow_spread = get_option('fps_dropshadow_spread');
-
-        $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
-        $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
-        $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
-        $post_outer_dropshadow_spread = get_option('fps_outer_dropshadow_spread');
-
-        $post_height = get_option('fps_height');
-        $post_width = get_option('fps_width');
-
-        $post_display_slidenumbers = get_option('fps_display_slidenumbers');
-        $post_arrow_position = get_option('fps_arrow_position');
-        $post_arrow_custom_url = get_option('fps_arrow_custom_url');
-
-        $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
-        $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
-        $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
-        $post_selectedslide_dropshadow_spread = get_option('fps_selectedslide_dropshadow_spread');
-        $post_selectedslide_inset = get_option('fps_selectedslide_inset');
-
-        $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
-        $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
-        $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
-        $post_unselectedslide_dropshadow_spread = get_option('fps_unselectedslide_dropshadow_spread');
-        $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
-
-        $post_selectedslide_bold = get_option('fps_selectedslide_bold');
-        $post_selectedslide_italics = get_option('fps_selectedslide_italics');
-
-        $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
-        $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
-
-        $post_selectedslide_textcolor = get_option('fps_selectedslide_textcolor');
-        $post_unselectedslide_textcolor = get_option('fps_unselectedslide_textcolor');
-
-        $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
-        $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
-
-        $post_slide_bgradius = get_option('fps_slide_bgradius');
-
-        $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
-        $post_unselectedslide_dropshadow_color = get_option('fps_unselectedslide_dropshadow_color');
-        $post_slide_textshadow_x = get_option('fps_slide_textshadow_x');
-        $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
-        $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
-        $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
-
-        $post_title_font = get_option('fps_title_font');
-        $post_excerpt_font = get_option('fps_excerpt_font');
-        $post_heading_font = get_option('fps_heading_font');
-        $post_selectedslide_font = get_option('fps_selectedslide_font');
-        $post_unselectedslide_font = get_option('fps_unselectedslide_font');
-
-        $post_title_fontstyle = get_option('fps_title_fontstyle');
-        $post_excerpt_fontstyle = get_option('fps_excerpt_fontstyle');
-        $post_heading_fontstyle = get_option('fps_heading_fontstyle');
-        $post_selectedslide_fontstyle = get_option('fps_selectedslide_fontstyle');
-        $post_unselectedslide_fontstyle = get_option('fps_unselectedslide_fontstyle');
-
-        $post_title_fontvariant = get_option('fps_title_fontvariant');
-        $post_excerpt_fontvariant = get_option('fps_excerpt_fontvariant');
-        $post_heading_fontvariant = get_option('fps_heading_fontvariant');
-        $post_selectedslide_fontvariant = get_option('fps_selectedslide_fontvariant');
-        $post_unselectedslide_fontvariant = get_option('fps_unselectedslide_fontvariant');
-
-        $post_title_fontweight = get_option('fps_title_fontweight');
-        $post_excerpt_fontweight = get_option('fps_excerpt_fontweight');
-        $post_heading_fontweight = get_option('fps_heading_fontweight');
-        $post_selectedslide_fontweight = get_option('fps_selectedslide_fontweight');
-        $post_unselectedslide_fontweight = get_option('fps_unselectedslide_fontweight');
-
-        $post_title_fontsize = get_option('fps_title_fontsize');
-        $post_excerpt_fontsize = get_option('fps_excerpt_fontsize');
-        $post_heading_fontsize = get_option('fps_heading_fontsize');
-        $post_selectedslide_fontsize = get_option('fps_selectedslide_fontsize');
-        $post_unselectedslide_fontsize = get_option('fps_unselectedslide_fontsize');
-
-        $post_title_fontheight = get_option('fps_title_fontheight');
-        $post_excerpt_fontheight = get_option('fps_excerpt_fontheight');
-        $post_heading_fontheight = get_option('fps_heading_fontheight');
-        $post_selectedslide_fontheight = get_option('fps_selectedslide_fontheight');
-        $post_unselectedslide_fontheight = get_option('fps_unselectedslide_fontheight');
-
-        $post_scroll_speed = get_option('fps_scroll_speed');
-        $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
-        $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
-        $post_scroll_interval = get_option('fps_scroll_interval');
-
-        $post_image_bg_color = get_option('fps_image_bg_color');
-        $post_image_scale = get_option('fps_image_scale');
-        $post_image_height_noscale = get_option('fps_image_height_noscale');
-        $post_image_width_noscale = get_option('fps_image_width_noscale');
-        $post_image_height_stretch = get_option('fps_image_height_stretch');
-        $post_image_width_stretch = get_option('fps_image_width_stretch');
-        
-
     }
+    
+    $max_posts = get_option('fps_max_posts');
+    $fps_image_full_size = get_option('fps_image_full_size');
+
+    $post_title_color = get_option('fps_title_color');
+    $post_excerpt_color = get_option('fps_excerpt_color');
+
+    $post_heading_color = get_option('fps_heading_color');
+    $post_heading_text = get_option('fps_heading_text');
+
+    $post_bg_color = get_option('fps_bg_color');
+    $post_textbg_color = get_option('fps_textbg_color');
+    $post_textbg_alpha = get_option('fps_textbg_alpha');
+
+    $post_innershadow_color = get_option('fps_innershadow_color');
+    $post_outershadow_color = get_option('fps_outershadow_color');
+
+    $post_arrow_color = get_option('fps_arrow_color');
+
+    $post_display_title = get_option('fps_display_title');
+    $post_display_excerpt = get_option('fps_display_excerpt');
+    $post_display_heading = get_option('fps_display_heading');
+
+    $post_roundedconers = get_option('fps_roundedcorners');
+    $post_dropshadows = get_option('fps_dropshadows');
+
+    $post_autoscroll = get_option('fps_autoscroll');
+
+    $post_corner_radius = get_option('fps_corner_radius');
+    $post_outer_corner_radius = get_option('fps_outer_corner_radius');
+
+    $post_dropshadow_x = get_option('fps_dropshadow_x');
+    $post_dropshadow_y = get_option('fps_dropshadow_y');
+    $post_dropshadow_blur = get_option('fps_dropshadow_blur');
+    $post_dropshadow_spread = get_option('fps_dropshadow_spread');
+
+    $post_outer_dropshadow_x = get_option('fps_outer_dropshadow_x');
+    $post_outer_dropshadow_y = get_option('fps_outer_dropshadow_y');
+    $post_outer_dropshadow_blur = get_option('fps_outer_dropshadow_blur');
+    $post_outer_dropshadow_spread = get_option('fps_outer_dropshadow_spread');
+
+    $post_height = get_option('fps_height');
+    $post_width = get_option('fps_width');
+
+    $post_display_slidenumbers = get_option('fps_display_slidenumbers');
+    $post_arrow_position = get_option('fps_arrow_position');
+    $post_arrow_custom_url = get_option('fps_arrow_custom_url');
+
+    $post_selectedslide_dropshadow_x = get_option('fps_selectedslide_dropshadow_x');
+    $post_selectedslide_dropshadow_y = get_option('fps_selectedslide_dropshadow_y');
+    $post_selectedslide_dropshadow_blur = get_option('fps_selectedslide_dropshadow_blur');
+    $post_selectedslide_dropshadow_spread = get_option('fps_selectedslide_dropshadow_spread');
+    $post_selectedslide_inset = get_option('fps_selectedslide_inset');
+
+    $post_unselectedslide_dropshadow_x = get_option('fps_unselectedslide_dropshadow_x');
+    $post_unselectedslide_dropshadow_y = get_option('fps_unselectedslide_dropshadow_y');
+    $post_unselectedslide_dropshadow_blur = get_option('fps_unselectedslide_dropshadow_blur');
+    $post_unselectedslide_dropshadow_spread = get_option('fps_unselectedslide_dropshadow_spread');
+    $post_unselectedslide_inset = get_option('fps_unselectedslide_inset');
+
+    $post_selectedslide_bold = get_option('fps_selectedslide_bold');
+    $post_selectedslide_italics = get_option('fps_selectedslide_italics');
+
+    $post_unselectedslide_bold = get_option('fps_unselectedslide_bold');
+    $post_unselectedslide_italics = get_option('fps_unselectedslide_italics');
+
+    $post_selectedslide_textcolor = get_option('fps_selectedslide_textcolor');
+    $post_unselectedslide_textcolor = get_option('fps_unselectedslide_textcolor');
+
+    $post_selectedslide_bgcolor = get_option('fps_selectedslide_bgcolor');
+    $post_unselectedslide_bgcolor = get_option('fps_unselectedslide_bgcolor');
+
+    $post_slide_bgradius = get_option('fps_slide_bgradius');
+
+    $post_selectedslide_dropshadow_color = get_option('fps_selectedslide_dropshadow_color');
+    $post_unselectedslide_dropshadow_color = get_option('fps_unselectedslide_dropshadow_color');
+    $post_slide_textshadow_x = get_option('fps_slide_textshadow_x');
+    $post_slide_textshadow_y = get_option('fps_slide_textshadow_y');
+    $post_slide_textshadow_blur = get_option('fps_slide_textshadow_blur');
+    $post_slide_textshadow_color = get_option('fps_slide_textshadow_color');
+
+    $post_title_font = get_option('fps_title_font');
+    $post_excerpt_font = get_option('fps_excerpt_font');
+    $post_heading_font = get_option('fps_heading_font');
+    $post_selectedslide_font = get_option('fps_selectedslide_font');
+    $post_unselectedslide_font = get_option('fps_unselectedslide_font');
+
+    $post_title_fontstyle = get_option('fps_title_fontstyle');
+    $post_excerpt_fontstyle = get_option('fps_excerpt_fontstyle');
+    $post_heading_fontstyle = get_option('fps_heading_fontstyle');
+    $post_selectedslide_fontstyle = get_option('fps_selectedslide_fontstyle');
+    $post_unselectedslide_fontstyle = get_option('fps_unselectedslide_fontstyle');
+
+    $post_title_fontvariant = get_option('fps_title_fontvariant');
+    $post_excerpt_fontvariant = get_option('fps_excerpt_fontvariant');
+    $post_heading_fontvariant = get_option('fps_heading_fontvariant');
+    $post_selectedslide_fontvariant = get_option('fps_selectedslide_fontvariant');
+    $post_unselectedslide_fontvariant = get_option('fps_unselectedslide_fontvariant');
+
+    $post_title_fontweight = get_option('fps_title_fontweight');
+    $post_excerpt_fontweight = get_option('fps_excerpt_fontweight');
+    $post_heading_fontweight = get_option('fps_heading_fontweight');
+    $post_selectedslide_fontweight = get_option('fps_selectedslide_fontweight');
+    $post_unselectedslide_fontweight = get_option('fps_unselectedslide_fontweight');
+
+    $post_title_fontsize = get_option('fps_title_fontsize');
+    $post_excerpt_fontsize = get_option('fps_excerpt_fontsize');
+    $post_heading_fontsize = get_option('fps_heading_fontsize');
+    $post_selectedslide_fontsize = get_option('fps_selectedslide_fontsize');
+    $post_unselectedslide_fontsize = get_option('fps_unselectedslide_fontsize');
+
+    $post_title_fontheight = get_option('fps_title_fontheight');
+    $post_excerpt_fontheight = get_option('fps_excerpt_fontheight');
+    $post_heading_fontheight = get_option('fps_heading_fontheight');
+    $post_selectedslide_fontheight = get_option('fps_selectedslide_fontheight');
+    $post_unselectedslide_fontheight = get_option('fps_unselectedslide_fontheight');
+
+    $post_scroll_speed = get_option('fps_scroll_speed');
+    $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
+    $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
+    $post_scroll_interval = get_option('fps_scroll_interval');
+
+    $post_image_bg_color = get_option('fps_image_bg_color');
+    $post_image_scale = get_option('fps_image_scale');
+    $post_image_height_noscale = get_option('fps_image_height_noscale');
+    $post_image_width_noscale = get_option('fps_image_width_noscale');
+    $post_image_height_stretch = get_option('fps_image_height_stretch');
+    $post_image_width_stretch = get_option('fps_image_width_stretch');
 ?>
 
 <div class="wrap">
