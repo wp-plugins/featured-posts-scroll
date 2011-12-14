@@ -80,6 +80,9 @@ The easiest way to figure this out is just to look at the images included with t
 
 For any configuration, the image should be split into four evenly sized quadrants. The top row is left/right arrows as they normally appear and the bottom row are the arrows as they appear when hovered over. The left column should be arrows pointing left, and the right column should be arrows pointing right.
 
+= I have the "Display Excerpts" option selected, but I'm not seeing anything =
+The plugin will currently only display manually entered excerpts. Automatically generated excerpts will not be displayed.
+
 == Screenshots ==
 
 1. Admin Screen

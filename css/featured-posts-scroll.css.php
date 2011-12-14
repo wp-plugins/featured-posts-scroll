@@ -1,7 +1,7 @@
 <?php 
 	header('content-type: text/css'); 
 	define('WP_USE_THEMES', false);
-    require_once((dirname(dirname( dirname( dirname ( __FILE__ ) ) ))).'/wp-config.php');
+    require_once((dirname(dirname( dirname( dirname ( dirname ( __FILE__ ) ) ) ))).'/wp-config.php');
 ?>
 
 <?php 
