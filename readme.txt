@@ -86,9 +86,8 @@ The plugin will currently only display manually entered excerpts. Automatically 
 == Screenshots ==
 
 1. Admin Screen
-2. Appearance Customization
-3. New Features: Slide Numbers, Alternate Arrow Position, Custom Sizing
-4. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
+2. New Features: Slide Numbers, Alternate Arrow Position, Custom Sizing
+3. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
 
@@ -180,4 +179,5 @@ The plugin will currently only display manually entered excerpts. Automatically 
 
 = 1.23 =
 * Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
-* Code refactoring and cleanup: activate/deactivate functions, admin page.
+* Code refactoring and cleanup: activate/deactivate functions, admin page
+* Removed dead code from JS file.

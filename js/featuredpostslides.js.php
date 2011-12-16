@@ -5,6 +5,7 @@
 ?>
 
 <?php
+    $post_autoscroll = get_option('fps_autoscroll');
     $post_scroll_speed = get_option('fps_scroll_speed');
     $post_scroll_fadeInSpeed = get_option('fps_scroll_fadeInSpeed');
     $post_scroll_fadeOutSpeed = get_option('fps_scroll_fadeOutSpeed');
@@ -16,8 +17,8 @@ var FeaturedPostsLib = this.FeaturedPostsLib || {};
 FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
 (function($j) {
-    var type = 'none'; // Type of slider present (v1.0 only supports 'single')
-    var fpg_animLocked = new Array(); // Lock object for animations
+    var type = 'none';
+    var fps_animLocked = new Array(); // Lock object for animations
     var autoscrollInterval = new Array();
 
     /** Initialize jQuery based animations */
@@ -43,9 +44,9 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
         initSlideNumbers();
 
         // release animation locks
-        for (var i=1; i<=fpg_animLocked.length; i++)
+        for (var i=1; i<=fps_animLocked.length; i++)
         {
-            fpg_animLocked[i-1] = false;
+            fps_animLocked[i-1] = false;
         }
     };
 
@@ -57,7 +58,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
         {
             $j('.scrollFeaturedPostsRight').each(function(index) {
                 $j(this).click(function() {
-                    if (fpg_animLocked[index] == false)
+                    if (fps_animLocked[index] == false)
                     {
                         FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'right', index);
                     }
@@ -67,7 +68,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
             $j('.scrollFeaturedPostsLeft').each(function(index) {
                 $j(this).click(function() {
-                    if (fpg_animLocked[index] == false)
+                    if (fps_animLocked[index] == false)
                     {
                         FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'left', index);
                     }
@@ -77,7 +78,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
             $j('.scrollFeaturedPostsRight-below').each(function(index) {
                 $j(this).click(function() {
-                    if (fpg_animLocked[index] == false)
+                    if (fps_animLocked[index] == false)
                     {
                         FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'right', index);
                     }
@@ -87,7 +88,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
             $j('.scrollFeaturedPostsLeft-below').each(function(index) {
                 $j(this).click(function() {
-                    if (fpg_animLocked[index] == false)
+                    if (fps_animLocked[index] == false)
                     {
                         FeaturedPostsLib.fps.scrollFeaturedPosts(this, 'left', index);
                     }
@@ -110,7 +111,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
         {
             $j('ul.fps-slideNumberList').each(function(index) {
                 $j(this).children('li').click(function() {
-                    if (fpg_animLocked[index] == false)
+                    if (fps_animLocked[index] == false)
                     {
                         scrollToPost(this, index);
                     }
@@ -123,28 +124,26 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
     function initAutoscroll()
     {
-        if (type != 'none')
+        if (type != 'none' && 1 == <?php echo $post_autoscroll ?>)
         {
             $j('.featured-posts-wrapper').each(function(index) {
-                fpg_animLocked[index] = true;
-                if ($j(this).hasClass('fps-autoscroll'))
+                fps_animLocked[index] = true;
+                
+                if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
                 {
-                    if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
-                    {
-                        var callback = 
-                            "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
-                            index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right', " + index + ")";
-                        autoscrollInterval[index] = setInterval(
-                            callback, <?php echo $post_scroll_interval ?>);
-                    }
-                    else
-                    {
-                        var callback = 
-                            "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
-                            index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right', " + index + ")";
-                        autoscrollInterval[index] = setInterval(
-                            callback, <?php echo $post_scroll_interval ?>);
-                    }
+                    var callback = 
+                        "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right', " + index + ")";
+                    autoscrollInterval[index] = setInterval(
+                        callback, <?php echo $post_scroll_interval ?>);
+                }
+                else
+                {
+                    var callback = 
+                        "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
+                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right', " + index + ")";
+                    autoscrollInterval[index] = setInterval(
+                        callback, <?php echo $post_scroll_interval ?>);
                 }
             });
         }
@@ -156,7 +155,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
         if (!($j(slideButton).hasClass('fps-selectedSlide')))
         {
             // lock animations
-            fpg_animLocked[index] = true;
+            fps_animLocked[index] = true;
 
             var currentItem = $j(slideButton).parent().siblings('ul.featured-posts').children('li:visible');
 
@@ -173,35 +172,32 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
     FeaturedPostsLib.fps.scrollFeaturedPosts = function(button, dir, index)
     {
-        if (fpg_animLocked[index] != true)
+        if (fps_animLocked[index] != true)
         {
             // lock animations
-            fpg_animLocked[index] = true;
+            fps_animLocked[index] = true;
 
             // get the currently displayed element(s)
             var currentItem = $j(button).siblings('ul.featured-posts').children('li:visible');
 
             var nextItem;
 
-            if (type == 'single')
-            {        
-                if (dir == 'right')
-                {
-                    nextItem = currentItem.next();
+            if (dir == 'right')
+            {
+                nextItem = currentItem.next();
 
-                    if (nextItem.length == 0)
-                    {
-                        nextItem = currentItem.siblings().first();
-                    }
+                if (nextItem.length == 0)
+                {
+                    nextItem = currentItem.siblings().first();
                 }
-                else if (dir == 'left')
-                {
-                    nextItem = currentItem.prev();
+            }
+            else if (dir == 'left')
+            {
+                nextItem = currentItem.prev();
 
-                    if (nextItem.length == 0)
-                    {
-                        nextItem = currentItem.siblings().last();
-                    }
+                if (nextItem.length == 0)
+                {
+                    nextItem = currentItem.siblings().last();
                 }
             }
 
@@ -252,7 +248,7 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
                 toShow.css('float','');
                 toHide.css('float','');
                 $j(toShow).find('.fps-text').fadeIn(<?php echo $post_scroll_fadeInSpeed ?>, function() {
-                    fpg_animLocked[index] = false;
+                    fps_animLocked[index] = false;
                 });
             });
 

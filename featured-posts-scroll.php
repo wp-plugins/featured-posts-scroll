@@ -251,24 +251,14 @@ function fps_show($atts)
 
     $post_heading_text = get_option('fps_heading_text');
 
-    $post_autoscroll = get_option('fps_autoscroll');
-
     $post_arrow_position = get_option('fps_arrow_position');
 
     $fps_image_full_size = get_option('fps_image_full_size');
-
-    
 
     $wrapper_classes .= "featured-posts-wrapper fps-single";
     $ul_classes .= "featured-posts fps-single";
     $bg_classes .= "featured-posts-background fps-single";
     $li_classes = "";
-
-    // Check if auto scrolling is enabled
-    if ($post_autoscroll == '1')
-    {
-        $wrapper_classes .= " fps-autoscroll";
-    }
 
     // Generate the main output.
     // Do not generate if this is not on the first page (need to make this optional in 2.0)
