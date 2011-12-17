@@ -3,7 +3,7 @@
         /* Numeric Variables */
         $variables = array (
             'fps_max_posts',
-            'fps_textbg_alpha'
+            'fps_textbg_alpha',
             'fps_dropshadow_x',
             'fps_dropshadow_y',
             'fps_dropshadow_blur',
@@ -44,7 +44,7 @@
 
 
         /* Text Variables */
-        $variables = array (
+       $variables = array (
             'fps_title_color',
             'fps_excerpt_color',
             'fps_heading_color',
@@ -134,7 +134,7 @@
         }
 
 
-
+/*
 
         if( empty($error) ){ ?>
             <div class="updated"><p><strong><?php _e('Settings Saved.', 'wp-rp' ); ?></strong></p></div>
@@ -146,7 +146,7 @@
             }
         ?></strong></p></div>
         <?php }
-    }
+*/    }
     
     $max_posts = get_option('fps_max_posts');
     $fps_image_full_size = get_option('fps_image_full_size');

@@ -179,5 +179,4 @@ The plugin will currently only display manually entered excerpts. Automatically 
 
 = 1.23 =
 * Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
-* Code refactoring and cleanup: activate/deactivate functions, admin page
-* Removed dead code from JS file.
+* Code refactoring and cleanup: activate/deactivate functions, admin page, js files.
