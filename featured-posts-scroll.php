@@ -148,6 +148,28 @@ function fps_activate()
             update_option($var, $default);
         }
     }
+
+    // Attempt to generate static JS file.
+    ob_start();
+
+        include(WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js.php');
+
+        $file_contents = ob_get_contents();
+        $file_path = WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js';
+        $ret_val = file_put_contents($file_path, $file_contents);
+    
+    ob_end_clean();
+
+    // Attempt to generate static CSS file.
+    ob_start();
+
+        include(WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css.php');
+
+        $file_contents = ob_get_contents();
+        $file_path = WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css';
+        $ret_val = file_put_contents($file_path, $file_contents);
+    
+    ob_end_clean();
 }
 
 /* Deactivate plugin by deleting all option data */
