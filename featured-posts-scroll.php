@@ -3,7 +3,7 @@
 Plugin Name: Featured Posts Scroll
 Plugin URI: http://chasepettit.com
 Description: A basic javascript based scrolling display of post titles and thumbnails.
-Version: 1.22
+Version: 1.23
 Author: Chaser324
 Author URI: http://chasepettit.com
 License: GNU GPL2
@@ -184,7 +184,15 @@ function fps_menu_styles()
 function fps_add_style()
 {
     wp_enqueue_style('fps-style', WP_PLUGIN_URL.'/featured-posts-scroll/css/featuredposts.css');
-    wp_enqueue_style('fps-style-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/css/featured-posts-scroll.css.php');
+    
+    if (file_exists(WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css'))
+    {
+        wp_enqueue_style('fps-style-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/css/fps.css');
+    }
+    else
+    {
+        wp_enqueue_style('fps-style-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/css/fps.css.php');
+    }
 }
 
 /* Enqueue scripts necessary for the plugin */
@@ -192,7 +200,15 @@ function fps_add_script()
 {
     if (!is_admin()) {
         wp_enqueue_script('jquery');
-        wp_enqueue_script('featuredpostslides', WP_PLUGIN_URL.'/featured-posts-scroll/js/featuredpostslides.js.php');
+
+        if(file_exists(WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js'))
+        {
+            wp_enqueue_script('fps-js-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/js/fps.js');
+        }
+        else
+        {
+            wp_enqueue_script('fps-js-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/js/fps.js.php');
+        }
     }
     else {
         wp_enqueue_script('jquery');
@@ -233,8 +249,6 @@ function fps_define_image_sizes()
         $post_width = 9999;
     }
 
-
-
     add_image_size( 'fps-post', ($post_width), ($post_height), $post_image_scale_bool );
 }
 
@@ -260,153 +274,153 @@ function fps_show($atts)
     $bg_classes .= "featured-posts-background fps-single";
     $li_classes = "";
 
-    // Generate the main output.
-    // Do not generate if this is not on the first page (need to make this optional in 2.0)
-    if (!is_paged())
+    // Generate the main output.    
+    $output .= '<!--Automatic Image Slider w/ CSS & jQuery with some customization-->';
+
+    // div#featured-posts-wrapper
+    $output .= '<div class="'.$wrapper_classes.'">';
+    
+    // Display heading if option selected
+    if ($post_display_heading == '1')
     {
-        $output .= '<!--Automatic Image Slider w/ CSS & jQuery with some customization-->';
+        $output .= '<p class="featured-posts-header">'.$post_heading_text.'</p>';
+    }
 
-        // div#featured-posts-wrapper
-        $output .= '<div class="'.$wrapper_classes.'">';
-        
-        // Display heading if option selected
-        if ($post_display_heading == '1')
-        {
-            $output .= '<p class="featured-posts-header">'.$post_heading_text.'</p>';
-        }
+    // Add left arrow and open unordered list
+    if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
+    {
+        $output .= '<div class="scrollFeaturedPostsLeft"></div>';
+    }
+    $output .= '<ul class="'.$ul_classes.'">';
 
-        // Add left arrow and open unordered list
-        if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
-        {
-            $output .= '<div class="scrollFeaturedPostsLeft"></div>';
-        }
-        $output .= '<ul class="'.$ul_classes.'">';
-
-        // Generate arguments for query
-        $post_details = NULL;
-        if ($atts == NULL)
-        {
-            $args = array(
-                'numberposts'     => $max_posts,
-                'offset'          => 0,
-                'category'        => '',
-                'orderby'         => 'post_date',
-                'order'           => 'DESC',
-                'include'         => '',
-                'exclude'         => '',
-                'post_type'       => 'post',
-                'tag'             => '',
-                'post_status'     => 'publish' );
-        }
-        else
-        {
-            $args = $atts;
-            $args['numberposts'] = $max_posts;
-            $args['post_status'] = 'publish';
-        }
-        $recent_posts = get_posts( $args );
-
-        if ( count($recent_posts)< $max_posts ) {
-            $max_posts = count($recent_posts);
-        }
-
-        // Get details for each article retrieved in query
-        foreach ( $recent_posts as $key=>$val ) 
-        {
-            setup_postdata($val);
-            $post_details[$key]['post_title'] = $val->post_title;
-            $post_details[$key]['post_excerpt'] = $val->post_excerpt;
-            $post_details[$key]['post_permalink'] = get_permalink($val->ID);
-            if (has_post_thumbnail($val->ID))
-            {
-                if ($fps_image_full_size == '0')
-                {
-                    $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'fps-post');
-                }
-                else
-                {
-                    $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'full');
-                }
-            }
-            else
-            {
-                $post_details[$key]['post_img_src'][0] = '';
-            }
-        }
-
-        // Generate list item for each post retrieved in queue
-        for ( $i = 0; $i < $max_posts; $i++ )
-        {
-            $post_permalink = $post_details[$i]['post_permalink'];
-            $post_title = $post_details[$i]['post_title'];
-            $post_excerpt = $post_details[$i]['post_excerpt'];
-            $post_img = $post_details[$i]['post_img_src'][0];
-
-
-            $output .= '<li class="'.$li_classes.'" >';
-                    $output .= '<div class="fps-image-div" >';
-                        $output .= '<a href="'.$post_permalink.'">';
-                            $output .= '<img class="fps-image" src="'.$post_img.'" />';
-                        $output .= '</a>';
-                    $output .= '</div>';
-
-
-                    $output .= '<div class="fps-text">';
-                        if ($post_display_title == '1')
-                        {
-                            $output .= '<a href="'.$post_permalink.'">';
-                                $output .= '<p class="fps-title">'.$post_title.'</p>';
-                            $output .= '</a>';
-                        }
-                        if ($post_display_excerpt == '1')
-                        {
-                            $output .= '<a href="'.$post_permalink.'">';
-                                $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
-                            $output .= '</a>';
-                        }
-                    $output .= '</div>';
-                $output .= '</li>';
-        }
-        $output .= '</ul>';
-        if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
-        {
-            $output .= '<div class="scrollFeaturedPostsRight"></div>';
-        }
-
-        if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
-        {
-            // Populate fps-slideNumberList li classes based on admin options
-
-
-            $output .= '<ul class="fps-slideNumberList">';
-            $output .= '<li class="fps-selectedSlide" title="'.$post_details[0]['post_title'].'">1</li>';
-            for ( $i = 2; $i <= count($recent_posts) && $i <= $max_posts; $i++ )
-            {
-                $output .= '<li title="'.$post_details[($i-1)]['post_title'].'">'.$i.'</li>';
-            }
-
-            $output .= '</ul>';
-        }
-
-        if ($post_arrow_position == 'below')
-        {
-            $output .= '<div class="scrollFeaturedPostsRight-below"></div>';
-            $output .= '<div class="scrollFeaturedPostsLeft-below"></div>';            
-        }
-
-
-        if ($post_arrow_position != 'borderless')
-        {
-            $output .= '<div class="'.$bg_classes.'"></div>';    
-        }
-        
-        $output .= '</div>'; // div#featured-posts-wrapper
+    // Generate arguments for query
+    $post_details = NULL;
+    if ($atts == NULL)
+    {
+        $args = array(
+            'numberposts'     => $max_posts,
+            'offset'          => 0,
+            'category'        => '',
+            'orderby'         => 'post_date',
+            'order'           => 'DESC',
+            'include'         => '',
+            'exclude'         => '',
+            'post_type'       => 'post',
+            'tag'             => '',
+            'post_status'     => 'publish' );
     }
     else
     {
-        $output = '';
+        $args = $atts;
+        $args['numberposts'] = $max_posts;
+        $args['post_status'] = 'publish';
+    }
+    $recent_posts = get_posts( $args );
+
+    if ( count($recent_posts)< $max_posts ) {
+        $max_posts = count($recent_posts);
     }
 
+    // Save currently selected post if one exists
+    global $post;
+    $temp_post = $post;
+
+    // Get details for each article retrieved in query
+    foreach ( $recent_posts as $key=>$val ) 
+    {
+        setup_postdata($val);
+        $post_details[$key]['post_title'] = $val->post_title;
+        $post_details[$key]['post_excerpt'] = $val->post_excerpt;
+        $post_details[$key]['post_permalink'] = get_permalink($val->ID);
+        if (has_post_thumbnail($val->ID))
+        {
+            if ($fps_image_full_size == '0')
+            {
+                $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'fps-post');
+            }
+            else
+            {
+                $post_details[$key]['post_img_src'] = wp_get_attachment_image_src( get_post_thumbnail_id($val->ID), 'full');
+            }
+        }
+        else
+        {
+            $post_details[$key]['post_img_src'][0] = '';
+        }
+    }
+
+    // Restore previous post data if there was any.
+    if ($temp_post != NULL)
+    {
+        $post = $temp_post;
+    }
+
+    // Generate list item for each post retrieved in queue
+    for ( $i = 0; $i < $max_posts; $i++ )
+    {
+        $post_permalink = $post_details[$i]['post_permalink'];
+        $post_title = $post_details[$i]['post_title'];
+        $post_excerpt = $post_details[$i]['post_excerpt'];
+        $post_img = $post_details[$i]['post_img_src'][0];
+
+
+        $output .= '<li class="'.$li_classes.'" >';
+            $output .= '<div class="fps-image-div" >';
+                $output .= '<a href="'.$post_permalink.'">';
+                    $output .= '<img class="fps-image" src="'.$post_img.'" />';
+                $output .= '</a>';
+            $output .= '</div>';
+
+
+            $output .= '<div class="fps-text">';
+                if ($post_display_title == '1')
+                {
+                    $output .= '<a href="'.$post_permalink.'">';
+                        $output .= '<p class="fps-title">'.$post_title.'</p>';
+                    $output .= '</a>';
+                }
+                if ($post_display_excerpt == '1')
+                {
+                    $output .= '<a href="'.$post_permalink.'">';
+                        $output .= '<p class="fps-excerpt">'.$post_excerpt.'</p>';
+                    $output .= '</a>';
+                }
+            $output .= '</div>';
+        $output .= '</li>';
+    }
+    $output .= '</ul>';
+    if ($post_arrow_position == 'sides' || $post_arrow_position == 'borderless')
+    {
+        $output .= '<div class="scrollFeaturedPostsRight"></div>';
+    }
+
+    if ($post_display_slidenumbers == '1' && $post_arrow_position != 'borderless')
+    {
+        // Populate fps-slideNumberList li classes based on admin options
+        $output .= '<ul class="fps-slideNumberList">';
+        $output .= '<li class="fps-selectedSlide" title="'.$post_details[0]['post_title'].'">1</li>';
+        for ( $i = 2; $i <= count($recent_posts) && $i <= $max_posts; $i++ )
+        {
+            $output .= '<li title="'.$post_details[($i-1)]['post_title'].'">'.$i.'</li>';
+        }
+
+        $output .= '</ul>';
+    }
+
+    if ($post_arrow_position == 'below')
+    {
+        $output .= '<div class="scrollFeaturedPostsRight-below"></div>';
+        $output .= '<div class="scrollFeaturedPostsLeft-below"></div>';            
+    }
+
+
+    if ($post_arrow_position != 'borderless')
+    {
+        $output .= '<div class="'.$bg_classes.'"></div>';    
+    }
+    
+    $output .= '</div>'; // div#featured-posts-wrapper
+    
     return $output;
 }
 

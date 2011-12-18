@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.22
+Stable tag: 1.23
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -83,6 +83,11 @@ For any configuration, the image should be split into four evenly sized quadrant
 = I have the "Display Excerpts" option selected, but I'm not seeing anything =
 The plugin will currently only display manually entered excerpts. Automatically generated excerpts will not be displayed.
 
+= When I save my settings, I get an error that says statics JS and/or CSS files can't be saved. What can I do to fix this? =
+If you get this error, it means that the permissions on your server aren't setup to let Wordpress write directly to a file. To resolve this you'll need to temporarily change the permissions on this plugin's css and js directories, click "Save Settings" on the admin page, and then change the permissions back.
+
+You can change the permissions on your server either by using SSH or a config menu on your hosting service's site (if they allow you to directly change permissions). With SSH access, navigate into the featured-posts-scroll directory and enter "chmod 777 css js", click "Save Settings" on the admin page, and then change permissions back with "chmod 755 css js".
+
 == Screenshots ==
 
 1. Admin Screen
@@ -90,6 +95,13 @@ The plugin will currently only display manually entered excerpts. Automatically 
 3. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.23 =
+* Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
+* Corrected issue where plugin could interfere with post/page templates causing the wrong post data to be displayed.
+* Code refactoring and cleanup: activate/deactivate functions, admin page, js files.
+* Performance update. CSS and JS that were generated from PHP on every page view are now saved to static files every time an admin option is changed.
+* Removed !is_paged() check that prevented plugin from displaying on multiple pages of a list. To replicate old behavior, add if (!is_paged()){...} around the fps_show() call.
 
 = 1.22 =
 * Fixed autoscrolling. (Corrected jQuery reference in autoscroll callback function)
@@ -179,4 +191,7 @@ The plugin will currently only display manually entered excerpts. Automatically 
 
 = 1.23 =
 * Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
+* Corrected issue where plugin could interfere with post/page templates causing the wrong post data to be displayed.
 * Code refactoring and cleanup: activate/deactivate functions, admin page, js files.
+* Performance update. CSS and JS that were generated from PHP on every page view are now saved to static files every time an admin option is changed.
+* Removed !is_paged() check that prevented plugin from displaying on multiple pages of a list. To replicate old behavior, add if (!is_paged()){...} around the fps_show() call.
