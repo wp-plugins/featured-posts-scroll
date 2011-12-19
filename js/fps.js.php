@@ -124,26 +124,29 @@ FeaturedPostsLib.fps = FeaturedPostsLib.fps || {};
 
     function initAutoscroll()
     {
-        if (type != 'none' && 1 == <?php echo $post_autoscroll ?>)
+        if (type != 'none')
         {
             $j('.featured-posts-wrapper').each(function(index) {
                 fps_animLocked[index] = true;
                 
-                if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
+                if (1 == <?php echo $post_autoscroll ?>)
                 {
-                    var callback = 
-                        "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
-                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right', " + index + ")";
-                    autoscrollInterval[index] = setInterval(
-                        callback, <?php echo $post_scroll_interval ?>);
-                }
-                else
-                {
-                    var callback = 
-                        "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
-                        index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right', " + index + ")";
-                    autoscrollInterval[index] = setInterval(
-                        callback, <?php echo $post_scroll_interval ?>);
+                    if ($j('.featured-posts-wrapper').slice(index,index+1).children('.scrollFeaturedPostsRight').length > 0)
+                    {
+                        var callback = 
+                            "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
+                            index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight'), 'right', " + index + ")";
+                        autoscrollInterval[index] = setInterval(
+                            callback, <?php echo $post_scroll_interval ?>);
+                    }
+                    else
+                    {
+                        var callback = 
+                            "FeaturedPostsLib.fps.scrollFeaturedPosts(jQuery('.featured-posts-wrapper').slice(" + 
+                            index + "," + (index + 1) + ").children('.scrollFeaturedPostsRight-below'), 'right', " + index + ")";
+                        autoscrollInterval[index] = setInterval(
+                            callback, <?php echo $post_scroll_interval ?>);
+                    }
                 }
             });
         }
