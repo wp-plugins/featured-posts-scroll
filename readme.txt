@@ -6,7 +6,7 @@ Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
 Tested up to: 3.2
-Stable tag: 1.23
+Stable tag: 1.24
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -95,6 +95,9 @@ You can change the permissions on your server either by using SSH or a config me
 3. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.24 =
+* Corrected issue with activation that was causing new variables to not be initialized to default values.
 
 = 1.23 =
 * Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
@@ -189,9 +192,5 @@ You can change the permissions on your server either by using SSH or a config me
 
 == Upgrade Notice ==
 
-= 1.23 =
-* Reorganized/renamed some CSS and JS files. Removed files that are no longer used.
-* Corrected issue where plugin could interfere with post/page templates causing the wrong post data to be displayed.
-* Code refactoring and cleanup: activate/deactivate functions, admin page, js files.
-* Performance update. CSS and JS that were generated from PHP on every page view are now saved to static files every time an admin option is changed.
-* Removed !is_paged() check that prevented plugin from displaying on multiple pages of a list. To replicate old behavior, add if (!is_paged()){...} around the fps_show() call.
+= 1.24 =
+* Corrected issue with activation that was causing new variables to not be initialized to default values.
