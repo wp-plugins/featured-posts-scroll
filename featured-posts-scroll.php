@@ -137,7 +137,9 @@ $fps_variables = array (
     'fps_image_height_noscale' => '0',
     'fps_image_width_noscale' => '0',
     'fps_image_height_stretch' => '1',
-    'fps_image_width_stretch' => '1'
+    'fps_image_width_stretch' => '1',
+
+    'fps_enable_static_caching' => '0'
 );
 
 /* Activate the plugin by creating/initializing all options */
@@ -152,27 +154,30 @@ function fps_activate()
         }
     }
 
-    // Attempt to generate static JS file.
-    ob_start();
+    if (get_option('fps_enable_static_caching') == '1')
+    {
+        // Attempt to generate static JS file.
+        ob_start();
 
-        include(WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js.php');
+            include(WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js.php');
 
-        $file_contents = ob_get_contents();
-        $file_path = WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js';
-        $ret_val = file_put_contents($file_path, $file_contents);
-    
-    ob_end_clean();
+            $file_contents = ob_get_contents();
+            $file_path = WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js';
+            $ret_val = file_put_contents($file_path, $file_contents);
+        
+        ob_end_clean();
 
-    // Attempt to generate static CSS file.
-    ob_start();
+        // Attempt to generate static CSS file.
+        ob_start();
 
-        include(WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css.php');
+            include(WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css.php');
 
-        $file_contents = ob_get_contents();
-        $file_path = WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css';
-        $ret_val = file_put_contents($file_path, $file_contents);
-    
-    ob_end_clean();
+            $file_contents = ob_get_contents();
+            $file_path = WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css';
+            $ret_val = file_put_contents($file_path, $file_contents);
+        
+        ob_end_clean();
+    }
 }
 
 /* Deactivate plugin by deleting all option data */
@@ -212,7 +217,7 @@ function fps_add_style()
 {
     wp_enqueue_style('fps-style', WP_PLUGIN_URL.'/featured-posts-scroll/css/featuredposts.css');
     
-    if (file_exists(WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css'))
+    if (get_option('fps_enable_static_caching') == '1' && file_exists(WP_PLUGIN_DIR.'/featured-posts-scroll/css/fps.css'))
     {
         wp_enqueue_style('fps-style-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/css/fps.css');
     }
@@ -228,7 +233,7 @@ function fps_add_script()
     if (!is_admin()) {
         wp_enqueue_script('jquery');
 
-        if(file_exists(WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js'))
+        if(get_option('fps_enable_static_caching') == '1' && file_exists(WP_PLUGIN_DIR.'/featured-posts-scroll/js/fps.js'))
         {
             wp_enqueue_script('fps-js-dynamic', WP_PLUGIN_URL.'/featured-posts-scroll/js/fps.js');
         }

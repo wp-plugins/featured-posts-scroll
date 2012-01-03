@@ -128,6 +128,8 @@
     $post_image_width_noscale = get_option('fps_image_width_noscale');
     $post_image_height_stretch = get_option('fps_image_height_stretch');
     $post_image_width_stretch = get_option('fps_image_width_stretch');
+
+    $fps_enable_static_caching = get_option('fps_enable_static_caching');
 ?>
 
 <div class="wrap">
@@ -191,6 +193,22 @@
                             </fieldset>
                         </td>
                     </tr>
+
+
+                    <tr valign="top">
+                        <th scope="row">Performance Options</th>
+                        <td>
+                            <fieldset>
+                                <legend class="hidden">Performance</legend>
+
+                                <?php if($fps_enable_static_caching == 1){ $checked = "checked=\"checked\""; }else{ $checked = ""; } ?>
+                                <input type="checkbox" name="fps_enable_static_caching" value="true" <?php echo $checked; ?>><?php _e(" Cache CSS and JS files (Experimental. Disable if plugin does not function correctly."); ?>
+                                <br />
+
+                            </fieldset>
+                        </td>
+                    </tr>
+
 
                     <tr valign="top">
                         <th scope="row">Scroll Size</th>
