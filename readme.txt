@@ -5,8 +5,8 @@ Author URI: http://chasepettit.com/
 Plugin URI: http://chasepettit.com/2011/03/featured-posts-scroll/
 Tags: posts, scroll, slider, featured, featured post, featured posts, recent post, recent posts
 Requires at least: 2.9.1
-Tested up to: 3.2
-Stable tag: 1.24
+Tested up to: 3.3
+Stable tag: 1.25
 
 A basic javascript based scrolling display of post titles and thumbnails.
 
@@ -80,6 +80,11 @@ The easiest way to figure this out is just to look at the images included with t
 
 For any configuration, the image should be split into four evenly sized quadrants. The top row is left/right arrows as they normally appear and the bottom row are the arrows as they appear when hovered over. The left column should be arrows pointing left, and the right column should be arrows pointing right.
 
+= I'm getting an error: "Call to undefined function has_post_thumbnail()", and I can't add a "Featured Image" to my posts. =
+This issue is typically caused by templates that don't enable post thumbnails. If your template's functions.php file does not contain this, you must add it:
+ 
+<code>add_theme_support( 'post-thumbnails' );</code>
+
 = I have the "Display Excerpts" option selected, but I'm not seeing anything =
 The plugin will currently only display manually entered excerpts. Automatically generated excerpts will not be displayed.
 
@@ -95,6 +100,10 @@ You can change the permissions on your server either by using SSH or a config me
 3. New in Release 1.13: Borderless Arrow Position, Drop Shadow Spread Parameter
 
 == Changelog ==
+
+= 1.25 =
+* Corrected issue with plugin appearing on post/page templates.
+* Made caching to static CSS and JS files optional. Some users have reported issues with this feature.
 
 = 1.24 =
 * Corrected issue with activation that was causing new variables to not be initialized to default values.
@@ -192,5 +201,6 @@ You can change the permissions on your server either by using SSH or a config me
 
 == Upgrade Notice ==
 
-= 1.24 =
-* Corrected issue with activation that was causing new variables to not be initialized to default values.
+= 1.25 =
+* Corrected issue with plugin appearing on post/page templates.
+* Made caching to static CSS and JS files optional. Some users have reported issues with this feature.

@@ -124,7 +124,8 @@
             'fps_image_height_noscale',
             'fps_image_width_noscale',
             'fps_image_height_stretch',
-            'fps_image_width_stretch'
+            'fps_image_width_stretch',
+            'fps_enable_static_caching'
 
         );
 
@@ -142,8 +143,11 @@
             <div class="updated"><p><strong><?php _e('Settings Saved.', 'wp-rp' ); ?></strong></p></div>
             <?php
 
-            fps_generate_js();
-            fps_generate_css();
+            if (get_option('fps_enable_static_caching') == '1')
+            {
+                fps_generate_js();
+                fps_generate_css();
+            }
         }
         else
         { 
